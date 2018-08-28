@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { AddItemComponent } from './pages/additem/additem.component';
+import { LoginComponent } from './pages/login/login.component';
 
 //pages
 
@@ -17,13 +19,17 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    SidebarComponent
+    SidebarComponent,
+    LoginComponent,
+    AddItemComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(
       [
-        {path: '', component: HomeComponent}
+        { path: '', component: HomeComponent },
+        { path: 'login', component: LoginComponent },
+        { path: 'additem', component: AddItemComponent }
       ]
     )
   ],
