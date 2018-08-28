@@ -11,7 +11,6 @@ export class BackendService {
   constructor(private http: HttpClient) { }
 
   getTopItemsInCategory() {
-    console.log('making request');
     const getUrl = this.url + 'categories/items'
     return this.http.get(getUrl).toPromise();
   }
