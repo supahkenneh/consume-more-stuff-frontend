@@ -1,6 +1,7 @@
 <div class="sidebar-container">
   <!-- these will be a tags later -->
-  <div routerLink="/">Home</div>
+  <div routerLink="/" id="home-link">Home</div>
+  <!-- no-auth user view -->
   <div class="category-container">
     <ul>
       <li>Category A</li>
@@ -9,5 +10,17 @@
       <li>Category D</li>
     </ul>
   </div>
-  <div>All Items</div>
+  <div class="all">All Items</div>
+  <br>
+  <!-- auth user new/edit item view -->
+  <div>messages</div>
+  <div>settings</div>
+  <button>+ New</button>
+  <br>
+  <!-- admin home view -->
+  <div>users</div>
+  <div>items</div>
+  <div>categories</div>
+  <div>settings</div>
+  <button>+ New</button>
 </div>
