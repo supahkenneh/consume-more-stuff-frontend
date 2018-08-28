@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('home');
+    // console.log('home');
     return this.backend.getTopItemsInCategory()
     // .then(result => {
     //   // console.log('result :', result);

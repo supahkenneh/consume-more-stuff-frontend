@@ -9,7 +9,7 @@ import { BackendService } from '../../services/backend.service';
 })
 
 export class SidebarComponent implements OnInit {
-  categories: any;
+  categories: string[];
 
   constructor(
     private router: Router,
@@ -17,9 +17,18 @@ export class SidebarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.backend.getTopItemsInCategory()
+    let categoryNames = [];
+    return this.backend.getTopItemsInCategory()
       .then(result => {
-        console.log(result);
+        let valueArr = Object.values(result);
+        valueArr.map(category => {
+          category.name = category.name.charAt(0).toUpperCase() + category.name.substring(1);
+          categoryNames.push(category.name);
+        })
       })
+      .then(() => {
+        return this.categories = categoryNames;
+      })
+      .catch(err => console.log(err))
   }
 }
