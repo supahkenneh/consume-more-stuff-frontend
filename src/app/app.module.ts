@@ -6,17 +6,15 @@ import { RouterModule } from '@angular/router';
 //components
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { HomeComponent } from './pages/home/home.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+
+//pages
+import { HomeComponent } from './pages/home/home.component';
 import { AddItemComponent } from './pages/additem/additem.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { MessagesComponent } from './pages/messages/messages.component';
-// import { AdminCategoriesComponent } from './pages/admincategories/admincategories.component';
-// import { AdminItemsComponent } from './pages/adminitems/adminitems.component';
-// import { AdminUsersComponent } from './pages/adminusers/adminusers.component';
-
-//pages
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -29,12 +27,10 @@ import { MessagesComponent } from './pages/messages/messages.component';
     AddItemComponent,
     SettingsComponent,
     MessagesComponent
-    // AdminCategoriesComponent,
-    // AdminItemsComponent,
-    // AdminUsersComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(
       [
         { path: '', component: HomeComponent },
@@ -42,9 +38,6 @@ import { MessagesComponent } from './pages/messages/messages.component';
         { path: 'additem', component: AddItemComponent },
         { path: 'user/settings', component: SettingsComponent },
         { path: 'user/messages', component: MessagesComponent}
-        // { path: 'admin/categories', component: AdminCategoriesComponent },
-        // { path: 'admin/items', component: AdminItemsComponent },
-        // { path: 'admin/users', component: AdminUsersComponent }
       ]
     )
   ],

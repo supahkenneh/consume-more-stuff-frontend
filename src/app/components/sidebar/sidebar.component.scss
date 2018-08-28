@@ -1,0 +1,20 @@
+$subFont: 'Quattrocento', Serif;
+
+.sidebar-container {
+  float: top;
+  width: 100%;
+  top: 100px;
+  background-color: #303A3E;
+  color: white;
+  font-size: 14px;
+  padding: 3px;
+  border-bottom: 3px solid lighten($color: (#303A3E), $amount: 50);
+  .category-container {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}

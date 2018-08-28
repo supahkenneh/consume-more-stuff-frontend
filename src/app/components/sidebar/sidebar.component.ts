@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BackendService } from '../../services/backend.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +8,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./sidebar.component.scss']
 })
 
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
+  categories: any;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private backend: BackendService
   ) { }
+
+  ngOnInit() {
+    this.backend.getTopItemsInCategory()
+      .then(result => {
+        console.log(result);
+      })
+  }
 }

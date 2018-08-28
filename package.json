@@ -1,6 +1,7 @@
 {
   "name": "consume-more-stuff",
   "version": "0.0.0",
+  "engine": "8.11.4",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
