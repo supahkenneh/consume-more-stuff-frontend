@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.scss']
+  templateUrl: './messages.component.html',
+  styleUrls: ['./messages.component.scss']
 })
 
-export class SettingsComponent {
+export class MessagesComponent {
 
   constructor(
     private router: Router
