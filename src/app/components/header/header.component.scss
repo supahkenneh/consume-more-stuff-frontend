@@ -1,5 +1,64 @@
 .header-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 50px 1fr;
+  background-color: #303A3E;
+  padding: 5px;
+}
+
+#logo {
+  grid-column: 1/2;
+  text-decoration: none;
+  font-size: 44px;
+  color: white;
+  margin-left: 25px;
+  &:hover {
+    color: black;
+  }
+}
+
+form {
+  grid-column: 2/4;
+  text-align: center;
   display: flex;
-  border: 1px solid black;
-  justify-content: space-evenly;
+  justify-content: center;
+  margin-top: 8px;
+  input {
+    width: 80%;
+    height: 30px;
+    font-size: 16px;
+    padding: 5px;
+  }
+  .search-button {
+    color: white;
+    background: transparent;
+    border: 1px solid white;
+    height: 30px;
+    width: 100px;
+    margin-left: 3px;
+    font-size: 14px;
+    &:hover {
+      background-color: white;
+      color: black;
+    }
+  }
+}
+
+.options-container {
+  grid-column: 4;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  a {
+    text-decoration: none;
+    color: white;
+    border: 1px solid white;
+    padding: 5px;
+    width: 100px;
+    &:hover {
+      color: black;
+      background: white;
+    }
+  }
 }
