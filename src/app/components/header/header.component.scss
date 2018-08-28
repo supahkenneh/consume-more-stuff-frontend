@@ -1,64 +1,44 @@
 .header-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 50px 1fr;
-  background-color: #303A3E;
-  padding: 5px;
-}
-
-#logo {
-  grid-column: 1/2;
-  text-decoration: none;
-  font-size: 44px;
-  color: white;
-  margin-left: 25px;
-  &:hover {
+  display: flex;
+  flex-direction: column;
+  background: #303A3E;
+  padding: 10px;
+  justify-content: center;
+  text-align: center;
+  a {
+    text-decoration: none;
     color: black;
   }
-}
-
-form {
-  grid-column: 2/4;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  margin-top: 8px;
-  input {
-    width: 80%;
-    height: 30px;
-    font-size: 16px;
-    padding: 5px;
-  }
-  .search-button {
+  #logo {
+    font-size: 28px;
     color: white;
-    background: transparent;
-    border: 1px solid white;
-    height: 30px;
-    width: 100px;
-    margin-left: 3px;
-    font-size: 14px;
-    &:hover {
-      background-color: white;
-      color: black;
+  }
+  form {
+    input {
+      width: 50%;
+    }
+    button {
+      border: 0.5px solid;
+      font-size: 12px;
+      background: whitesmoke;
+      margin-left: 5px;
+      height: 22px;
     }
   }
 }
 
 .options-container {
-  grid-column: 4;
-  text-align: center;
   display: flex;
   justify-content: space-around;
-  align-items: center;
-  a {
+  margin: 0;
+  background: #303A3E;
+  padding: 5px;
+  a{
     text-decoration: none;
     color: white;
-    border: 1px solid white;
-    padding: 5px;
-    width: 100px;
-    &:hover {
-      color: black;
-      background: white;
-    }
+    border: 0.5px solid;
+    width: 75px;
+    text-align: center;
+    padding: 3px;
   }
 }
