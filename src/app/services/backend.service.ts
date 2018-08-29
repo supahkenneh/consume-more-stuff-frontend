@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class BackendService {
   url: string = 'http://localhost:4200/api/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getColumns() {
     const getUrl = this.url + 'categories'
@@ -24,6 +24,12 @@ export class BackendService {
     return this.http.get(getUrl).toPromise();
   }
 
+  getAllItems() {
+    const getUrl = this.url + 'categories/items'
+    console.log(getUrl);
+    return this.http.get(getUrl).toPromise();
+  }
+  
   register(data) {
     const registerUrl = `${this.url}register`;
     return this.http.post(registerUrl, data).toPromise();

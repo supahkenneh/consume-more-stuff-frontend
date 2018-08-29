@@ -16,6 +16,9 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoryComponent } from './pages/category/category.component';
+import { AllItemsComponent } from './pages/allitems/allitems.component';
+
+//services
 import { BackendService } from './services/backend.service';
 import { SessionService } from './services/session.service';
 import { AuthService } from './services/auth.service';
@@ -30,7 +33,8 @@ import { AuthService } from './services/auth.service';
     AddItemComponent,
     SettingsComponent,
     MessagesComponent,
-    CategoryComponent
+    CategoryComponent,
+    AllItemsComponent
   ],
   imports: [
     BrowserModule,
@@ -41,9 +45,10 @@ import { AuthService } from './services/auth.service';
         { path: '', component: HomeComponent },
         { path: 'login', component: LoginComponent },
         { path: 'additem', component: AddItemComponent },
+        { path: 'items', component: AllItemsComponent },
         { path: 'user/settings', component: SettingsComponent },
-        { path: 'user/messages', component: MessagesComponent},
-        { path: 'category/:id/items', component: CategoryComponent}
+        { path: 'user/messages', component: MessagesComponent },
+        { path: 'category/:id/items', component: CategoryComponent }
       ]
     )
   ],
