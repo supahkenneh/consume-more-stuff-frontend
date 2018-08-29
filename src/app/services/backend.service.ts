@@ -34,6 +34,11 @@ export class BackendService {
     const getUrl = this.url + `items/${itemId}`
     return this.http.get(getUrl).toPromise();
   }
+
+  getUsersItems() {
+    const getUrl = this.url + 'user/items'
+    return this.http.get(getUrl).toPromise();
+  }
   
   register(data) {
     const registerUrl = `${this.url}register`;

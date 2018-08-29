@@ -23,6 +23,7 @@ import { BackendService } from './services/backend.service';
 import { SessionService } from './services/session.service';
 import { AuthService } from './services/auth.service';
 import { ItemComponent } from './pages/item/item.component';
+import { UserItemComponent } from './pages/useritem/useritem.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ItemComponent } from './pages/item/item.component';
     MessagesComponent,
     CategoryComponent,
     AllItemsComponent,
-    ItemComponent
+    ItemComponent,
+    UserItemComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,7 @@ import { ItemComponent } from './pages/item/item.component';
         { path: 'additem', component: AddItemComponent },
         { path: 'items', component: AllItemsComponent },
         { path: 'items/:id', component: ItemComponent },
+        { path: 'user/items', component: UserItemComponent },
         { path: 'user/settings', component: SettingsComponent },
         { path: 'user/messages', component: MessagesComponent },
         { path: 'category/:id/items', component: CategoryComponent },
