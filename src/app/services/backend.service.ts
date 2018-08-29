@@ -9,11 +9,21 @@ export class BackendService {
 
   constructor(private http: HttpClient) {}
 
-  getTopItemsInCategory() {
-    console.log('making request');
-    const getUrl = this.url + 'categories/items';
+  getColumns() {
+    const getUrl = this.url + 'categories'
     return this.http.get(getUrl).toPromise();
   }
+
+  getTopItemsInCategory() {
+    const getUrl = this.url + 'categories/items'
+    return this.http.get(getUrl).toPromise();
+  }
+
+  getCategoryItems(id) {
+    const getUrl = this.url + `categories/${id}/items`
+    return this.http.get(getUrl).toPromise();
+  }
+}
 
   register(data) {
     const registerUrl = `${this.url}register`;

@@ -15,6 +15,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CategoryComponent } from './pages/category/category.component';
 import { BackendService } from './services/backend.service';
 import { SessionService } from './services/session.service';
 import { AuthService } from './services/auth.service';
@@ -28,19 +29,23 @@ import { AuthService } from './services/auth.service';
     LoginComponent,
     AddItemComponent,
     SettingsComponent,
-    MessagesComponent
+    MessagesComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'additem', component: AddItemComponent },
-      { path: 'user/settings', component: SettingsComponent },
-      { path: 'user/messages', component: MessagesComponent }
-    ])
+    RouterModule.forRoot(
+      [
+        { path: '', component: HomeComponent },
+        { path: 'login', component: LoginComponent },
+        { path: 'additem', component: AddItemComponent },
+        { path: 'user/settings', component: SettingsComponent },
+        { path: 'user/messages', component: MessagesComponent},
+        { path: 'category/:id/items', component: CategoryComponent}
+      ]
+    )
   ],
   providers: [BackendService, SessionService, AuthService],
   bootstrap: [AppComponent]
