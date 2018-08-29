@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 //modules
 import { RouterModule } from '@angular/router';
-
+import { FormsModule } from '@angular/forms';
 //components
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -18,6 +18,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { CategoryComponent } from './pages/category/category.component';
 import { AllItemsComponent } from './pages/allitems/allitems.component';
 
+//services
+import { BackendService } from './services/backend.service';
+import { SessionService } from './services/session.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,7 @@ import { AllItemsComponent } from './pages/allitems/allitems.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     RouterModule.forRoot(
       [
@@ -47,7 +52,7 @@ import { AllItemsComponent } from './pages/allitems/allitems.component';
       ]
     )
   ],
-  providers: [],
+  providers: [BackendService, SessionService, AuthService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
