@@ -53,6 +53,7 @@ import { UserItemComponent } from './pages/useritem/useritem.component';
       { path: 'additem', component: AddItemComponent },
       { path: 'items', component: AllItemsComponent },
       { path: 'items/:id', component: ItemComponent },
+      { path: 'user/items', component: UserItemComponent },
       { path: 'user/settings', component: SettingsComponent },
       { path: 'user/messages', component: MessagesComponent },
       { path: 'category/:id/items', component: CategoryComponent }

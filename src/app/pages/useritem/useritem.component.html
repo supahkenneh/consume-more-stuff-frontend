@@ -1,0 +1,23 @@
+<div class="content-container">
+  <div class="item-statuses" (click)="togglePending()">Pending Items
+    <div class="item-list" *ngIf="showPending">
+      <div class="card" *ngFor="let item of pendingItems">
+        <div>{{item.description}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="item-statuses" (click)="togglePublished()">Published Items
+    <div class="item-list" *ngIf="showPublished">
+      <div class="card" *ngFor="let item of publishedItems">
+        <div>{{item.description}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="item-statuses" (click)="toggleSold()">Sold Items
+    <div class="item-list" *ngIf="showSold">
+      <div class="card" *ngFor="let item of soldItems">
+        <div>{{item.description}}</div>
+      </div>
+    </div>
+  </div>
+</div>

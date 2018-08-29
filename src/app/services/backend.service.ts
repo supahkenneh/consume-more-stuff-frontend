@@ -26,7 +26,6 @@ export class BackendService {
 
   getAllItems() {
     const getUrl = this.url + 'items'
-    console.log(getUrl);
     return this.http.get(getUrl).toPromise();
   }
 
