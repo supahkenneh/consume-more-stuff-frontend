@@ -10,6 +10,7 @@ import { BackendService } from '../../services/backend.service';
 export class HomeComponent implements OnInit {
   categories: string[];
   categoryItems: any;
+  showItems: boolean = false;
 
   constructor(
     private router: Router,
@@ -43,6 +44,8 @@ export class HomeComponent implements OnInit {
         })
       })
       .then(result => {
+        console.log('result :', result);
+        this.showItems = true;
         return this.categoryItems = result[0].items;
       })
   }
