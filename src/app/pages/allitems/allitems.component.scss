@@ -8,11 +8,17 @@
     margin: 10px;
     height: 300px;
     width: 100%;
-    border: 1px solid black;
     background: white;
     font-size: 14px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    padding: 5px;
+    box-shadow: 2px 2px 2px 1px gray;
+    .card-desc {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
 }
