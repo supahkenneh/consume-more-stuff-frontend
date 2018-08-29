@@ -14,10 +14,10 @@ export class BackendService {
     return this.http.get(getUrl).toPromise();
   }
 
-  getTopItemsInCategory() {
-    const getUrl = this.url + 'categories/items'
-    return this.http.get(getUrl).toPromise();
-  }
+  // getTopItemsInCategory(categoryId) {
+  //   const getUrl = this.url + 'categories/items'
+  //   return this.http.get(getUrl, categoryId).toPromise();
+  // }
 
   getCategoryItems(id) {
     const getUrl = this.url + `categories/${id}/items`
@@ -25,8 +25,13 @@ export class BackendService {
   }
 
   getAllItems() {
-    const getUrl = this.url + 'categories/items'
+    const getUrl = this.url + 'items'
     console.log(getUrl);
+    return this.http.get(getUrl).toPromise();
+  }
+
+  getItemById(itemId) {
+    const getUrl = this.url + `items/${itemId}`
     return this.http.get(getUrl).toPromise();
   }
   

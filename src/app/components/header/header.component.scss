@@ -3,7 +3,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  background: #303a3e;
+  background-image: linear-gradient(#48c2fd, #8880ff);
   padding: 10px;
   justify-content: center;
   text-align: center;
@@ -33,7 +33,7 @@
   display: flex;
   justify-content: space-around;
   margin: 0;
-  background: #303a3e;
+  background: transparent;
   padding: 5px;
   a {
     text-decoration: none;
