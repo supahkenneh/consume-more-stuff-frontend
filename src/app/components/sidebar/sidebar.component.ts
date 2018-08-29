@@ -19,7 +19,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     return this.backend.getColumns()
       .then(result => {
-        this.categories = result;
+        return this.categories = result;
       })
   }
 }

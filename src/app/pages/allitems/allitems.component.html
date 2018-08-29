@@ -1,7 +1,7 @@
 <div class="content-container">
   <div class="card" *ngFor="let item of itemList">
-    <div>{{item.photo_id}}</div>
-    <div>{{item.description}}</div>
+    <a routerLink="/items/{{item.id}}">{{item.photo_id}}</a>
+    <a routerLink="/items/{{item.id}}">{{item.description}}</a>
     <div class="card-desc">
       <div>{{item.created_at}}</div>
       <div>Views: {{item.views}}</div>

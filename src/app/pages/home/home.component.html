@@ -1,12 +1,12 @@
 <div class="content-container">
   <div class="category-label" *ngFor="let category of categories">
-    <div (click)="loadItems(category)">Top Items in {{category}}</div>
+    <div (click)="loadItems(category)" id="{{category.id}}" class="top-category">Top Items in {{category.name}}</div>
   </div>
-  <div class="item-list-container" *ngIf="showItems">
+  <div class="item-list-container">
     <div class="card-container" *ngFor="let item of categoryItems">
       <div class="card">
-        <div>Photo: {{item.photo_id}}</div>
-        <div>{{item.description}}</div>
+        <a routerLink="items/{{item.id}}">Photo: {{item.photo_id}}</a>
+        <a routerLink="items/{{item.id}}">{{item.description}}</a>
         <div class="card-desc">
           <div>{{item.created_at}}</div>
           <div>Views: {{item.views}}</div>
