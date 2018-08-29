@@ -8,6 +8,9 @@ import { BackendService } from '../../services/backend.service';
 })
 
 export class HomeComponent implements OnInit {
+  categories: string[];
+  categoryItems: any;
+  showItems: boolean = false;
 
   constructor(
     private router: Router,
@@ -15,10 +18,35 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('home');
+    let categoryNames = [];
+    return this.backend.getColumns()
+      .then(result => {
+        let resultArr = Object.values(result);
+        resultArr.map(category => {
+          category.name = category.name.charAt(0).toUpperCase() + category.name.substring(1);
+          categoryNames.push(category.name);
+        })
+      })
+      .then(() => {
+        return this.categories = categoryNames;
+      })
+  }
+
+  loadItems(category) {
+    category = category.toLowerCase();
     return this.backend.getTopItemsInCategory()
-    // .then(result => {
-    //   // console.log('result :', result);
-    // })
+      .then(result => {
+        let resultArr = Object.values(result);
+        return resultArr.filter(index => {
+          if (index.name === category) {
+            return index;
+          }
+        })
+      })
+      .then(result => {
+        console.log('result :', result);
+        this.showItems = true;
+        return this.categoryItems = result[0].items;
+      })
   }
 }

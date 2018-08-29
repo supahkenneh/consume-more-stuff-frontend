@@ -17,9 +17,9 @@ export class SidebarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.backend.getTopItemsInCategory()
+    return this.backend.getColumns()
       .then(result => {
-        console.log(result);
+        this.categories = result;
       })
   }
 }

@@ -1,0 +1,10 @@
+<div class="content-container">
+  <div class="card" *ngFor="let item of itemList">
+    <div>{{item.photo_id}}</div>
+    <div>{{item.description}}</div>
+    <div class="card-desc">
+      <div>{{item.created_at}}</div>
+      <div>Views: {{item.views}}</div>
+    </div>
+  </div>
+</div>

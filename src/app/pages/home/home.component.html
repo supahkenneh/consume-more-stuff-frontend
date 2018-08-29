@@ -1,1 +1,17 @@
-<div class="home">home</div>
+<div class="content-container">
+  <div class="category-label" *ngFor="let category of categories">
+    <div (click)="loadItems(category)">Top Items in {{category}}</div>
+  </div>
+  <div class="item-list-container" *ngIf="showItems">
+    <div class="card-container" *ngFor="let item of categoryItems">
+      <div class="card">
+        <div>Photo: {{item.photo_id}}</div>
+        <div>{{item.description}}</div>
+        <div class="card-desc">
+          <div>{{item.created_at}}</div>
+          <div>Views: {{item.views}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

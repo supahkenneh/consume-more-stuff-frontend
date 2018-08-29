@@ -10,9 +10,18 @@ export class BackendService {
 
   constructor(private http: HttpClient) { }
 
+  getColumns() {
+    const getUrl = this.url + 'categories'
+    return this.http.get(getUrl).toPromise();
+  }
+
   getTopItemsInCategory() {
-    console.log('making request');
     const getUrl = this.url + 'categories/items'
+    return this.http.get(getUrl).toPromise();
+  }
+
+  getCategoryItems(id) {
+    const getUrl = this.url + `categories/${id}/items`
     return this.http.get(getUrl).toPromise();
   }
 }

@@ -15,6 +15,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CategoryComponent } from './pages/category/category.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     AddItemComponent,
     SettingsComponent,
-    MessagesComponent
+    MessagesComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import { HttpClientModule } from '@angular/common/http';
         { path: 'login', component: LoginComponent },
         { path: 'additem', component: AddItemComponent },
         { path: 'user/settings', component: SettingsComponent },
-        { path: 'user/messages', component: MessagesComponent}
+        { path: 'user/messages', component: MessagesComponent},
+        { path: 'category/:id/items', component: CategoryComponent}
       ]
     )
   ],
