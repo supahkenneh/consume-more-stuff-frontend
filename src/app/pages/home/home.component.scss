@@ -4,7 +4,8 @@
   align-items: center;
   margin-top: 15px;
   .category-label {
-    box-shadow: 2px 2px 2px 1px gray;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px 1px gray;
     width: 90%;
     margin: 5px;
     padding: 5px;
@@ -18,6 +19,7 @@
         .card-container {
           width: 100%;
           .card {
+            border-radius: 10px;
             width: 100%;
             height: 200px;
             font-size: 12px;
@@ -25,8 +27,9 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            box-shadow: 2px 2px 2px 1px gray;
+            box-shadow: 1px 1px 1px 1px gray;
             margin-bottom: 10px;
+            background: white;
             a:nth-child(1) {
               text-decoration: none;
               color: black;
