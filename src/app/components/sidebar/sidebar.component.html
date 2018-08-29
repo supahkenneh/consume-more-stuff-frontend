@@ -2,9 +2,9 @@
   <!-- no-auth user view -->
   <div class="category-container">
     <div *ngFor="let category of categories">
-      <div routerLink="category/{{category.id}}/items">
+      <a routerLink="category/{{category.id}}/items">
         {{category.name}}
-      </div>
+      </a>
     </div>
     <a routerLink="items" class="link">All Items</a>
   </div>

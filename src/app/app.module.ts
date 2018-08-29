@@ -48,7 +48,7 @@ import { AuthService } from './services/auth.service';
         { path: 'items', component: AllItemsComponent },
         { path: 'user/settings', component: SettingsComponent },
         { path: 'user/messages', component: MessagesComponent },
-        { path: 'category/:id/items', component: CategoryComponent }
+        { path: 'category/:id/items', component: CategoryComponent, pathMatch: 'full' }
       ]
     )
   ],
