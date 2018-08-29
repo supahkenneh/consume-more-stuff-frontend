@@ -16,17 +16,34 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let categoryNames = [];
-    return this.backend.getTopItemsInCategory()
+    return this.backend.getColumns()
       .then(result => {
-        let resultArr = Object.values(result);
-        resultArr.map(category => {
-          category.name = category.name.charAt(0).toUpperCase() + category.name.substring(1);
-          categoryNames.push(category.name);
-        })
+        console.log(result);
       })
-      .then(() => {
-        return this.categories = categoryNames;
-      })
+    // let categoryNames = [];
+    // return this.backend.getTopItemsInCategory()
+    //   .then(result => {
+    //     let resultArr = Object.values(result);
+    //     resultArr.map(category => {
+    //       category.name = category.name.charAt(0).toUpperCase() + category.name.substring(1);
+    //       categoryNames.push(category.name);
+    //     })
+    //   })
+    //   .then(() => {
+    //     return this.categories = categoryNames;
+    //   })
   }
+
+  // loadItems(category) {
+  //   return this.backend.getTopItemsInCategory()
+  //     .then(result => {
+  //       let resultArr = Object.values(result);
+  //       return resultArr.filter(category => {
+  //         return category.name = category
+  //       })
+  //     })
+  //     .then(result => {
+  //       console.log('result :', result);
+  //     })
+  // }
 }

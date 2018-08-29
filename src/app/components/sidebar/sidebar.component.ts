@@ -18,7 +18,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     let categoryNames = [];
-    return this.backend.getTopItemsInCategory()
+    return this.backend.getColumns()
       .then(result => {
         let resultArr = Object.values(result);
         resultArr.map(category => {
@@ -29,6 +29,5 @@ export class SidebarComponent implements OnInit {
       .then(() => {
         return this.categories = categoryNames;
       })
-      .catch(err => console.log(err))
   }
 }

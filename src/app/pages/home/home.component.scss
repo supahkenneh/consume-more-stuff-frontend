@@ -2,7 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 15px;
   .category-label {
     border: 1px solid black;
+    width: 80%;
+    text-align: center;
+    margin: 5px;
+    padding: 5px;
   }
 }
