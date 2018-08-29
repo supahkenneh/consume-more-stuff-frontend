@@ -10,7 +10,6 @@ import { BackendService } from '../../services/backend.service';
 export class HomeComponent implements OnInit {
   categories: any;
   categoryItems: any;
-  showItems: boolean = false;
 
   constructor(
     private router: Router,
@@ -24,11 +23,15 @@ export class HomeComponent implements OnInit {
       })
   }
 
-  loadItems(categoryId) {
-    return this.backend.getCategoryItems(categoryId)
+  loadItems(category) {
+    return this.backend.getCategoryItems(category.id)
       .then(result => {
-        this.showItems = true;
         return this.categoryItems = result;
+      })
+      .then(() => {
+        let categoryDiv = document.getElementById(category.id)
+        let itemContainer = document.getElementsByClassName('item-list-container')[0];
+        categoryDiv.appendChild(itemContainer);
       })
   }
 }
