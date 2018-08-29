@@ -13,7 +13,6 @@ export class AuthService {
   }
 
   login(data) {
-    console.log('hit auth');
     return this.backend.login(data).then(response => {
       if (response) {
         return this.session.setSession(data);
@@ -22,7 +21,7 @@ export class AuthService {
   }
 
   logout() {
-    return this.backend.logout().then(response => {
+    return this.backend.logout().then(() => {
       return this.session.clearSession();
     });
   }

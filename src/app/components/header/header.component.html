@@ -1,7 +1,11 @@
 <div class="header-container">
   <a routerLink="" id="logo">Elite 4 CMS</a>
   <div class="options-container">
-    <a routerLink="login" class="auth-buttons">Login</a>
-    <a routerLink="register" class="auth-buttons">Register</a>
+    <div *ngIf="isLoggedIn()">Welcome {{this.user.username}}
+    </div>
+
+    <button *ngIf="isLoggedIn()" (click)="logout()" class="auth-buttons">Logout</button>
+    <a *ngIf="!(isLoggedIn())" routerLink="login" class="auth-buttons">Login</a>
+    <a *ngIf="!(isLoggedIn())" routerLink="register" class="auth-buttons">Register</a>
   </div>
 </div>

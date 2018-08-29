@@ -33,14 +33,13 @@ export class SessionService {
   }
   //create a logged in session for the user
   setSession(data) {
-    console.log('hit setsession');
     this.user.username = data.username;
     this.user.user_id = data.user_id;
 
     let userString = JSON.stringify(this.user);
     window.localStorage.setItem('user', userString);
 
-    this._isLoggedInSubject.next(false);
+    this._isLoggedInSubject.next(true);
   }
 
   clearSession() {
