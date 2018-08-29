@@ -24,6 +24,7 @@ import { BackendService } from './services/backend.service';
 import { SessionService } from './services/session.service';
 import { AuthService } from './services/auth.service';
 import { ItemComponent } from './pages/item/item.component';
+import { UserItemComponent } from './pages/useritem/useritem.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ItemComponent } from './pages/item/item.component';
     CategoryComponent,
     AllItemsComponent,
     ItemComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserItemComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +57,7 @@ import { ItemComponent } from './pages/item/item.component';
       { path: 'user/messages', component: MessagesComponent },
       { path: 'category/:id/items', component: CategoryComponent }
     ])
+
   ],
   providers: [BackendService, SessionService, AuthService],
   bootstrap: [AppComponent]

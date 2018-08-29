@@ -8,9 +8,11 @@ export class SessionService {
   user: {
     username: string;
     user_id: number;
+    email: string;
   } = {
     username: '',
-    user_id: -1
+    user_id: -1,
+    email: ''
   };
 
   private _isLoggedInSubject = new BehaviorSubject<boolean>(false);
@@ -36,7 +38,8 @@ export class SessionService {
   setSession(data) {
     console.log('setsess', data);
     this.user.username = data.username;
-    this.user.user_id = data.user_id;
+    this.user.user_id = data.id;
+    this.user.email = data.email;
 
     let userString = JSON.stringify(this.user);
     window.localStorage.setItem('user', userString);
