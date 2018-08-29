@@ -31,10 +31,12 @@ export class SessionService {
   }
 
   getSession() {
+    console.log('get',this.user)
     return this.user;
   }
   //create a logged in session for the user
   setSession(data) {
+    console.log('setsess', data);
     this.user.username = data.username;
     this.user.user_id = data.id;
     this.user.email = data.email;
