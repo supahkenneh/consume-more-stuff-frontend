@@ -25,6 +25,13 @@
     flex-direction: column;
     justify-content: flex-end;
     box-shadow: 2px 2px 2px 1px gray;
+    a:nth-child(1) {
+      text-decoration: none;
+      color: black;
+    }
+    a:nth-child(2) {
+      color: black;
+    }
     .card-desc {
       display: flex;
       flex-direction: row;

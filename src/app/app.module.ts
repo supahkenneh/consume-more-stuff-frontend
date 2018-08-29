@@ -22,6 +22,7 @@ import { AllItemsComponent } from './pages/allitems/allitems.component';
 import { BackendService } from './services/backend.service';
 import { SessionService } from './services/session.service';
 import { AuthService } from './services/auth.service';
+import { ItemComponent } from './pages/item/item.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AuthService } from './services/auth.service';
     SettingsComponent,
     MessagesComponent,
     CategoryComponent,
-    AllItemsComponent
+    AllItemsComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,
@@ -46,13 +48,14 @@ import { AuthService } from './services/auth.service';
         { path: 'login', component: LoginComponent },
         { path: 'additem', component: AddItemComponent },
         { path: 'items', component: AllItemsComponent },
+        { path: 'item/:id', component: ItemComponent },
         { path: 'user/settings', component: SettingsComponent },
         { path: 'user/messages', component: MessagesComponent },
-        { path: 'category/:id/items', component: CategoryComponent, pathMatch: 'full' }
+        { path: 'category/:id/items', component: CategoryComponent },
       ]
     )
   ],
   providers: [BackendService, SessionService, AuthService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

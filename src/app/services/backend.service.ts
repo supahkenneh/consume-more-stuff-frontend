@@ -26,7 +26,11 @@ export class BackendService {
 
   getAllItems() {
     const getUrl = this.url + 'categories/items'
-    console.log(getUrl);
+    return this.http.get(getUrl).toPromise();
+  }
+
+  getItemById(itemId) {
+    const getUrl = this.url + `item/${itemId}`
     return this.http.get(getUrl).toPromise();
   }
   
