@@ -13,7 +13,7 @@ export class SidebarComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private backend: BackendService
+    private backend: BackendService,
   ) { }
 
   ngOnInit() {
