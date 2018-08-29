@@ -36,9 +36,7 @@ export class BackendService {
   }
 
   login(data) {
-    console.log('hit backend');
     const loginUrl = `${this.url}login`;
-    console.log('url', loginUrl);
     return this.http.post(loginUrl, data).toPromise();
   }
 

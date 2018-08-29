@@ -3,7 +3,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  background: #303A3E;
+  background: #303a3e;
   padding: 10px;
   justify-content: center;
   text-align: center;
@@ -33,13 +33,21 @@
   display: flex;
   justify-content: space-around;
   margin: 0;
-  background: #303A3E;
+  background: #303a3e;
   padding: 5px;
-  a{
+  a {
     text-decoration: none;
     color: white;
     border: 0.5px solid;
     width: 75px;
+    text-align: center;
+    padding: 3px;
+  }
+  div {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    width: 150px;
     text-align: center;
     padding: 3px;
   }
