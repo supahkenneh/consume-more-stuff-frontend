@@ -18,6 +18,7 @@ export class LoginComponent {
   constructor(private router: Router, private auth: AuthService) {}
 
   login() {
+    this.loginFormData.username = this.loginFormData.username.toLowerCase();
     return this.auth
       .login(this.loginFormData)
       .then(() => {
