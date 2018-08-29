@@ -17,7 +17,6 @@ export class SidebarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let categoryNames = [];
     return this.backend.getColumns()
       .then(result => {
         this.categories = result;

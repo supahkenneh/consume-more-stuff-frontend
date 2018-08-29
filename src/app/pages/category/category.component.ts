@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { BackendService } from '../../services/backend.service';
 
 @Component({
@@ -9,13 +9,20 @@ import { BackendService } from '../../services/backend.service';
 
 export class CategoryComponent implements OnInit {
   categories: string[];
+  categoryId: string;
+  itemList: any;
 
   constructor(
     private router: Router,
-    private backend: BackendService
+    private backend: BackendService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
-
+    this.categoryId = this.activatedRoute.snapshot.paramMap.get('id');
+    return this.backend.getCategoryItems(this.categoryId)
+    .then(result => {
+      return this.itemList = result;
+    })
   }
 }
