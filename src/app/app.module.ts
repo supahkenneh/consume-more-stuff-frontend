@@ -48,7 +48,7 @@ import { ItemComponent } from './pages/item/item.component';
         { path: 'login', component: LoginComponent },
         { path: 'additem', component: AddItemComponent },
         { path: 'items', component: AllItemsComponent },
-        { path: 'item/:id', component: ItemComponent },
+        { path: 'items/:id', component: ItemComponent },
         { path: 'user/settings', component: SettingsComponent },
         { path: 'user/messages', component: MessagesComponent },
         { path: 'category/:id/items', component: CategoryComponent },

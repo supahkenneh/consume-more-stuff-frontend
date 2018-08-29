@@ -5,8 +5,8 @@
   <div class="item-list-container" *ngIf="showItems">
     <div class="card-container" *ngFor="let item of categoryItems">
       <div class="card">
-        <a routerLink="item/{{item.id}}">Photo: {{item.photo_id}}</a>
-        <a routerLink="item/{{item.id}}">{{item.description}}</a>
+        <a routerLink="items/{{item.id}}">Photo: {{item.photo_id}}</a>
+        <a routerLink="items/{{item.id}}">{{item.description}}</a>
         <div class="card-desc">
           <div>{{item.created_at}}</div>
           <div>Views: {{item.views}}</div>
