@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 //modules
 import { RouterModule } from '@angular/router';
-
+import { FormsModule } from '@angular/forms';
 //components
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -15,7 +15,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { BackendService } from './services/backend.service';
+import { SessionService } from './services/session.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -30,18 +32,17 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(
-      [
-        { path: '', component: HomeComponent },
-        { path: 'login', component: LoginComponent },
-        { path: 'additem', component: AddItemComponent },
-        { path: 'user/settings', component: SettingsComponent },
-        { path: 'user/messages', component: MessagesComponent}
-      ]
-    )
+    RouterModule.forRoot([
+      { path: '', component: HomeComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'additem', component: AddItemComponent },
+      { path: 'user/settings', component: SettingsComponent },
+      { path: 'user/messages', component: MessagesComponent }
+    ])
   ],
-  providers: [],
+  providers: [BackendService, SessionService, AuthService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

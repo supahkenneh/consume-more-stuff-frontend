@@ -4,15 +4,31 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-
 export class BackendService {
-  url: string = "http://localhost:4200/api/"
+  url: string = 'http://localhost:4200/api/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getTopItemsInCategory() {
     console.log('making request');
-    const getUrl = this.url + 'categories/items'
+    const getUrl = this.url + 'categories/items';
     return this.http.get(getUrl).toPromise();
+  }
+
+  register(data) {
+    const registerUrl = `${this.url}register`;
+    return this.http.post(registerUrl, data).toPromise();
+  }
+
+  login(data) {
+    console.log('hit backend');
+    const loginUrl = `${this.url}login`;
+    console.log('url', loginUrl);
+    return this.http.post(loginUrl, data).toPromise();
+  }
+
+  logout() {
+    const logoutUrl = `${this.url}logout`;
+    return this.http.get(logoutUrl).toPromise();
   }
 }
