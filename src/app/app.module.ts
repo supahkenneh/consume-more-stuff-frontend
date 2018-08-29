@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 //modules
 import { RouterModule } from '@angular/router';
-
+import { FormsModule } from '@angular/forms';
 //components
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -16,7 +16,9 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoryComponent } from './pages/category/category.component';
-
+import { BackendService } from './services/backend.service';
+import { SessionService } from './services/session.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { CategoryComponent } from './pages/category/category.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     RouterModule.forRoot(
       [
@@ -44,7 +47,7 @@ import { CategoryComponent } from './pages/category/category.component';
       ]
     )
   ],
-  providers: [],
+  providers: [BackendService, SessionService, AuthService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
