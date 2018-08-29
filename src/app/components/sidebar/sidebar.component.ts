@@ -9,7 +9,7 @@ import { BackendService } from '../../services/backend.service';
 })
 
 export class SidebarComponent implements OnInit {
-  categories: string[];
+  categories: any;
 
   constructor(
     private router: Router,
@@ -20,14 +20,7 @@ export class SidebarComponent implements OnInit {
     let categoryNames = [];
     return this.backend.getColumns()
       .then(result => {
-        let resultArr = Object.values(result);
-        resultArr.map(category => {
-          category.name = category.name.charAt(0).toUpperCase() + category.name.substring(1);
-          categoryNames.push(category.name);
-        })
-      })
-      .then(() => {
-        return this.categories = categoryNames;
+        this.categories = result;
       })
   }
 }

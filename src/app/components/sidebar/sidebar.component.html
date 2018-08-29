@@ -1,9 +1,8 @@
 <div class="sidebar-container">
-  <!-- these will be a tags later -->
   <!-- no-auth user view -->
   <div class="category-container">
     <div *ngFor="let category of categories">
-      <div>{{category}}</div>
+      <div routerLink="category/{{category.id}}/item">{{category.name}}</div>
     </div>
     <a routerLink="" class="link">All Items</a>
   </div>
