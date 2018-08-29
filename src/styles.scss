@@ -1,5 +1,5 @@
-$contentFont: 'Oswald', Sans-Serif;
-$subFont: 'Quattrocento', Serif;
+$mainFont: 'Poppins', sans-serif;
+$subFont: 'Roboto Condensed', sans-serif;
 
 html {
   box-sizing: border-box;
@@ -11,5 +11,5 @@ html {
 body {
   margin: 0;
   background-color: whitesmoke;
-  font-family: $contentFont;
+  font-family: $mainFont;
 }

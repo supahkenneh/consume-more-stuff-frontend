@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BackendService } from '../../services/backend.service';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   templateUrl: './home.component.html',
@@ -10,11 +11,18 @@ import { BackendService } from '../../services/backend.service';
 export class HomeComponent implements OnInit {
   categories: any;
   categoryItems: any;
+  user: object;
+  private _isLoggedInAsObservable;
+  private _isLoggedIn: boolean;
 
   constructor(
     private router: Router,
-    private backend: BackendService
-  ) { }
+    private backend: BackendService,
+    private session: SessionService
+  ) {
+    this.user = this.session.getSession();
+    this._isLoggedInAsObservable = this.session.isLoggedInAsAnObservable();
+  }
 
   ngOnInit() {
     return this.backend.getColumns()
