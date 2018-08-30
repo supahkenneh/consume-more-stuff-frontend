@@ -59,15 +59,12 @@ export class AddItemComponent {
 
     this.backend.getConditions().then(response => {
       this.conditions = response;
+      console.log(this.conditions);
     });
   }
 
   addItem() {
     this.newItemFormData.created_by = this.user.user_id;
-  }
-
-  //for test verification only remove before production
-  log(data) {
-    console.log(this.newItemFormData.category_id);
+    console.log(this.newItemFormData);
   }
 }

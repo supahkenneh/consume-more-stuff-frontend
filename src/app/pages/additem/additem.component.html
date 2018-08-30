@@ -10,7 +10,7 @@
         <div class="field">
           <label for="category_id">Category
           </label>
-          <select name="category_id" [(ngModel)]="newItemFormData.category_id" (change)="log()">
+          <select name="category_id" [(ngModel)]="newItemFormData.category_id">
             <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
           </select>
         </div>
@@ -27,8 +27,8 @@
         <div class="field">
           <label for="condition_id">Condition
           </label>
-          <select name="condition_id" [(ngModel)]="newItemFormData.condition_id" (change)="log()">
-              <option *ngFor="let condition of condition" value="{{condition.id}}">{{condition.name}}</option>
+          <select name="condition_id" [(ngModel)]="newItemFormData.condition_id">
+              <option *ngFor="let condition of conditions" value="{{condition.rank}}">{{condition.name}}</option>
             </select>
         </div>
         <div class="field">
