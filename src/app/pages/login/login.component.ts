@@ -22,7 +22,7 @@ export class LoginComponent {
     return this.auth
       .login(this.loginFormData)
       .then(() => {
-        this.router.navigate(['/user/items']);
+        this.router.navigate(['user/items']);
       })
       .catch(err => {
         console.log('error: ', err);
