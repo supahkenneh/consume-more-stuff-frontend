@@ -58,6 +58,7 @@ export class AddItemComponent {
     });
 
     this.backend.getConditions().then(response => {
+      console.log('response :', response);
       this.conditions = response;
     });
   }
