@@ -1,4 +1,4 @@
-<div class="content-container">
+<div class="content-container" *ngIf="!this.editing">
   <div class="item-header">
     <h1>{{item.description}}</h1>
   </div>
@@ -7,12 +7,59 @@
   </div>
   <div class="item-content">
     <div>Views: {{item.views}}</div>
-    <div>Status: {{item.status_id}}</div>
-    <div>Condition: {{item.condition_id}}</div>
+    <div>Status: {{item.itemStatus.name}}</div>
+    <div>Condition: {{item.condition.name}}</div>
     <div>Posted at: {{item.created_at}}</div>
     <div>Last edited: {{item.updated_at}}</div>
     <div>Manufacturer/Make: {{item.manufacturer_make}}</div>
     <div>Model: {{item.model_name_number}}</div>
     <div>Details: {{item.notes_details}}</div>
   </div>
+  <button (click)="toggleEdit()" *ngIf="correctUser">Edit</button>
+</div>
+
+<div class="edit-container" *ngIf="this.editing">
+  <div class="edit-header">Edit your item</div>
+  <form>
+    <label for="description">Description:</label>
+    <input type="text" name="description" [(ngModel)]="editFormData.description">
+
+    <label for="photo">Photo:</label>
+    <input type="text" name="photo" [(ngModel)]="editFormData.photo_id">
+
+    <label for="item-status">Item Status</label>
+    <select name="status" [(ngModel)]="editFormData.status_id">
+      <option value="0">Change status</option>
+      <option value="1">Pending</option>
+      <option value="2">Published</option>
+      <option value="3">Sold</option>
+      <option value="4">Delete</option>
+    </select>
+
+    <label for="condition">Condition:</label>
+    <select name="condition" [(ngModel)]="editFormData.condition_id">
+      <option value="0">Change condition</option>
+      <option value="1">New</option>
+      <option value="2">Good</option>
+      <option value="3">Fair</option>
+      <option value="4">Worn</option>
+      <option value="5">Used</option>
+    </select>
+
+    <label for="dimensions">Dimensions:</label>
+    <input type="text" name="dimensions" [(ngModel)]="editFormData.dimensions">
+
+    <label for="manufacturer_make">Manucturer/make:</label>
+    <input type="text" name="manufacturer_make" [(ngModel)]="editFormData.manufacturer_make">
+
+    <label for="model_name_number">Model:</label>
+    <input type="text" name="model_name_number" [(ngModel)]="editFormData.model_name_number">
+
+    <label for="notes_details">Details:</label>
+    <textarea type="text" name="notes_details" [(ngModel)]="editFormData.notes_details"></textarea>
+    <div class="buttons">
+      <button (click)="submitEdit()">Submit</button>
+      <button (click)="toggleEdit()">Cancel</button>
+    </div>
+  </form>
 </div>
