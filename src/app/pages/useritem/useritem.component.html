@@ -1,12 +1,12 @@
-<div class="error" *ngIf="!isLoggedIn">
+<div class="error" *ngIf="!_isLoggedIn">
   <div>Please <a routerLink="/login">log in</a> to view your items</div>
 </div>
-<div class="content-container" *ngIf="isLoggedIn">
+<div class="content-container" *ngIf="_isLoggedIn">
   <div class="item-statuses" (click)="togglePending()">Pending Items
     <div class="item-list" *ngIf="showPending">
       <div class="card" *ngFor="let item of pendingItems">
-        <div>{{item.photo_id}}</div>
-        <div>{{item.description}}</div>
+        <div routerLink="/items/{{item.id}}">{{item.photo_id}}</div>
+        <a routerLink="/items/{{item.id}}">{{item.description}}</a>
         <div>Created: {{item.created_at}}</div>
       </div>
     </div>
@@ -14,8 +14,8 @@
   <div class="item-statuses" (click)="togglePublished()">Published Items
     <div class="item-list" *ngIf="showPublished">
       <div class="card" *ngFor="let item of publishedItems">
-        <div>{{item.photo_id}}</div>
-        <div>{{item.description}}</div>
+        <div routerLink="/items/{{item.id}}">{{item.photo_id}}</div>
+        <a routerLink="/items/{{item.id}}">{{item.description}}</a>
         <div>Views: {{item.views}}</div>
         <div>Created: {{item.created_at}}</div>
       </div>
@@ -24,8 +24,8 @@
   <div class="item-statuses" (click)="toggleSold()">Sold Items
     <div class="item-list" *ngIf="showSold">
       <div class="card" *ngFor="let item of soldItems">
-        <div>{{item.photo_id}}</div>
-        <div>{{item.description}}</div>
+        <div routerLink="/items/{{item.id}}">{{item.photo_id}}</div>
+        <div routerLink="/items/{{item.id}}">{{item.description}}</div>
         <div>Sold on: {{item.updated_at}}</div>
       </div>
     </div>

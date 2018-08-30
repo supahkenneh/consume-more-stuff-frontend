@@ -8,7 +8,7 @@ import { BackendService } from '../../services/backend.service';
 })
 
 export class ItemComponent implements OnInit {
-  item: object;
+  item: any;
 
   constructor(
     private router: Router,
@@ -19,9 +19,8 @@ export class ItemComponent implements OnInit {
   ngOnInit() {
     let itemId = this.activatedRouter.snapshot.paramMap.get('id');
     return this.backend.getItemById(itemId)
-    .then(result => {
-      console.log('result :', result);
-      this.item = result[0];
-    })
+      .then(result => {
+        return this.item = result[0];
+      })
   }
 }
