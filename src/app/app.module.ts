@@ -58,7 +58,6 @@ import { UserItemComponent } from './pages/useritem/useritem.component';
       { path: 'user/messages', component: MessagesComponent },
       { path: 'category/:id/items', component: CategoryComponent }
     ])
-
   ],
   providers: [BackendService, SessionService, AuthService],
   bootstrap: [AppComponent]

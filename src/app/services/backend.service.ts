@@ -7,10 +7,20 @@ import { HttpClient } from '@angular/common/http';
 export class BackendService {
   url: string = 'http://localhost:4200/api/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
+
+  postItem(data) {
+    const postItemUrl = `${this.url}items`;
+    return this.http.post(postItemUrl, data).toPromise();
+  }
+
+  postPhoto(data) {
+    const postPhotoUrl = `${this.url}photos`;
+    return this.http.post(postPhotoUrl, data).toPromise();
+  }
 
   getColumns() {
-    const getUrl = this.url + 'categories'
+    const getUrl = this.url + 'categories';
     return this.http.get(getUrl).toPromise();
   }
 
@@ -19,23 +29,33 @@ export class BackendService {
   //   return this.http.get(getUrl, categoryId).toPromise();
   // }
 
+  getCategories() {
+    const getCatUrl = this.url + `categories/`;
+    return this.http.get(getCatUrl).toPromise();
+  }
+
+  getConditions() {
+    const getConditionUrl = this.url + `conditions/`;
+    return this.http.get(getConditionUrl).toPromise();
+  }
+
   getCategoryItems(id) {
-    const getUrl = this.url + `categories/${id}/items`
+    const getUrl = this.url + `categories/${id}/items`;
     return this.http.get(getUrl).toPromise();
   }
 
   getAllItems() {
-    const getUrl = this.url + 'items'
+    const getUrl = this.url + 'items';
     return this.http.get(getUrl).toPromise();
   }
 
   getItemById(itemId) {
-    const getUrl = this.url + `items/${itemId}`
+    const getUrl = this.url + `items/${itemId}`;
     return this.http.get(getUrl).toPromise();
   }
 
   getUsersItems() {
-    const getUrl = this.url + 'user/items'
+    const getUrl = this.url + 'user/items';
     return this.http.get(getUrl).toPromise();
   }
 
@@ -44,6 +64,7 @@ export class BackendService {
     return this.http.put(putUrl, data).toPromise();
   }
   
+
   register(data) {
     const registerUrl = `${this.url}register`;
     return this.http.post(registerUrl, data).toPromise();
