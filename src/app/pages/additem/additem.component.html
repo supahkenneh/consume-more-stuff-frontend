@@ -28,7 +28,7 @@
           <label for="condition_id">Condition
           </label>
           <select name="condition_id" [(ngModel)]="newItemFormData.condition_id" (change)="log()">
-              <option *ngFor="let condition of condition" value="{{condition.id}}">{{condition.name}}</option>
+              <option *ngFor="let condition of conditions" value="{{condition.rank}}">{{condition.name}}</option>
             </select>
         </div>
         <div class="field">
