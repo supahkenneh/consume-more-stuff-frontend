@@ -16,9 +16,10 @@ export class ItemComponent implements OnInit {
 
   editFormData: {
     description: string;
-    photo: string;
-    status: string;
-    condition: string;
+    photo_id: string;
+    status_id: any;
+    condition_id: any;
+    dimensions: string;
     manufacturer_make: string;
     model_name_number: string;
     notes_details: string;
@@ -54,8 +55,12 @@ export class ItemComponent implements OnInit {
   }
 
   submitEdit() {
-    console.log(this.editFormData);
-    console.log('this.item :', this.item);
-    console.log('this.user', this.user)
+    this.editFormData.condition_id = parseInt(this.editFormData.condition_id);
+    this.editFormData.status_id = parseInt(this.editFormData.status_id);
+    return this.backend.editItem(this.editFormData, this.item.id)
+    .then(editedItem => {
+      this.item = editedItem[0];
+      this.toggleEdit();
+    })
   }
 }

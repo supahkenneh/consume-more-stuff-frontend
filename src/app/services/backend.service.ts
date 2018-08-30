@@ -38,6 +38,11 @@ export class BackendService {
     const getUrl = this.url + 'user/items'
     return this.http.get(getUrl).toPromise();
   }
+
+  editItem(data, id) {
+    const putUrl = this.url + `items/${id}`
+    return this.http.put(putUrl, data).toPromise();
+  }
   
   register(data) {
     const registerUrl = `${this.url}register`;

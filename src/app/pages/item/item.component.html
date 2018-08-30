@@ -1,4 +1,4 @@
-<div class="content-container" *ngIf="!editing">
+<div class="content-container" *ngIf="!this.editing">
   <div class="item-header">
     <h1>{{item.description}}</h1>
   </div>
@@ -18,17 +18,17 @@
   <button (click)="toggleEdit()" *ngIf="correctUser">Edit</button>
 </div>
 
-<div class="edit-container" *ngIf="editing">
+<div class="edit-container" *ngIf="this.editing">
   <div class="edit-header">Edit your item</div>
   <form>
     <label for="description">Description:</label>
     <input type="text" name="description" [(ngModel)]="editFormData.description">
 
     <label for="photo">Photo:</label>
-    <input type="text" name="photo" [(ngModel)]="editFormData.photo">
+    <input type="text" name="photo" [(ngModel)]="editFormData.photo_id">
 
     <label for="item-status">Item Status</label>
-    <select name="status" [(ngModel)]="editFormData.status">
+    <select name="status" [(ngModel)]="editFormData.status_id">
       <option value="0">Change status</option>
       <option value="1">Pending</option>
       <option value="2">Published</option>
@@ -37,7 +37,7 @@
     </select>
 
     <label for="condition">Condition:</label>
-    <select name="condition" [(ngModel)]="editFormData.condition">
+    <select name="condition" [(ngModel)]="editFormData.condition_id">
       <option value="0">Change condition</option>
       <option value="1">New</option>
       <option value="2">Good</option>
@@ -45,6 +45,9 @@
       <option value="4">Worn</option>
       <option value="5">Used</option>
     </select>
+
+    <label for="dimensions">Dimensions:</label>
+    <input type="text" name="dimensions" [(ngModel)]="editFormData.dimensions">
 
     <label for="manufacturer_make">Manucturer/make:</label>
     <input type="text" name="manufacturer_make" [(ngModel)]="editFormData.manufacturer_make">
