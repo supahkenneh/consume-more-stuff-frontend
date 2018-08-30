@@ -9,10 +9,10 @@
     <a routerLink="items" class="link">All</a>
   </div>
   <!-- auth user view -->
-  <!-- <div class="user-options">
-    <div class="options">Home</div>
+  <div class="user-options" *ngIf="this._isLoggedIn">
+    <div class="options" routerLink="user/items">Items</div>
     <div class="options">Messages</div>
     <div class="options">Settings</div>
-    <div class="options">+ New</div>
-  </div> -->
+    <div class="options" routerLink="additem">+ New</div>
+  </div>
 </div>
