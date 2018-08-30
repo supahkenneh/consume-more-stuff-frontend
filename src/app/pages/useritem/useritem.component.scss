@@ -8,7 +8,35 @@
     box-shadow: 1px 1px 1px 1px gray;
     width: 90%;
     margin: 5px;
+    margin-bottom: 25px;
     padding: 5px;
     text-align: center;
+    .item-list {
+      margin-top: 5px;
+      padding: 5px;
+      margin-bottom: 15px;
+      .card {
+        width: 100%;
+        background: white;
+        height: 150px;
+        border-radius: 10px;
+        box-shadow: 1px 1px 1px 1px gray;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  div {
+    a {
+      color: black;
+    }
   }
 }

@@ -13,6 +13,8 @@ export class UserItemComponent implements OnInit {
   pendingItems: any = [];
   publishedItems: any = [];
   soldItems: any = [];
+  private _isLoggedInAsObservable;
+  private _isLoggedIn: boolean;
 
   showPending: boolean = false;
   showPublished: boolean = false;
@@ -24,6 +26,16 @@ export class UserItemComponent implements OnInit {
     private backend: BackendService
   ) {
     this.user = this.session.getSession();
+    this._isLoggedInAsObservable = this.session.isLoggedInAsAnObservable();
+
+    this._isLoggedInAsObservable.subscribe(
+      (loggedIn: boolean) => {
+        this._isLoggedIn = loggedIn;
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   ngOnInit() {
@@ -31,15 +43,21 @@ export class UserItemComponent implements OnInit {
       .then(response => {
         let responseArr = Object.values(response);
         responseArr.map(item => {
-          if (item.itemStatus.name === 'pending') {
-            this.pendingItems.push(item);
-          } else if (item.itemStatus.name === 'published') {
-            this.publishedItems.push(item);
-          } else if (item.itemStatus.name === 'sold') {
-            this.soldItems.push(item);
+          switch (item.itemStatus.name) {
+            case 'pending':
+              this.pendingItems.push(item);
+              break;
+            case 'published':
+              this.publishedItems.push(item);
+              break;
+            case 'sold':
+              this.soldItems.push(item);
+            default:
+              break;
           }
         })
       })
+
   }
 
   togglePending() {
