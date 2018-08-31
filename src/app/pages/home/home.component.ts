@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BackendService } from '../../services/backend.service';
 import { SessionService } from '../../services/session.service';
@@ -41,5 +41,10 @@ export class HomeComponent implements OnInit {
         let itemContainer = document.getElementsByClassName('item-list-container')[0];
         categoryDiv.appendChild(itemContainer);
       })
+  }
+
+  navigate(categoryId){
+    console.log(categoryId);
+    return this.router.navigate([`/category/${categoryId}/items`])
   }
 }

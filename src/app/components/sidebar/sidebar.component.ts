@@ -38,4 +38,8 @@ export class SidebarComponent implements OnInit {
         return this.categories = result;
       })
   }
+
+  navigate(categoryId){
+    this.router.navigate([`category/${categoryId}/items`])
+  }
 }

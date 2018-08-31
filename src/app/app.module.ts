@@ -40,7 +40,7 @@ import { UserItemComponent } from './pages/useritem/useritem.component';
     AllItemsComponent,
     ItemComponent,
     RegisterComponent,
-    UserItemComponent
+    UserItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +56,7 @@ import { UserItemComponent } from './pages/useritem/useritem.component';
       { path: 'user/items', component: UserItemComponent },
       { path: 'user/settings', component: SettingsComponent },
       { path: 'user/messages', component: MessagesComponent },
-      { path: 'category/:id/items', component: CategoryComponent }
+      { path: 'category/:id/items', component: CategoryComponent },
     ])
   ],
   providers: [BackendService, SessionService, AuthService],
