@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SessionService } from '../../services/session.service';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -12,6 +13,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private _isLoggedIn: boolean;
   constructor(
     private session: SessionService,
+    private router: Router,
     private auth: AuthService
   ) {
     this.user = session.getSession();
@@ -37,7 +39,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   logout() {
     this._isLoggedInAsObservable = this.session.isLoggedInAsAnObservable();
 
-    return this.auth.logout().catch(err => {
+    return this.auth.logout()
+    .then(() => {
+      return this.router.navigate(['/'])
+    })
+    .catch(err => {
       console.log('error: ', err);
     });
   }

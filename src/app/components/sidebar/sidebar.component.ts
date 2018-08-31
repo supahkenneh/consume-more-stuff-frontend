@@ -22,6 +22,14 @@ export class SidebarComponent implements OnInit {
   ) {
     this.user = this.session.getSession();
     this._isLoggedInAsObservable = this.session.isLoggedInAsAnObservable();
+    this._isLoggedInAsObservable.subscribe(
+      (loggedIn: boolean) => {
+        this._isLoggedIn = loggedIn;
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   ngOnInit() {
@@ -29,5 +37,9 @@ export class SidebarComponent implements OnInit {
       .then(result => {
         return this.categories = result;
       })
+  }
+
+  navigate(categoryId){
+    this.router.navigate([`category/${categoryId}/items`])
   }
 }

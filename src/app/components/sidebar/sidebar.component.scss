@@ -16,4 +16,8 @@ $subFont: 'Roboto Condensed', sans-serif;
     color: white;
     text-decoration: none;
   }
+  .user-options {
+    display: flex;
+    justify-content: space-evenly;
+  }
 }

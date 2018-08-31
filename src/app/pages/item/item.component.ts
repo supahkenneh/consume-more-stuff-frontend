@@ -25,6 +25,8 @@ export class ItemComponent implements OnInit {
     notes_details: string;
   }
 
+  descriptionErrors: string[];
+
   constructor(
     private router: Router,
     private backend: BackendService,

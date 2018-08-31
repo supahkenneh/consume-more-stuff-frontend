@@ -1,0 +1,14 @@
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .settings-header {
+    margin-top: 15px;
+  }
+  .change-pass {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+  }
+}

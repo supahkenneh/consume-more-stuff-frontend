@@ -80,7 +80,7 @@ export class UserItemComponent implements OnInit {
     if (this.showSold) {
       return this.showSold = false;
     } else {
-      return this.showSold = false;
+      return this.showSold = true;
     }
   }
 
