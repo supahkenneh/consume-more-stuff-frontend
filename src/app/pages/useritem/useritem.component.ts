@@ -9,6 +9,16 @@ import { SessionService } from '../../services/session.service';
 })
 export class UserItemComponent implements OnInit {
   user: object;
+  userItems: any;
+  pendingItems: any = [];
+  publishedItems: any = [];
+  soldItems: any = [];
+  private _isLoggedInAsObservable;
+  private _isLoggedIn: boolean;
+
+  showPending: boolean = false;
+  showPublished: boolean = false;
+  showSold: boolean = false;
 
   constructor(
     private router: Router,
@@ -16,14 +26,62 @@ export class UserItemComponent implements OnInit {
     private backend: BackendService
   ) {
     this.user = this.session.getSession();
+    this._isLoggedInAsObservable = this.session.isLoggedInAsAnObservable();
+
+    this._isLoggedInAsObservable.subscribe(
+      (loggedIn: boolean) => {
+        this._isLoggedIn = loggedIn;
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   ngOnInit() {
     return this.backend.getUsersItems()
-    .then(response => {
-      console.log(response);
-    })
+      .then(response => {
+        let responseArr = Object.values(response);
+        responseArr.map(item => {
+          switch (item.itemStatus.name) {
+            case 'pending':
+              this.pendingItems.push(item);
+              break;
+            case 'published':
+              this.publishedItems.push(item);
+              break;
+            case 'sold':
+              this.soldItems.push(item);
+            default:
+              break;
+          }
+        })
+      })
+
   }
 
+  togglePending() {
+    if (this.showPending) {
+      return this.showPending = false;
+    } else {
+      return this.showPending = true;
+    }
+  }
+
+  togglePublished() {
+    if (this.showPublished) {
+      return this.showPublished = false;
+    } else {
+      return this.showPublished = true;
+    }
+  }
+
+  toggleSold() {
+    if (this.showSold) {
+      return this.showSold = false;
+    } else {
+      return this.showSold = false;
+    }
+  }
 
 }
