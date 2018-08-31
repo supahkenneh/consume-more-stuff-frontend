@@ -18,6 +18,7 @@ export class AddItemComponent {
 
   photo: object;
   loggedIn: boolean;
+  photo_link: string;
 
   newItemFormData: {
     description: string;
@@ -60,15 +61,29 @@ export class AddItemComponent {
     this.backend.getConditions().then(response => {
       console.log('response :', response);
       this.conditions = response;
+      console.log(this.conditions);
     });
   }
 
   addItem() {
     this.newItemFormData.created_by = this.user.user_id;
-  }
-
-  //for test verification only remove before production
-  log(data) {
-    console.log(this.newItemFormData.category_id);
+    console.log(this.newItemFormData);
+    return this.backend
+      .postPhoto({ link: this.photo_link })
+      .then(photo => {
+        this.newItemFormData.photo_id = photo.id;
+        return this.newItemFormData;
+      })
+      .then(newItemData => {
+        console.log('after photo', newItemData);
+        return this.backend.postItem(newItemData);
+      })
+      .then(newItem => {
+        console.log('newItem',newItem);
+        this.router.navigate([`items/${newItem.id}`]);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 }
