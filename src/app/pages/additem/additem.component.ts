@@ -71,7 +71,7 @@ export class AddItemComponent {
     return this.backend
       .postPhoto({ link: this.photo_link })
       .then(photo => {
-        this.newItemFormData.photo_id = photo.id;
+        this.newItemFormData.photo_id = photo['id'];
         return this.newItemFormData;
       })
       .then(newItemData => {
@@ -80,7 +80,7 @@ export class AddItemComponent {
       })
       .then(newItem => {
         console.log('newItem',newItem);
-        this.router.navigate([`items/${newItem.id}`]);
+        this.router.navigate([`items/${newItem['id']}`]);
       })
       .catch(err => {
         console.log(err);
