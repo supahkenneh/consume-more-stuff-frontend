@@ -62,4 +62,4 @@ import { UserItemComponent } from './pages/useritem/useritem.component';
   providers: [BackendService, SessionService, AuthService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

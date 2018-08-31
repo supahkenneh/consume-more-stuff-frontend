@@ -2,14 +2,14 @@
   <!-- no-auth user view -->
   <div class="category-container">
     <div *ngFor="let category of categories">
-      <div (click)="navigate(category.id)">
+      <a routerLink="category/{{category.id}}/items">
         {{category.name}}
-      </div>
+      </a>
     </div>
     <a routerLink="items" class="link">All</a>
   </div>
   <!-- auth user view -->
-  <div class="user-options" *ngIf="this._isLoggedIn">
+  <div class="user-options" *ngIf="isLoggedIn()">
     <div class="options" routerLink="user/items">Items</div>
     <div class="options">Messages</div>
     <div class="options" routerLink="user/settings">Settings</div>
