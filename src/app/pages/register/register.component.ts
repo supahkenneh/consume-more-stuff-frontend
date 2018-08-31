@@ -12,12 +12,12 @@ export class RegisterComponent {
     password: string;
     email: string;
   } = {
-    username: '',
-    password: '',
-    email: ''
-  };
+      username: '',
+      password: '',
+      email: ''
+    };
 
-  constructor(private router: Router, private auth: AuthService) {}
+  constructor(private router: Router, private auth: AuthService) { }
 
   register() {
     console.log(this.registerFormData);
@@ -27,7 +27,7 @@ export class RegisterComponent {
     return this.auth
       .register(this.registerFormData)
       .then(() => {
-        this.router.navigate(['/']);
+        return this.router.navigate(['/login']);
       })
       .catch(err => {
         console.log('error: ', err);

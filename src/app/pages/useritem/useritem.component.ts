@@ -44,13 +44,13 @@ export class UserItemComponent implements OnInit {
         let responseArr = Object.values(response);
         responseArr.map(item => {
           switch (item.itemStatus.name) {
-            case 'pending':
+            case 'Pending':
               this.pendingItems.push(item);
               break;
-            case 'published':
+            case 'Published':
               this.publishedItems.push(item);
               break;
-            case 'sold':
+            case 'Sold':
               this.soldItems.push(item);
             default:
               break;
