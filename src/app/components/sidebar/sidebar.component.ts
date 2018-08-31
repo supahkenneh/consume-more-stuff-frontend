@@ -38,4 +38,8 @@ export class SidebarComponent implements OnInit {
         return this.categories = result;
       })
   }
+
+  isLoggedIn() {
+    return this._isLoggedIn;
+  }
 }

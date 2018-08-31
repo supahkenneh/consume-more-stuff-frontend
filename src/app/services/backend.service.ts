@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class BackendService {
   url: string = 'http://localhost:4200/api/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   postItem(data) {
     const postItemUrl = `${this.url}items`;
@@ -63,7 +63,7 @@ export class BackendService {
     const putUrl = this.url + `items/${id}`
     return this.http.put(putUrl, data).toPromise();
   }
-  
+
 
   register(data) {
     const registerUrl = `${this.url}register`;
@@ -78,5 +78,10 @@ export class BackendService {
   logout() {
     const logoutUrl = `${this.url}logout`;
     return this.http.get(logoutUrl).toPromise();
+  }
+
+  changePassword(data) {
+    const checkUrl = this.url + 'user/settings'
+    return this.http.put(checkUrl, data).toPromise();
   }
 }

@@ -9,7 +9,7 @@
     <a routerLink="items" class="link">All</a>
   </div>
   <!-- auth user view -->
-  <div class="user-options" *ngIf="this._isLoggedIn">
+  <div class="user-options" *ngIf="isLoggedIn()">
     <div class="options" routerLink="user/items">Items</div>
     <div class="options">Messages</div>
     <div class="options" routerLink="user/settings">Settings</div>
