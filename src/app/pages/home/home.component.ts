@@ -11,6 +11,7 @@ import { SessionService } from '../../services/session.service';
 export class HomeComponent implements OnInit {
   categories: any;
   categoryItems: any;
+  showItems: boolean = false;
   user: object;
   private _isLoggedInAsObservable;
   private _isLoggedIn: boolean;
@@ -43,8 +44,11 @@ export class HomeComponent implements OnInit {
       })
   }
 
-  navigate(categoryId){
-    console.log(categoryId);
-    return this.router.navigate([`/category/${categoryId}/items`])
+  toggle() {
+    if (this.showItems) {
+      return this.showItems = false;
+    } else {
+      return this.showItems = true;
+    }
   }
 }
