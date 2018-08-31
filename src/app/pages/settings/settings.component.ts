@@ -55,6 +55,9 @@ export class SettingsComponent implements OnInit {
   }
 
   submitPasswordChange() {
+    if (this.passwordFormData.newPass !== this.passwordFormData.verifyPass) {
+      return this.passwordErrors.push(`New password doesn't match`)
+    }
     return this.backend.changePassword(this.passwordFormData)
       .then(result => {
         if (result['message'] === 'Wrong existing password') {
