@@ -18,7 +18,7 @@ export class SidebarComponent implements OnInit {
   constructor(
     private router: Router,
     private backend: BackendService,
-    private session: SessionService
+    private session: SessionService,
   ) {
     this.user = this.session.getSession();
     this._isLoggedInAsObservable = this.session.isLoggedInAsAnObservable();
@@ -39,7 +39,7 @@ export class SidebarComponent implements OnInit {
       })
   }
 
-  navigate(categoryId){
-    this.router.navigate([`category/${categoryId}/items`])
+  isLoggedIn() {
+    return this._isLoggedIn;
   }
 }

@@ -62,4 +62,4 @@ import { FormDataValidation } from './services/formDataValidation.service';
   providers: [BackendService, SessionService, AuthService, FormDataValidation],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

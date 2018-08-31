@@ -1,4 +1,61 @@
-.flex-col {
-  display: flex;
-  flex-direction: row;
+$mainFont: 'Poppins', sans-serif;
+
+.content-container {
+ display: flex;
+ flex-direction: column;
+ align-content: center;
+ background-color: lightgray;
+ width: 100%;
+ form {
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   margin: 10px;
+   background: white;
+   padding: 50px 15px;
+   width: 350px;
+   height: auto;
+   border-radius: 5px;
+   .item-header {
+     text-align: center;
+     margin-top: 15px;
+     font-size: 36px;
+     font-weight: 700;
+     margin-bottom: 30px;
+   }
+   select {
+     width: 50%;
+     background: white;
+     border: 1px solid black;
+     .option {
+       color: black;
+     }
+   }
+   label {
+     font-weight: 400;
+     font-size: 14px;
+     color: #999ba5;
+   }
+   .input-wrapper {
+     border-bottom: 2px solid #adadad;
+     input {
+       width: 100%;
+       line-height: 1.2em;
+       font-size: 15px;
+       padding: 0 5px;
+       height: 45px;
+     }
+   }
+   button {
+     background: -webkit-linear-gradient(right, #b721ff, #21d4fd);
+     font-family: $mainFont;
+     font-weight: 500;
+     width: 100%;
+     font-size: 15px;
+     border-radius: 35px;
+     padding: 15px;
+     color: white;
+     margin-top: 15px;
+   }
+ }
 }
