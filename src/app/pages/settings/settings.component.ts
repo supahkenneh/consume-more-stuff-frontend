@@ -22,12 +22,15 @@ export class SettingsComponent implements OnInit {
       verifyPass: ''
     }
 
+  passwordErrors: string[] = [];
+
   constructor(
     private router: Router,
     private backend: BackendService,
     private session: SessionService
   ) {
     this.user = this.session.getSession();
+    this.passwordErrors.length = 0;
   }
 
   ngOnInit() {
@@ -47,8 +50,21 @@ export class SettingsComponent implements OnInit {
     return this._isLoggedIn;
   }
 
+  getErrors() {
+    return this.passwordErrors.join(', ')
+  }
+
   submitPasswordChange() {
     return this.backend.changePassword(this.passwordFormData)
+      .then(result => {
+        if (result['message'] === 'Wrong existing password') {
+          return this.passwordErrors.push(result['message'])
+        }
+      })
+      .then(() => {
+        //will need another way to let user know password is changed
+        return this.router.navigate(['/user/items'])
+      })
   }
 
 }

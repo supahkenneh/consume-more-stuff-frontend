@@ -1,5 +1,8 @@
 <div class="content-container">
   <div class="settings-header">Settings</div>
+  <div class="errors">
+    <div>{{getErrors()}}</div>
+  </div>
   <form>
     <label for="password">Old Password:</label>
     <input type="password" name="password" [(ngModel)]="this.passwordFormData.oldPass">
