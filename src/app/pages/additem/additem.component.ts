@@ -20,6 +20,8 @@ export class AddItemComponent {
   loggedIn: boolean;
   photo_link: string;
 
+  photosToUpload: File[] = [];
+
   newItemFormData: {
     description: string;
     price: string;
@@ -34,19 +36,19 @@ export class AddItemComponent {
     status_id: number;
     photo_id: number;
   } = {
-    description: '',
-    price: '',
-    manufacturer_make: '',
-    created_by: -1,
-    model_name_number: '',
-    condition_id: -1,
-    category_id: -1,
-    views: 0,
-    dimensions: '',
-    notes_details: '',
-    status_id: 2,
-    photo_id: -1
-  };
+      description: '',
+      price: '',
+      manufacturer_make: '',
+      created_by: -1,
+      model_name_number: '',
+      condition_id: -1,
+      category_id: -1,
+      views: 0,
+      dimensions: '',
+      notes_details: '',
+      status_id: 2,
+      photo_id: -1
+    };
 
   constructor(
     private router: Router,
@@ -79,11 +81,18 @@ export class AddItemComponent {
         return this.backend.postItem(newItemData);
       })
       .then(newItem => {
-        console.log('newItem',newItem);
+        console.log('newItem', newItem);
         this.router.navigate([`items/${newItem['id']}`]);
       })
       .catch(err => {
         console.log(err);
       });
+  }
+
+  updatePhotoList(event) {
+    console.log(event.target.files);
+    this.photosToUpload.push(event.target.files);
+    console.log('photo array ', this.photosToUpload);
+    //append filenames to div
   }
 }
