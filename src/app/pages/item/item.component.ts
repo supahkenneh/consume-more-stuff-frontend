@@ -7,7 +7,6 @@ import { SessionService } from '../../services/session.service';
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.scss']
 })
-
 export class ItemComponent implements OnInit {
   user: object;
   item: any;
@@ -23,7 +22,20 @@ export class ItemComponent implements OnInit {
     manufacturer_make: string;
     model_name_number: string;
     notes_details: string;
-  }
+    itemStatus: object;
+    condition: object;
+  } = {
+    description: '',
+    photo_id: '',
+    status_id: '',
+    condition_id: '',
+    dimensions: '',
+    manufacturer_make: '',
+    model_name_number: '',
+    notes_details: '',
+    itemStatus: {},
+    condition: {}
+  };
 
   descriptionErrors: string[];
 
@@ -38,31 +50,29 @@ export class ItemComponent implements OnInit {
 
   ngOnInit() {
     let itemId = this.activatedRouter.snapshot.paramMap.get('id');
-    return this.backend.getItemById(itemId)
-      .then(result => {
-        this.editFormData = result[0];
-        if (result[0].created_by === this.user['user_id']) {
-          this.correctUser = true;
-        }
-        return this.item = result[0];
-      })
+    return this.backend.getItemById(itemId).then(result => {
+      this.editFormData = result[0];
+      if (result[0].created_by === this.user['user_id']) {
+        this.correctUser = true;
+      }
+      return (this.editFormData = result[0]);
+    });
   }
 
   toggleEdit() {
     if (this.editing) {
-      return this.editing = false;
+      return (this.editing = false);
     } else {
-      return this.editing = true;
+      return (this.editing = true);
     }
   }
 
   submitEdit() {
     this.editFormData.condition_id = parseInt(this.editFormData.condition_id);
     this.editFormData.status_id = parseInt(this.editFormData.status_id);
-    return this.backend.editItem(this.editFormData, this.item.id)
-    .then(editedItem => {
+    return this.backend.editItem(this.editFormData, this.item.id).then(editedItem => {
       this.item = editedItem[0];
       this.toggleEdit();
-    })
+    });
   }
 }

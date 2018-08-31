@@ -1,19 +1,19 @@
 <div class="content-container" *ngIf="!this.editing">
   <div class="item-header">
-    <h1>{{item.description}}</h1>
+    <h1>{{editFormData.description}}</h1>
   </div>
   <div class="image-container">
-    <div>Photo: {{item.photo_id}}</div>
+    <div>Photo: {{editFormData.photo_id}}</div>
   </div>
   <div class="item-content">
-    <div>Views: {{item.views}}</div>
-    <div>Status: {{item.itemStatus.name}}</div>
-    <div>Condition: {{item.condition.name}}</div>
-    <div>Posted at: {{item.created_at}}</div>
-    <div>Last edited: {{item.updated_at}}</div>
-    <div>Manufacturer/Make: {{item.manufacturer_make}}</div>
-    <div>Model: {{item.model_name_number}}</div>
-    <div>Details: {{item.notes_details}}</div>
+    <div>Views: {{editFormData.views}}</div>
+    <div>Status: {{editFormData.itemStatus.name}}</div>
+    <div>Condition: {{editFormData.condition.name}}</div>
+    <div>Posted at: {{editFormData.created_at}}</div>
+    <div>Last edited: {{editFormData.updated_at}}</div>
+    <div>Manufacturer/Make: {{editFormData.manufacturer_make}}</div>
+    <div>Model: {{editFormData.model_name_number}}</div>
+    <div>Details: {{editFormData.notes_details}}</div>
   </div>
   <button (click)="toggleEdit()" *ngIf="correctUser">Edit</button>
 </div>
