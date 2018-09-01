@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BackendService } from '../../services/backend.service';
 import { SessionService } from '../../services/session.service';
+import { FormDataValidation } from '../../services/formDataValidation.service';
 
 @Component({
   templateUrl: './item.component.html',
@@ -43,7 +44,8 @@ export class ItemComponent implements OnInit {
     private router: Router,
     private backend: BackendService,
     private session: SessionService,
-    private activatedRouter: ActivatedRoute
+    private activatedRouter: ActivatedRoute,
+    private valid: FormDataValidation
   ) {
     this.user = this.session.getSession();
   }
@@ -52,15 +54,21 @@ export class ItemComponent implements OnInit {
     let itemId = this.activatedRouter.snapshot.paramMap.get('id');
     return this.backend.getItemById(itemId).then(result => {
       this.editFormData = result[0];
+      this.item = {...result[0]};
       if (result[0].created_by === this.user['user_id']) {
         this.correctUser = true;
       }
+      this.valid.itemFieldInit(this.editFormData);
+      this.valid.itemValidation();
+      this.valid.getItemComplete();
       return (this.editFormData = result[0]);
     });
   }
 
   toggleEdit() {
     if (this.editing) {
+      console.log(this.item);
+      this.editFormData = this.item;
       return (this.editing = false);
     } else {
       return (this.editing = true);
