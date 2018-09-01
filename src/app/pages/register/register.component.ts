@@ -28,7 +28,7 @@ export class RegisterComponent {
   }
 
   ngOnInit() {
-    this.valid.userFieldInit(this.registerFormData);
+    this.valid.newUserFieldInit(this.registerFormData);
   }
 
   register() {

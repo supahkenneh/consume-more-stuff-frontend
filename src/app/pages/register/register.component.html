@@ -43,12 +43,12 @@
           </span>
 
           <div class="wrap-input100 validate-input">
-            <input class="input100" type="text" name="username" [(ngModel)]="registerFormData.username" (change)="this.valid.userValidation()">
+            <input class="input100" type="text" name="username" [(ngModel)]="registerFormData.username" (change)="this.valid.newUserValidation()">
             <span class="focus-input100" data-placeholder="Username" *ngIf="!registerFormData.username"></span>
           </div>
 
           <div class="wrap-input100 validate-input" data-validate="Enter email">
-            <input class="input100" type="email" name="email" [(ngModel)]="registerFormData.email" (change)="this.valid.userValidation()">
+            <input class="input100" type="email" name="email" [(ngModel)]="registerFormData.email" (change)="this.valid.newUserValidation()">
             <span class="focus-input100" data-placeholder="Email" *ngIf="!registerFormData.email"></span>
           </div>
 
@@ -56,16 +56,20 @@
             <span class="btn-show-pass">
               <i class="zmdi zmdi-eye"></i>
             </span>
-            <input class="input100" type="password" name="password" [(ngModel)]="registerFormData.password" (change)="this.valid.userValidation()">
+            <input class="input100" type="password" name="password" [(ngModel)]="registerFormData.password" (change)="this.valid.newUserValidation()">
             <span class="focus-input100" data-placeholder="Password" *ngIf="!registerFormData.password"></span>
           </div>
 
           <div class="container-login100-form-btn">
             <div class="wrap-login100-form-btn">
-              <div class="login100-form-bgbtn"></div>
+              <div *ngIf="valid.getUserComplete()" class="login100-form-bgbtn"></div>
               <button *ngIf="valid.getUserComplete()" class="login100-form-btn" (click)="register()">
                 Register
               </button>
+              <div *ngIf="!valid.getUserComplete()" class="login100-disable-form-bgbtn"></div>
+              <button *ngIf="!valid.getUserComplete()" class="login100-disable-form-btn" (click)='disabled'>
+                  Register
+                </button>
             </div>
           </div>
 

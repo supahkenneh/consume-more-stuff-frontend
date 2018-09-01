@@ -7,48 +7,59 @@ import { Observable } from 'rxjs';
 export class FormDataValidation {
   private _userFilledOut: boolean = false;
   private _requiredItemObservable: Observable<boolean>;
-  private _requiredUserObservable: Observable<boolean>;
-
+  private _requiredNewUserObservable: Observable<boolean>;
+  private _requiredLogInUserObservable: Observable<boolean>;
+  private _itemReqKeys: Array<string> = [
+    'description',
+    'condition_id',
+    'category_id',
+    'status_id'
+  ];
+  private _newUserReqKeys: Array<string> = ['username', 'email', 'password'];
+  private _loginUserReqKeys: Array<string> = ['username', 'password'];
   require: object;
   data: object;
   constructor() {}
 
+  newUserFieldInit(data) {
+    this._requiredNewUserObservable = new Observable(observer => {
+      this._newUserReqKeys.every(key => data[key])
+        ? observer.next(true)
+        : observer.next(false);
+    });
+  }
+
+  loginUserFieldInit(data) {
+    this._requiredLogInUserObservable = new Observable(observer => {
+      this._loginUserReqKeys.every(key => data[key])
+        ? observer.next(true)
+        : observer.next(false);
+    });
+  }
+
   itemFieldInit(data) {
     this._requiredItemObservable = new Observable(observer => {
-      if (
-        data['description'] &&
-        data['condition'] &&
-        data['category_id'] &&
-        data['status_id'] &&
-        data['description']
-      ) {
-        observer.next(true);
-      } else {
-        observer.next(false);
-      }
+      this._itemReqKeys.every(key => data[key])
+        ? observer.next(true)
+        : observer.next(false);
     });
   }
 
-  userFieldInit(data) {
-    this.data = data;
-    console.log(this.data);
-    this._requiredUserObservable = new Observable(observer => {
-      if (this.data['username'] && this.data['email'] && this.data['password']) {
-        observer.next(true);
-      } else {
-        observer.next(false);
-      }
-    });
-  }
-
-  userValidation() {
-    this._requiredUserObservable.subscribe((formComplete: boolean) => {
+  newUserValidation() {
+    this._requiredNewUserObservable.subscribe((formComplete: boolean) => {
       console.log(formComplete);
       this._userFilledOut = formComplete;
     });
   }
 
-  getUserComplete(){
+  loginValidation() {
+    this._requiredLogInUserObservable.subscribe((formComplete: boolean) => {
+      console.log(formComplete);
+      this._userFilledOut = formComplete;
+    });
+  }
+
+  getUserComplete() {
     return this._userFilledOut;
   }
 
