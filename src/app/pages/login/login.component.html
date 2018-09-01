@@ -43,7 +43,7 @@
           </span>
 
           <div class="wrap-input100 validate-input" >
-            <input class="input100" type="text" name="username" [(ngModel)]="loginFormData.username">
+            <input class="input100" type="text" name="username" [(ngModel)]="loginFormData.username" (change)="this.valid.loginValidation()">
             <span class="focus-input100" data-placeholder="Username" *ngIf="!loginFormData.username"></span>
           </div>
 
@@ -51,14 +51,18 @@
             <span class="btn-show-pass">
               <i class="zmdi zmdi-eye"></i>
             </span>
-            <input class="input100" type="password" name="password" [(ngModel)]="loginFormData.password">
+            <input class="input100" type="password" name="password" [(ngModel)]="loginFormData.password" (change)="this.valid.loginValidation()">
             <span class="focus-input100" data-placeholder="Password" *ngIf="!loginFormData.password"></span>
           </div>
 
           <div class="container-login100-form-btn">
             <div class="wrap-login100-form-btn">
-              <div class="login100-form-bgbtn"></div>
-              <button class="login100-form-btn" (click)="login()">
+              <div *ngIf="valid.getUserComplete()" class="login100-form-bgbtn"></div>
+              <button *ngIf="valid.getUserComplete()" class="login100-form-btn" (click)="login()">
+                Login
+              </button>
+              <div *ngIf="!valid.getUserComplete()" class="login100-disable-form-bgbtn"></div>
+              <button *ngIf="!valid.getUserComplete()" class="login100-disable-form-btn" (click)="login()">
                 Login
               </button>
             </div>

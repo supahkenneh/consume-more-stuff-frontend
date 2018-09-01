@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { FormDataValidation } from '../../services/formDataValidation.service';
+import { FormArray } from '@angular/forms';
+import { formDirectiveProvider } from '@angular/forms/src/directives/ng_form';
 
 @Component({
   templateUrl: './register.component.html',
@@ -12,12 +15,21 @@ export class RegisterComponent {
     password: string;
     email: string;
   } = {
-      username: '',
-      password: '',
-      email: ''
-    };
+    username: '',
+    password: '',
+    email: ''
+  };
 
-  constructor(private router: Router, private auth: AuthService) { }
+  constructor(
+    private router: Router,
+    private auth: AuthService,
+    private valid: FormDataValidation 
+  ) {
+  }
+
+  ngOnInit() {
+    this.valid.newUserFieldInit(this.registerFormData);
+  }
 
   register() {
     console.log(this.registerFormData);
