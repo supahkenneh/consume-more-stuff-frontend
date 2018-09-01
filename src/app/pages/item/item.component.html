@@ -59,7 +59,7 @@
     <textarea type="text" name="notes_details" [(ngModel)]="editFormData.notes_details"></textarea>
     <div class="buttons">
       <button class="button-enabled" *ngIf="this.valid.getItemComplete()" (click)="submitEdit()">Submit</button>
-      <button class="button-disabled" *ngIf="!this.valid.getItemComplete()" (click)="submitEdit()">Submit</button>
+      <button class="button-disabled" *ngIf="!this.valid.getItemComplete()" >Submit</button>
       <button class="button-enabled" (click)="toggleEdit()">Cancel</button>
     </div>
   </form>
