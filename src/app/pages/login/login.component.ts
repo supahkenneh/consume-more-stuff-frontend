@@ -7,7 +7,7 @@ import { FormDataValidation } from '../../services/formDataValidation.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   loginFormData: {
     username: string;
     password: string;
