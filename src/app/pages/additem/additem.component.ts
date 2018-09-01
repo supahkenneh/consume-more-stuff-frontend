@@ -90,9 +90,19 @@ export class AddItemComponent {
   }
 
   updatePhotoList(event) {
+    // const photoListDiv = document.getElementById('photo-list-container');
     console.log(event.target.files);
     this.photosToUpload.push(event.target.files);
     console.log('photo array ', this.photosToUpload);
-    //append filenames to div
+    // const photoFileName = document.createElement('div');
+    // photoFileName.innerHTML = event.target.files[0].name;
+    // photoListDiv.appendChild(photoFileName);
+  }
+
+  uploadImages() {
+    return this.backend.uploadPhotos(this.photosToUpload)
+    // .then(response => {
+    //   console.log(response);
+    // })
   }
 }

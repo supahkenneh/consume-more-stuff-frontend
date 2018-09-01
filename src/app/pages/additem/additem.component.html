@@ -36,13 +36,12 @@
     <div class="input-wrapper">
       <input type="text" name="notes_details" placeholder="Details" [(ngModel)]="newItemFormData.notes_details">
     </div>
+    <label for="photo_link">Upload Images</label>
     <div class="image-upload">
-      <label for="photo_link">Upload Images</label>
-      <div class="input-wrapper">
-        <input type="file" name="photo_link" (change)="updatePhotoList($event)">
-        <div class="photo-list-container"></div>
-      </div>
+      <input type="file" name="photo_link" (change)="updatePhotoList($event)">
     </div>
+    <button class="upload" (click)="uploadImages()">Upload</button>
+    <div id="photo-list-container"></div>
     <button class="btn" (click)="addItem()">Submit</button>
   </form>
 </div>

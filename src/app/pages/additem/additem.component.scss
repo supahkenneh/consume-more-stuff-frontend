@@ -45,7 +45,24 @@ $mainFont: 'Poppins', sans-serif;
        padding: 0 5px;
        height: 45px;
      }
-   }
+    }
+    .image-upload {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      input {
+        font-size: 15px;
+      }
+    }
+    .upload {
+      background: lightgray;
+      width: 100px;
+      height: 45px;
+      font-size: 14px;
+      margin: 0;
+      padding: 0;
+    }
    button {
      background: -webkit-linear-gradient(right, #b721ff, #21d4fd);
      font-family: $mainFont;
