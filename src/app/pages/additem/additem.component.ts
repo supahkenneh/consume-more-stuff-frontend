@@ -21,6 +21,12 @@ export class AddItemComponent {
   photo_link: string;
 
   photosToUpload: File[] = [];
+  acceptableExtensions: string[] = ['.jpg', '.png', '.jpeg']
+  acceptableSize: number = 1000000000;
+  showPhotoError: boolean = false;
+  unacceptablePhoto: string = 'File format not accepted, please upload .jpg, .jpeg, or .png';
+  unacceptableSize: string = 'File size exceeded, max 1GB'
+  photoErrors: string[] = [];
 
   newItemFormData: {
     description: string;
@@ -70,39 +76,47 @@ export class AddItemComponent {
   addItem() {
     this.newItemFormData.created_by = this.user.user_id;
     console.log(this.newItemFormData);
-    return this.backend
-      .postPhoto({ link: this.photo_link })
-      .then(photo => {
-        this.newItemFormData.photo_id = photo['id'];
-        return this.newItemFormData;
-      })
-      .then(newItemData => {
-        console.log('after photo', newItemData);
-        return this.backend.postItem(newItemData);
-      })
-      .then(newItem => {
-        console.log('newItem', newItem);
-        this.router.navigate([`items/${newItem['id']}`]);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    console.log(this.photosToUpload)
+    // return this.backend
+    //   .postPhoto({ link: this.photo_link })
+    //   .then(photo => {
+    //     this.newItemFormData.photo_id = photo['id'];
+    //     return this.newItemFormData;
+    //   })
+    //   .then(newItemData => {
+    //     console.log('after photo', newItemData);
+    //     return this.backend.postItem(newItemData);
+    //   })
+    //   .then(newItem => {
+    //     console.log('newItem', newItem);
+    //     this.router.navigate([`items/${newItem['id']}`]);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   }
 
   updatePhotoList(event) {
-    // const photoListDiv = document.getElementById('photo-list-container');
-    console.log(event.target.files);
-    this.photosToUpload.push(event.target.files);
-    console.log('photo array ', this.photosToUpload);
-    // const photoFileName = document.createElement('div');
-    // photoFileName.innerHTML = event.target.files[0].name;
-    // photoListDiv.appendChild(photoFileName);
+    let file = event.target.files[0];
+    let fileSize = file.size
+    let dot = file.name.indexOf('.');
+    let extension = file.name.slice(dot, file.name.length);
+    if (this.acceptableExtensions.includes(extension.toLowerCase())) {
+      if (fileSize < this.acceptableSize) {
+        return this.photosToUpload.push(file);
+      } else {
+        return this.photoErrors.push(this.unacceptableSize);
+      }
+    } else {
+      return this.photoErrors.push(this.unacceptablePhoto)
+    }
   }
 
-  uploadImages() {
-    return this.backend.uploadPhotos(this.photosToUpload)
-    // .then(response => {
-    //   console.log(response);
-    // })
+  getPhotoErrors() {
+    return this.photoErrors.join(', ');
+  }
+
+  displayPhotoFiles() {
+    return this.photosToUpload;
   }
 }
