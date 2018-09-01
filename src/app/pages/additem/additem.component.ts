@@ -56,6 +56,16 @@ export class AddItemComponent {
       photo_id: -1
     };
 
+  descriptionErrors: string[] = [];
+  descriptionValid: boolean = false;
+
+  categoryErrors: string[] = [];
+  categoryValid: boolean = false;
+
+  conditionErrors: string[] = [];
+  conditionValid: boolean = false;
+
+
   constructor(
     private router: Router,
     private backend: BackendService,
@@ -67,9 +77,7 @@ export class AddItemComponent {
     });
 
     this.backend.getConditions().then(response => {
-      console.log('response :', response);
       this.conditions = response;
-      console.log(this.conditions);
     });
   }
 
@@ -77,23 +85,66 @@ export class AddItemComponent {
     this.newItemFormData.created_by = this.user.user_id;
     console.log(this.newItemFormData);
     console.log(this.photosToUpload)
-    // return this.backend
-    //   .postPhoto({ link: this.photo_link })
-    //   .then(photo => {
-    //     this.newItemFormData.photo_id = photo['id'];
-    //     return this.newItemFormData;
-    //   })
-    //   .then(newItemData => {
-    //     console.log('after photo', newItemData);
-    //     return this.backend.postItem(newItemData);
-    //   })
-    //   .then(newItem => {
-    //     console.log('newItem', newItem);
-    //     this.router.navigate([`items/${newItem['id']}`]);
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
+    return this.backend.postItem(this.newItemFormData)
+      .then(newItem => {
+        console.log('newItem', newItem);
+        if (newItem) {
+          return newItem
+        }
+      })
+      .then(newItem => {
+        console.log(newItem);
+        // this.router.navigate([`items/${newItem['id']}`]);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  validateDescription() {
+    this.descriptionErrors.length = 0;
+    if (this.newItemFormData.description.length < 3) {
+      this.descriptionErrors.push('At least 3 characters required')
+      this.descriptionValid = false;
+    } else {
+      this.descriptionValid = true;
+    }
+  }
+
+  validateCategory() {
+    this.categoryErrors.length = 0;
+    if (this.newItemFormData.category_id > -1 && !isNaN(this.newItemFormData.category_id)) {
+      this.categoryValid = true;
+    } else {
+      this.categoryErrors.push('Category is required');
+      this.categoryValid = false;
+    }
+  }
+
+  validateCondition() {
+    this.conditionErrors.length = 0;
+    if (this.newItemFormData.condition_id > -1 && !isNaN(this.newItemFormData.condition_id)) {
+      this.conditionValid = true;
+    } else {
+      this.conditionErrors.push('Condition is required');
+      this.conditionValid = false;
+    }
+  }
+
+  getDescriptionErrors() {
+    return this.descriptionErrors.join(', ');
+  }
+
+  getCategoryErrors() {
+    return this.categoryErrors.join(', ');
+  }
+
+  getConditionErrors() {
+    return this.conditionErrors.join(', ');
+  }
+
+  disableButton() {
+    return !(this.conditionValid && this.categoryValid && this.descriptionValid)
   }
 
   updatePhotoList(event) {

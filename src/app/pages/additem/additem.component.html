@@ -4,21 +4,25 @@
       <div>Add an item</div>
     </div>
     <label for="category_id">Category</label>
-    <select name="category_id" [(ngModel)]="newItemFormData.category_id">
-      <option selected="selected" class="option">Select a Category</option>
+    <span>{{ getCategoryErrors() }}</span>
+    <select name="category_id" [(ngModel)]="newItemFormData.category_id" (change)="validateCategory()">
+      <option selected="selected" class="option">Select Category</option>
       <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
     </select>
     <label for="description">Description</label>
+    <span>{{ getDescriptionErrors() }}</span>
     <div class="input-wrapper">
-      <input type="text" name="description" placeholder="Description" [(ngModel)]="newItemFormData.description">
+      <input type="text" name="description" [(ngModel)]="newItemFormData.description" (keyup)="validateDescription()">
     </div>
     <label for="price">Price</label>
     <div class="input-wrapper">
       <input type="text" name="price" placeholder="Price" [(ngModel)]="newItemFormData.price">
     </div>
     <label for="condition_id">Condition</label>
-    <select name="condition_id" [(ngModel)]="newItemFormData.condition_id">
-      <option *ngFor="let condition of conditions" value="{{condition.rank}}">{{condition.name}}</option>
+    <span>{{ getConditionErrors() }}</span>
+    <select name="condition_id" [(ngModel)]="newItemFormData.condition_id" (change)="validateCondition()">
+    <option selected="selected" class="option">Select Condition</option>
+    <option *ngFor="let condition of conditions" value="{{condition.rank}}">{{condition.name}}</option>
     </select>
     <label for="manufacturer_make">Manufacturer/Make</label>
     <div class="input-wrapper">
@@ -42,9 +46,9 @@
       <input type="file" name="photo_link" (change)="updatePhotoList($event)">
     </div>
     <div id="photo-list-container" *ngFor="let photo of photosToUpload">
-        <div class="photo-name">{{photo.name}}</div>
+      <div class="photo-name">{{photo.name}}</div>
     </div>
-    <button class="btn" (click)="addItem()">Submit</button>
+    <button class="btn" [disabled]="disableButton()" (click)="addItem()">Submit</button>
   </form>
 </div>
 <div class="image-container">

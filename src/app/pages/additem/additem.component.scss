@@ -36,6 +36,10 @@ $mainFont: 'Poppins', sans-serif;
      font-size: 14px;
      color: #999ba5;
    }
+   span {
+    color: red;
+    font-size: 12px;
+  }
    .input-wrapper {
      border-bottom: 2px solid #adadad;
      input {
@@ -69,6 +73,9 @@ $mainFont: 'Poppins', sans-serif;
      padding: 15px;
      color: white;
      margin-top: 15px;
+     &:disabled {
+       background: -webkit-linear-gradient(right, lightgray, darkgray);
+     }
    }
  }
 }
