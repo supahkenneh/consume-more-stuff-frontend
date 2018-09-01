@@ -6,15 +6,11 @@ import { Observable } from 'rxjs';
 })
 export class FormDataValidation {
   private _userFilledOut: boolean = false;
+  private _itemFilledOut: boolean = false;
   private _requiredItemObservable: Observable<boolean>;
   private _requiredNewUserObservable: Observable<boolean>;
   private _requiredLogInUserObservable: Observable<boolean>;
-  private _itemReqKeys: Array<string> = [
-    'description',
-    'condition_id',
-    'category_id',
-    'status_id'
-  ];
+  private _itemReqKeys: Array<string> = ['description', 'condition_id', 'status_id'];
   private _newUserReqKeys: Array<string> = ['username', 'email', 'password'];
   private _loginUserReqKeys: Array<string> = ['username', 'password'];
   require: object;
@@ -39,7 +35,10 @@ export class FormDataValidation {
 
   itemFieldInit(data) {
     this._requiredItemObservable = new Observable(observer => {
-      this._itemReqKeys.every(key => data[key])
+      this._itemReqKeys.every(key => {
+        console.log(data[key]);
+        return data[key];
+      })
         ? observer.next(true)
         : observer.next(false);
     });
@@ -59,10 +58,18 @@ export class FormDataValidation {
     });
   }
 
+  itemValidation() {
+    this._requiredItemObservable.subscribe((formComplete: boolean) => {
+      console.log(formComplete);
+      this._itemFilledOut = formComplete;
+    });
+  }
   getUserComplete() {
     return this._userFilledOut;
   }
-
+  getItemComplete() {
+    return this._itemFilledOut;
+  }
   log() {
     console.log(this.data);
   }
