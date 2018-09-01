@@ -38,7 +38,7 @@ export class ItemComponent implements OnInit {
     };
 
   descriptionErrors: string[] = [];
-  descriptionValid: boolean = false;
+  descriptionValid: boolean = true;
 
   conditionErrors: string[] = [];
   conditionValid: boolean = false;
@@ -78,6 +78,7 @@ export class ItemComponent implements OnInit {
   }
 
   submitEdit() {
+    console.log('click');
     this.editFormData.condition_id = parseInt(this.editFormData.condition_id);
     this.editFormData.status_id = parseInt(this.editFormData.status_id);
     return this.backend.editItem(this.editFormData, this.item.id).then(editedItem => {
@@ -126,5 +127,13 @@ export class ItemComponent implements OnInit {
 
   getConditionErrors() {
     return this.conditionErrors.join(', ');
+  }
+
+  disableButton() {
+    if (this.conditionErrors.length || this.statusErrors.length || this.descriptionErrors.length) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

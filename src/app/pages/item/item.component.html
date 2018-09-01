@@ -61,8 +61,8 @@
     <label for="notes_details">Details:</label>
     <textarea type="text" name="notes_details" [(ngModel)]="editFormData.notes_details"></textarea>
     <div class="buttons">
-      <button class="button-enabled" (click)="submitEdit()">Submit</button>
-      <button class="button-enabled" (click)="toggleEdit()">Cancel</button>
+      <button (click)="submitEdit()" [disabled]="disableButton()">Submit</button>
+      <button (click)="toggleEdit()">Cancel</button>
     </div>
   </form>
 </div>
