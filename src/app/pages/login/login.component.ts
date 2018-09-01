@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { FormDataValidation } from '../../services/formDataValidation.service';
 
 @Component({
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   loginFormData: {
     username: string;
     password: string;
@@ -15,8 +16,16 @@ export class LoginComponent {
     password: ''
   };
 
-  constructor(private router: Router, private auth: AuthService) {}
+  constructor(
+    private router: Router,
+    private auth: AuthService,
+    private valid: FormDataValidation
+  ) {}
 
+  ngOnInit(){
+    this.valid.loginUserFieldInit(this.loginFormData)
+  }
+  
   login() {
     this.loginFormData.username = this.loginFormData.username.toLowerCase();
     return this.auth

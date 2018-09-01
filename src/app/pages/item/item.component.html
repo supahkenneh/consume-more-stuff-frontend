@@ -15,20 +15,20 @@
     <div>Model: {{editFormData.model_name_number}}</div>
     <div>Details: {{editFormData.notes_details}}</div>
   </div>
-  <button (click)="toggleEdit()" *ngIf="correctUser">Edit</button>
+  <button class="button-enabled" (click)="toggleEdit()" *ngIf="correctUser">Edit</button>
 </div>
 
 <div class="edit-container" *ngIf="this.editing">
   <div class="edit-header">Edit your item</div>
   <form>
     <label for="description">Description:</label>
-    <input type="text" name="description" [(ngModel)]="editFormData.description">
+    <input type="text" name="description" [(ngModel)]="editFormData.description" (change)="this.valid.itemValidation()">
 
     <label for="photo">Photo:</label>
     <input type="text" name="photo" [(ngModel)]="editFormData.photo_id">
 
     <label for="item-status">Item Status</label>
-    <select name="status" [(ngModel)]="editFormData.status_id">
+    <select name="status" [(ngModel)]="editFormData.status_id" (click)="this.valid.itemValidation()">
       <option value="0">Change status</option>
       <option value="1">Pending</option>
       <option value="2">Published</option>
@@ -37,7 +37,7 @@
     </select>
 
     <label for="condition">Condition:</label>
-    <select name="condition" [(ngModel)]="editFormData.condition_id">
+    <select name="condition" [(ngModel)]="editFormData.condition_id" (click)="this.valid.itemValidation()">
       <option value="0">Change condition</option>
       <option value="1">New</option>
       <option value="2">Good</option>
@@ -58,8 +58,9 @@
     <label for="notes_details">Details:</label>
     <textarea type="text" name="notes_details" [(ngModel)]="editFormData.notes_details"></textarea>
     <div class="buttons">
-      <button (click)="submitEdit()">Submit</button>
-      <button (click)="toggleEdit()">Cancel</button>
+      <button class="button-enabled" *ngIf="this.valid.getItemComplete()" (click)="submitEdit()">Submit</button>
+      <button class="button-disabled" *ngIf="!this.valid.getItemComplete()" >Submit</button>
+      <button class="button-enabled" (click)="toggleEdit()">Cancel</button>
     </div>
   </form>
 </div>
