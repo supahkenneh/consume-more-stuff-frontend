@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BackendService } from '../../services/backend.service';
 import { SessionService } from '../../services/session.service';
-import { FormDataValidation } from '../../services/formDataValidation.service';
 
 @Component({
   templateUrl: './item.component.html',
@@ -26,26 +25,32 @@ export class ItemComponent implements OnInit {
     itemStatus: object;
     condition: object;
   } = {
-    description: '',
-    photo_id: '',
-    status_id: '',
-    condition_id: '',
-    dimensions: '',
-    manufacturer_make: '',
-    model_name_number: '',
-    notes_details: '',
-    itemStatus: {},
-    condition: {}
-  };
+      description: '',
+      photo_id: '',
+      status_id: '',
+      condition_id: '',
+      dimensions: '',
+      manufacturer_make: '',
+      model_name_number: '',
+      notes_details: '',
+      itemStatus: {},
+      condition: {}
+    };
 
-  descriptionErrors: string[];
+  descriptionErrors: string[] = [];
+  descriptionValid: boolean = false;
+
+  conditionErrors: string[] = [];
+  conditionValid: boolean = false;
+
+  statusErrors: string[] = [];
+  statusValid: boolean = false;
 
   constructor(
     private router: Router,
     private backend: BackendService,
     private session: SessionService,
     private activatedRouter: ActivatedRoute,
-    private valid: FormDataValidation
   ) {
     this.user = this.session.getSession();
   }
@@ -54,14 +59,11 @@ export class ItemComponent implements OnInit {
     let itemId = this.activatedRouter.snapshot.paramMap.get('id');
     return this.backend.getItemById(itemId).then(result => {
       this.editFormData = result[0];
-      this.item = {...result[0]};
+      this.item = { ...result[0] };
       if (result[0].created_by === this.user['user_id']) {
         this.correctUser = true;
       }
-      this.valid.itemFieldInit(this.editFormData);
-      this.valid.itemValidation();
-      this.valid.getItemComplete();
-      return (this.editFormData = result[0]);
+      return this.editFormData = result[0];
     });
   }
 
@@ -82,5 +84,47 @@ export class ItemComponent implements OnInit {
       this.item = editedItem[0];
       this.toggleEdit();
     });
+  }
+
+  validateDescription() {
+    this.descriptionErrors.length = 0;
+    if (this.editFormData.description.length < 3) {
+      this.descriptionErrors.push('At least 3 characters required')
+      this.descriptionValid = false;
+    } else {
+      this.descriptionValid = true;
+    }
+  }
+
+  getDescriptionErrors() {
+    return this.descriptionErrors.join(', ');
+  }
+
+  validateStatus() {
+    this.statusErrors.length = 0;
+    if (this.editFormData.status_id > 0) {
+      this.statusValid = true;
+    } else {
+      this.statusErrors.push('Status is required');
+      this.statusValid = false;
+    }
+  }
+
+  getStatusErrors() {
+    return this.statusErrors.join(', ');
+  }
+
+  validateCondition() {
+    this.conditionErrors.length = 0;
+    if (this.editFormData.condition_id > 0) {
+      this.conditionValid = true;
+    } else {
+      this.conditionErrors.push('Condition is required');
+      this.conditionValid = false;
+    }
+  }
+
+  getConditionErrors() {
+    return this.conditionErrors.join(', ');
   }
 }
