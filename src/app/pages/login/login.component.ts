@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { FormDataValidation } from '../../services/formDataValidation.service';
 
 @Component({
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent {
+  usernameFilled: boolean = false;
+  passwordFilled: boolean = false;
+
   loginFormData: {
     username: string;
     password: string;
@@ -16,16 +18,8 @@ export class LoginComponent implements OnInit{
     password: ''
   };
 
-  constructor(
-    private router: Router,
-    private auth: AuthService,
-    private valid: FormDataValidation
-  ) {}
+  constructor(private router: Router, private auth: AuthService) {}
 
-  ngOnInit(){
-    this.valid.loginUserFieldInit(this.loginFormData)
-  }
-  
   login() {
     this.loginFormData.username = this.loginFormData.username.toLowerCase();
     return this.auth
@@ -36,5 +30,13 @@ export class LoginComponent implements OnInit{
       .catch(err => {
         console.log('error: ', err);
       });
+  }
+
+  usernameFilledOut() {
+    this.usernameFilled = this.loginFormData.username ? true : false;
+  }
+
+  passwordFilledOut() {
+    this.passwordFilled = this.loginFormData.password ? true : false;
   }
 }
