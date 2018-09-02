@@ -84,4 +84,8 @@ export class BackendService {
     const checkUrl = this.url + 'user/settings'
     return this.http.put(checkUrl, data).toPromise();
   }
+
+  uploadPhotos(data) {
+    console.log(data);
+  }
 }
