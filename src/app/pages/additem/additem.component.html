@@ -6,7 +6,7 @@
     <label for="category_id">Category</label>
     <span>{{ getCategoryErrors() }}</span>
     <select name="category_id" [(ngModel)]="newItemFormData.category_id" (change)="validateCategory()">
-      <option selected="selected" class="option">Select Category</option>
+      <option value="-1" class="option">Select Category</option>
       <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
     </select>
     <label for="description">Description</label>
@@ -21,7 +21,7 @@
     <label for="condition_id">Condition</label>
     <span>{{ getConditionErrors() }}</span>
     <select name="condition_id" [(ngModel)]="newItemFormData.condition_id" (change)="validateCondition()">
-    <option selected="selected" class="option">Select Condition</option>
+    <option value="-1" class="option">Select Condition</option>
     <option *ngFor="let condition of conditions" value="{{condition.rank}}">{{condition.name}}</option>
     </select>
     <label for="manufacturer_make">Manufacturer/Make</label>
