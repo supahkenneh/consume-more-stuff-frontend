@@ -15,19 +15,24 @@
     <div>Model: {{editFormData.model_name_number}}</div>
     <div>Details: {{editFormData.notes_details}}</div>
   </div>
-  <button class="button-enabled" (click)="toggleEdit()" *ngIf="correctUser">Edit</button>
+  <div class="item-buttons">
+    <button (click)="toggleEdit()" *ngIf="correctUser">Edit</button>
+  </div>
 </div>
 
 <div class="edit-container" *ngIf="this.editing">
-  <div class="edit-header">Edit your item</div>
   <form>
+    <div class="edit-header">Edit Your Item</div>
     <label for="description">Description:</label>
     <span>{{ getDescriptionErrors() }}</span>
-    <input type="text" name="description" [(ngModel)]="editFormData.description" (keyup)="validateDescription()">
+    <div class="input-wrapper">
+      <input type="text" name="description" [(ngModel)]="editFormData.description" (keyup)="validateDescription()">
+    </div>
 
     <label for="photo">Photo:</label>
-    <input type="text" name="photo" [(ngModel)]="editFormData.photo_id">
-
+    <div class="input-wrapper">
+      <input type="text" name="photo" [(ngModel)]="editFormData.photo_id">
+    </div>
     <label for="item-status">Item Status</label>
     <span>{{ getStatusErrors() }}</span>
     <select name="status" [(ngModel)]="editFormData.status_id" (change)="validateStatus()">
@@ -37,7 +42,6 @@
       <option value="3">Sold</option>
       <option value="4">Delete</option>
     </select>
-
     <label for="condition">Condition:</label>
     <span>{{ getConditionErrors() }}</span>
     <select name="condition" [(ngModel)]="editFormData.condition_id" (change)="validateCondition()">
@@ -49,20 +53,28 @@
       <option value="5">Used</option>
     </select>
 
+
     <label for="dimensions">Dimensions:</label>
-    <input type="text" name="dimensions" [(ngModel)]="editFormData.dimensions">
+    <div class="input-wrapper">
+      <input type="text" name="dimensions" [(ngModel)]="editFormData.dimensions">
+    </div>
+
 
     <label for="manufacturer_make">Manucturer/make:</label>
-    <input type="text" name="manufacturer_make" [(ngModel)]="editFormData.manufacturer_make">
+    <div class="input-wrapper">
+      <input type="text" name="manufacturer_make" [(ngModel)]="editFormData.manufacturer_make">
+    </div>
 
     <label for="model_name_number">Model:</label>
-    <input type="text" name="model_name_number" [(ngModel)]="editFormData.model_name_number">
+    <div class="input-wrapper">
+      <input type="text" name="model_name_number" [(ngModel)]="editFormData.model_name_number">
+    </div>
 
     <label for="notes_details">Details:</label>
     <textarea type="text" name="notes_details" [(ngModel)]="editFormData.notes_details"></textarea>
     <div class="buttons">
       <button (click)="submitEdit()" [disabled]="disableButton()">Submit</button>
-      <button (click)="toggleEdit()">Cancel</button>
+      <button (click)="toggleEdit()" class="cancel-button">Cancel</button>
     </div>
   </form>
 </div>

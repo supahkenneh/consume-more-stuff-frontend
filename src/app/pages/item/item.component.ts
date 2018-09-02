@@ -38,7 +38,7 @@ export class ItemComponent implements OnInit {
     };
 
   descriptionErrors: string[] = [];
-  descriptionValid: boolean = true;
+  descriptionValid: boolean = false;
 
   conditionErrors: string[] = [];
   conditionValid: boolean = false;
