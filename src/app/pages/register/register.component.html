@@ -12,8 +12,6 @@
   <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
   <!--===============================================================================================-->
-  <!-- <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css"> -->
-  <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
   <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
@@ -44,12 +42,14 @@
 
           <div class="wrap-input100 validate-input">
             <input class="input100" type="text" id="username" name="username" [(ngModel)]="registerFormData.username" (change)="usernameFilledOut()">
-            <span class="focus-input100" data-placeholder="Username" *ngIf="!registerFormData.username"></span>
+            <span class="focus-input100" id="username-span" data-placeholder="Username" *ngIf="!registerFormData.username"></span>
+            <div class="focus-input-100-error">{{usernameError}}</div>
           </div>
 
           <div class="wrap-input100 validate-input" data-validate="Enter email">
+            <span *ngIf="emailError" style="color:red"class="focus-input100-errorMessage">{{emailError}}</span>
             <input class="input100" type="email" name="email" [(ngModel)]="registerFormData.email" (change)="emailFilledOut()">
-            <span class="focus-input100" data-placeholder="Email" *ngIf="!registerFormData.email"></span>
+            <span class="focus-input100" id="email-span" data-placeholder="Email" *ngIf="!registerFormData.email"></span>
           </div>
 
           <div class="wrap-input100 validate-input" data-validate="Enter password">
@@ -57,19 +57,20 @@
               <i class="zmdi zmdi-eye"></i>
             </span>
             <input class="input100" type="password" name="password" [(ngModel)]="registerFormData.password" (change)="passwordFilledOut()">
-            <span class="focus-input100" data-placeholder="Password" *ngIf="!registerFormData.password"></span>
+            <span class="focus-input100" id="password-span" data-placeholder="Password" *ngIf="!registerFormData.password"></span>
           </div>
+          <div class="focus-input-100-error" >{{passwordError}}</div>
 
           <div class="container-login100-form-btn">
             <div class="wrap-login100-form-btn">
-              <div *ngIf="(emailFilled && usernameFilled && passwordFilled)" class="login100-form-bgbtn"></div>
-              <button *ngIf="(emailFilled && usernameFilled && passwordFilled)" class="login100-form-btn" (click)="register()">
+              <div *ngIf="(emailValid && usernameFilled && passwordFilled)" class="login100-form-bgbtn"></div>
+              <button *ngIf="(emailValid && usernameFilled && passwordFilled)" class="login100-form-btn" (click)="register()">
                 Register
               </button>
               <div *ngIf="!(emailValid && usernameFilled && passwordFilled)" class="login100-disable-form-bgbtn"></div>
-              <button *ngIf="!(emailFilled && usernameFilled && passwordFilled)" class="login100-disable-form-btn" (click)='disabled'>
-                  Register
-                </button>
+              <button *ngIf="!(emailValid && usernameFilled && passwordFilled)" class="login100-disable-form-btn" (click)='disabledReasons()'>
+                Register
+              </button>
             </div>
           </div>
 
@@ -90,8 +91,6 @@
 
   <div id="dropDownSelect1"></div>
 
-  <!--===============================================================================================-->
-  <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
   <!--===============================================================================================-->
   <script src="vendor/animsition/js/animsition.min.js"></script>
   <!--===============================================================================================-->
