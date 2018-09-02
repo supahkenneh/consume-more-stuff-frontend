@@ -27,15 +27,19 @@ $mainFont: 'Poppins', sans-serif;
      width: 50%;
      background: white;
      border: 1px solid black;
-     .option {
-       color: black;
-     }
+     padding: 5px;
+     font-family: $mainFont;
+     font-size: 12px;
    }
    label {
      font-weight: 400;
      font-size: 14px;
      color: #999ba5;
    }
+   span {
+    color: red;
+    font-size: 12px;
+  }
    .input-wrapper {
      border-bottom: 2px solid #adadad;
      input {
@@ -45,7 +49,20 @@ $mainFont: 'Poppins', sans-serif;
        padding: 0 5px;
        height: 45px;
      }
-   }
+    }
+    .photo-error {
+      color: red;
+      font-size: 12px;
+    }
+    .image-upload {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      input {
+        font-size: 15px;
+      }
+    }
    button {
      background: -webkit-linear-gradient(right, #b721ff, #21d4fd);
      font-family: $mainFont;
@@ -56,6 +73,9 @@ $mainFont: 'Poppins', sans-serif;
      padding: 15px;
      color: white;
      margin-top: 15px;
+     &:disabled {
+      background: -webkit-linear-gradient(right, #e5acff, #b3f1ff);
+     }
    }
  }
 }
