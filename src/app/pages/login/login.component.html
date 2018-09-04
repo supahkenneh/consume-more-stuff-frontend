@@ -43,31 +43,36 @@
           </span>
 
           <div class="wrap-input100 validate-input">
+            <span *ngIf="usernameError" style="color:red" class="focus-input100-errorMessage">{{usernameError}}</span>
+
             <input class="input100" type="text" name="username" [(ngModel)]="loginFormData.username" (change)="usernameFilledOut()">
-            <span class="focus-input100" data-placeholder="Username" *ngIf="!loginFormData.username"></span>
+            <span class="focus-input100" id="username-span" data-placeholder="Username" *ngIf="!loginFormData.username"></span>
           </div>
 
           <div class="wrap-input100 validate-input" data-validate="Enter password">
-            <span class="btn-show-pass">
-              <i class="zmdi zmdi-eye"></i>
-            </span>
+            <span *ngIf="passwordError" style="color:red" class="focus-input100-errorMessage">{{passwordError}}</span>
+
             <input class="input100" type="password" name="password" [(ngModel)]="loginFormData.password" (change)="passwordFilledOut()">
-            <span class="focus-input100" data-placeholder="Password" *ngIf="!loginFormData.password"></span>
+            <span class="focus-input100" id="password-span" data-placeholder="Password" *ngIf="!loginFormData.password"></span>
           </div>
 
           <div class="container-login100-form-btn">
             <div class="wrap-login100-form-btn">
-              <div *ngIf="(usernameFilled && passwordFilled)" class="login100-form-bgbtn"></div>
-              <button *ngIf="(usernameFilled && passwordFilled)" class="login100-form-btn" (click)="login()">
+              <div *ngIf="(usernameValid && passwordValid)" class="login100-form-bgbtn"></div>
+              <button *ngIf="(usernameValid && passwordValid)" class="login100-form-btn" (click)="login()">
                 Login
               </button>
-              <div *ngIf="!(usernameFilled && passwordFilled)" class="login100-disable-form-bgbtn"></div>
-              <button *ngIf="!(usernameFilled && passwordFilled)" class="login100-disable-form-btn">
+              <div *ngIf="!(usernameValid && passwordValid)" class="login100-disable-form-bgbtn"></div>
+              <button *ngIf="!(usernameValid && passwordValid)" class="login100-disable-form-btn" (click)="disabledReasons()">
                 Login
               </button>
             </div>
           </div>
-
+          <br>
+          <div class="text-center">
+            <span *ngIf="loginError" style="color:red" class="focus-input100-errorMessage">The username / password combination
+              you entered was incorrect.</span>
+          </div>
           <div class="text-center p-t-115">
             <span class="txt1">
               Don’t have an account?

@@ -60,12 +60,12 @@
 
           <div class="container-login100-form-btn">
             <div class="wrap-login100-form-btn">
-              <div *ngIf="(emailValid && usernameFilled && passwordFilled)" class="login100-form-bgbtn"></div>
-              <button *ngIf="(emailValid && usernameFilled && passwordFilled)" class="login100-form-btn" (click)="register()">
+              <div *ngIf="(emailValid && usernameValid && passwordValid)" class="login100-form-bgbtn"></div>
+              <button *ngIf="(emailValid && usernameValid && passwordValid)" class="login100-form-btn" (click)="register()">
                 Register
               </button>
-              <div *ngIf="!(emailValid && usernameFilled && passwordFilled)" class="login100-disable-form-bgbtn"></div>
-              <button *ngIf="!(emailValid && usernameFilled && passwordFilled)" class="login100-disable-form-btn" (click)='disabledReasons()'>
+              <div *ngIf="!(emailValid && usernameValid && passwordValid)" class="login100-disable-form-bgbtn"></div>
+              <button *ngIf="!(emailValid && usernameValid && passwordValid)" class="login100-disable-form-btn" (click)='disabledReasons()'>
                 Register
               </button>
             </div>

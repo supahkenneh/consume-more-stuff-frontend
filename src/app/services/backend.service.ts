@@ -86,6 +86,7 @@ export class BackendService {
 
   uploadPhotos(data) {
     console.log(data);
+  }
 
   checkUsername(username) {
     console.log('checkuser');
@@ -97,6 +98,5 @@ export class BackendService {
     console.log('checkemail');
     const checkEmailUrl = `${this.url}user?email=${email}`;
     return this.http.get(checkEmailUrl).toPromise();
-
   }
 }
