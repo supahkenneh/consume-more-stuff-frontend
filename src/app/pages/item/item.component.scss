@@ -25,88 +25,104 @@ $mainFont: 'Poppins', sans-serif;
       margin: 2px;
     }
   }
-  .button-enabled {
-    width: 100px;
-    padding: 5px;
-    color: white;
-    border-radius: 5px;
-    background-image: linear-gradient(-90deg, #48c2fd, #8880ff);
-    font-size: 16px;
-    margin-top: 15px;
-    font-family: $mainFont;
-  }
-
-  .button-disabled {
-    width: 100px;
-    padding: 5px;
-    color: white;
-    border-radius: 5px;
-    background-image: linear-gradient(-90deg, #48c2fd, #8880ff);
-    font-size: 16px;
-    margin-top: 15px;
-    font-family: $mainFont;
+  .item-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    button {
+      width: 50%;
+      padding: 10px;
+      color: white;
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 25px;
+      background: -webkit-linear-gradient(right, #b721ff, #21d4fd);
+      margin-top: 15px;
+      font-family: $mainFont;
+    }
   }
 }
 
 .edit-container {
   display: flex;
   flex-direction: column;
-  text-align: center;
-  padding: 10px;
-  .edit-header {
-    font-size: 24px;
-    margin-top: 15px;
-  }
+  align-content: center;
+  background-color: lightgray;
+  width: 100%;
   form {
-    background: white;
-    border-radius: 5px;
-    box-shadow: 1px 1px 1px 1px gray;
-    margin-top: 5px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: flex-start;
+    margin: 10px;
+    background: white;
+    padding: 50px 15px;
+    width: 350px;
+    box-shadow: 1px 1px 1px 1px gray;
     font-family: $mainFont;
-    input {
-      width: 70%;
-      padding: 5px;
-      font-size: 14px;
-      border: 1px solid black;
-      border-radius: 5px;
+    border-radius: 5px;
+    .edit-header {
+      font-size: 36px;
+      font-weight: 700;
+      margin-top: 15px;
+      text-align: center;
+      margin-bottom: 30px;
     }
     select {
-      background: lightgray;
+      width: 50%;
+      background: white;
+      border: 1px solid black;
+      padding: 5px;
+      font-family: $mainFont;
+      font-size: 12px;
+    }
+    label {
+      font-weight: 400;
+      font-size: 14px;
+      color: #999ba5;
+    }
+    span {
+      font-size: 12px;
+      color: red;
+    }
+    .input-wrapper {
+      border-bottom: 2px solid #adadad;
+      input {
+        width: 100%;
+        padding: 0 5px;
+        font-size: 15px;
+        line-height: 1.2em;
+        height: 45px;
+      }
     }
     textarea {
-      height: 75px;
-      width: 70%;
-      border: 1px solid black;
+      height: 200px;
+      width: 100%;
+      padding: 5px;
+      font-size: 14px;
       border-radius: 5px;
+      resize: none;
+      overflow: scroll;
     }
     .buttons {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: space-around;
-      margin: 15px auto;
-      .button-enabled {
-        width: 100px;
-        font-size: 16px;
-        padding: 5px;
-        border-radius: 5px;
-        color: white;
-        margin: 10px;
-        background-image: linear-gradient(-90deg, #48c2fd, #8880ff);
+      button {
+        background: -webkit-linear-gradient(right, #b721ff, #21d4fd);
         font-family: $mainFont;
+        font-weight: 500;
+        width: 100%;
+        font-size: 15px;
+        border-radius: 35px;
+        padding: 15px;
+        color: white;
+        margin-top: 15px;
+        &:disabled {
+          background: -webkit-linear-gradient(right, #e5acff, #b3f1ff);
+        }
       }
-
-      .button-disabled {
-        width: 100px;
-        font-size: 16px;
-        padding: 5px;
-        border-radius: 5px;
-        color: white;
-        margin: 10px;
-        background-image: linear-gradient(-90deg, lightgrey, darkgrey);
-        font-family: $mainFont;
+        .cancel-button {
+          background: -webkit-linear-gradient(right, lightgray, darkgray);
       }
     }
   }

@@ -84,6 +84,9 @@ export class BackendService {
     return this.http.put(checkUrl, data).toPromise();
   }
 
+  uploadPhotos(data) {
+    console.log(data);
+
   checkUsername(username) {
     console.log('checkuser');
     const checkUserUrl = `${this.url}user?username=${username}`;
@@ -94,5 +97,6 @@ export class BackendService {
     console.log('checkemail');
     const checkEmailUrl = `${this.url}user?email=${email}`;
     return this.http.get(checkEmailUrl).toPromise();
+
   }
 }
