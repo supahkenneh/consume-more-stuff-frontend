@@ -41,25 +41,22 @@
           </span>
 
           <div class="wrap-input100 validate-input">
+            <span *ngIf="usernameError" style="color:red" class="focus-input100-errorMessage">{{usernameError}}</span>
             <input class="input100" type="text" id="username" name="username" [(ngModel)]="registerFormData.username" (change)="usernameFilledOut()">
             <span class="focus-input100" id="username-span" data-placeholder="Username" *ngIf="!registerFormData.username"></span>
-            <div class="focus-input-100-error">{{usernameError}}</div>
           </div>
 
           <div class="wrap-input100 validate-input" data-validate="Enter email">
-            <span *ngIf="emailError" style="color:red"class="focus-input100-errorMessage">{{emailError}}</span>
+            <span *ngIf="emailError" style="color:red" class="focus-input100-errorMessage">{{emailError}}</span>
             <input class="input100" type="email" name="email" [(ngModel)]="registerFormData.email" (change)="emailFilledOut()">
             <span class="focus-input100" id="email-span" data-placeholder="Email" *ngIf="!registerFormData.email"></span>
           </div>
 
           <div class="wrap-input100 validate-input" data-validate="Enter password">
-            <span class="btn-show-pass">
-              <i class="zmdi zmdi-eye"></i>
-            </span>
+            <span *ngIf="passwordError" style="color:red" class="focus-input100-errorMessage">{{passwordError}}</span>
             <input class="input100" type="password" name="password" [(ngModel)]="registerFormData.password" (change)="passwordFilledOut()">
             <span class="focus-input100" id="password-span" data-placeholder="Password" *ngIf="!registerFormData.password"></span>
           </div>
-          <div class="focus-input-100-error" >{{passwordError}}</div>
 
           <div class="container-login100-form-btn">
             <div class="wrap-login100-form-btn">
