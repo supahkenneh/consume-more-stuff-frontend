@@ -499,7 +499,7 @@ span.focus-input100-errorMessaage {
   width: 300%;
   height: 100%;
   background: #a64bf4;
-  background: -webkit-linear-gradient(right, lightgrey, darkgray, lightgrey, darkgray);
+  background: -webkit-linear-gradient(right, #e5acff, #b3f1ff);
   background: -o-linear-gradient(right, lightgray, #b721ff, #21d4fd, #b721ff);
   background: -moz-linear-gradient(right, lightgrey, #b721ff, #21d4fd, #b721ff);
   background: linear-gradient(right, lightgray, #b721ff, #21d4fd, #b721ff);
