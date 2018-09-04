@@ -25,7 +25,7 @@ import { SessionService } from './services/session.service';
 import { AuthService } from './services/auth.service';
 import { ItemComponent } from './pages/item/item.component';
 import { UserItemComponent } from './pages/useritem/useritem.component';
-import { FormDataValidation } from './services/formDataValidation.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +59,7 @@ import { FormDataValidation } from './services/formDataValidation.service';
       { path: 'category/:id/items', component: CategoryComponent }
     ])
   ],
-  providers: [BackendService, SessionService, AuthService, FormDataValidation],
+  providers: [BackendService, SessionService, AuthService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
