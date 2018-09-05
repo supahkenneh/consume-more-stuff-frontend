@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class BackendService {
   url: string = 'http://localhost:4200/api/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   postItem(data) {
     const form = new FormData()
@@ -75,10 +75,9 @@ export class BackendService {
   }
 
   editItem(data, id) {
-    const putUrl = this.url + `items/${id}`
+    const putUrl = this.url + `items/${id}`;
     return this.http.put(putUrl, data).toPromise();
   }
-
 
   register(data) {
     const registerUrl = `${this.url}register`;
@@ -96,12 +95,29 @@ export class BackendService {
   }
 
   changePassword(data) {
-    const checkUrl = this.url + 'user/settings'
+    const checkUrl = this.url + 'user/settings';
     return this.http.put(checkUrl, data).toPromise();
   }
 
   uploadPhotos(data) {
     const uploadPhotoUrl = this.url + 'items/photos'
     return this.http.post(uploadPhotoUrl, data).toPromise();
+  }
+
+  checkUsername(username) {
+    console.log('checkuser');
+    const checkUserUrl = `${this.url}user?username=${username}`;
+    return this.http.get(checkUserUrl).toPromise();
+  }
+
+  checkEmail(email) {
+    console.log('checkemail');
+    const checkEmailUrl = `${this.url}user?email=${email}`;
+    return this.http.get(checkEmailUrl).toPromise();
+  }
+
+  incrementViews(itemID) {
+    const checkViewsUrl = `${this.url}items/${itemID}/views`;
+    return this.http.put(checkViewsUrl,itemID).toPromise();
   }
 }
