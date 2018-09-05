@@ -57,7 +57,9 @@ export class ItemComponent implements OnInit {
 
   ngOnInit() {
     let itemId = this.activatedRouter.snapshot.paramMap.get('id');
-    return this.backend.getItemById(itemId).then(result => {
+    return this.backend.getItemById(itemId)
+    .then(result => {
+      console.log('result :', result);
       this.editFormData = result[0];
       this.item = { ...result[0] };
       if (result[0].created_by === this.user['user_id']) {
@@ -78,7 +80,6 @@ export class ItemComponent implements OnInit {
   }
 
   submitEdit() {
-    console.log('click');
     this.editFormData.condition_id = parseInt(this.editFormData.condition_id);
     this.editFormData.status_id = parseInt(this.editFormData.status_id);
     return this.backend.editItem(this.editFormData, this.item.id).then(editedItem => {
