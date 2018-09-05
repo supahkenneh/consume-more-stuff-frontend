@@ -101,9 +101,7 @@ export class BackendService {
   }
 
   incrementViews(itemID) {
-    console.log(itemID)
     const checkViewsUrl = `${this.url}items/${itemID}/views`;
-    console.log(checkViewsUrl);
     return this.http.put(checkViewsUrl,itemID).toPromise();
   }
 }

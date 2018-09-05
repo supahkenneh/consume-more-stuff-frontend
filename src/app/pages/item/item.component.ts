@@ -25,17 +25,17 @@ export class ItemComponent implements OnInit {
     itemStatus: object;
     condition: object;
   } = {
-      description: '',
-      photo_id: '',
-      status_id: '',
-      condition_id: '',
-      dimensions: '',
-      manufacturer_make: '',
-      model_name_number: '',
-      notes_details: '',
-      itemStatus: {},
-      condition: {}
-    };
+    description: '',
+    photo_id: '',
+    status_id: '',
+    condition_id: '',
+    dimensions: '',
+    manufacturer_make: '',
+    model_name_number: '',
+    notes_details: '',
+    itemStatus: {},
+    condition: {}
+  };
 
   descriptionErrors: string[] = [];
   descriptionValid: boolean = false;
@@ -50,22 +50,23 @@ export class ItemComponent implements OnInit {
     private router: Router,
     private backend: BackendService,
     private session: SessionService,
-    private activatedRouter: ActivatedRoute,
+    private activatedRouter: ActivatedRoute
   ) {
     this.user = this.session.getSession();
   }
 
   ngOnInit() {
     let itemId = this.activatedRouter.snapshot.paramMap.get('id');
-    this.backend.incrementViews(itemId);
-    return this.backend.getItemById(itemId).then(result => {
-      this.editFormData = result[0];
-      this.item = { ...result[0] };
-      if (result[0].created_by === this.user['user_id']) {
-        this.correctUser = true;
-      }
-      return this.editFormData = result[0];
-    });
+    return this.backend.incrementViews(itemId).then(() => {
+      return this.backend.getItemById(itemId).then(result => {
+        this.editFormData = result[0];
+        this.item = { ...result[0] };
+        if (result[0].created_by === this.user['user_id']) {
+          this.correctUser = true;
+        }
+        return (this.editFormData = result[0]);
+      });
+    })
   }
 
   toggleEdit() {
@@ -91,7 +92,7 @@ export class ItemComponent implements OnInit {
   validateDescription() {
     this.descriptionErrors.length = 0;
     if (this.editFormData.description.length < 3) {
-      this.descriptionErrors.push('At least 3 characters required')
+      this.descriptionErrors.push('At least 3 characters required');
       this.descriptionValid = false;
     } else {
       this.descriptionValid = true;
@@ -131,7 +132,11 @@ export class ItemComponent implements OnInit {
   }
 
   disableButton() {
-    if (this.conditionErrors.length || this.statusErrors.length || this.descriptionErrors.length) {
+    if (
+      this.conditionErrors.length ||
+      this.statusErrors.length ||
+      this.descriptionErrors.length
+    ) {
       return true;
     } else {
       return false;

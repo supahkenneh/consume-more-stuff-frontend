@@ -8,7 +8,6 @@ import { filter } from 'rxjs/operators';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss']
 })
-
 export class CategoryComponent implements OnInit, OnDestroy {
   categoryId: string;
   itemsList: any = [];
@@ -19,7 +18,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private backend: BackendService,
-    private activatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute
   ) {
     this.navStart = router.events.pipe(
       filter(event => event instanceof NavigationStart)
@@ -27,18 +26,20 @@ export class CategoryComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.activatedRoute.url
-      .subscribe(url => {
-        this.categoryId = url[1].path;
-        this.loadItemsInCategory(this.categoryId);
-      })
+    this.subscription = this.activatedRoute.url.subscribe(url => {
+      this.categoryId = url[1].path;
+      this.loadItemsInCategory(this.categoryId);
+    });
   }
 
   loadItemsInCategory(categoryId) {
-    return this.backend.getCategoryItems(this.categoryId)
-      .then(result => {
-        return this.itemsList = result;
-      })
+    return this.backend.getCategoryItems(this.categoryId).then(result => {
+      this.itemsList = result;
+      this.itemsList.sort((a, b) => {
+        return b.views - a.views;
+      });
+      return this.itemsList;
+    });
   }
 
   ngOnDestroy() {
