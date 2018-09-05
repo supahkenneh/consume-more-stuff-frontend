@@ -10,8 +10,23 @@ export class BackendService {
   constructor(private http: HttpClient) { }
 
   postItem(data) {
+    const form = new FormData()
+
+    form.append('description', data.description);
+    form.append('price', data.price);
+    form.append('manufacturer_make', data.manufacturer_make);
+    form.append('created_by', data.created_by);
+    form.append('model_name_number', data.model_name_number)
+    form.append('condition_id', data.condition_id);
+    form.append('category_id', data.category_id);
+    form.append('views', data.views);
+    form.append('dimensions', data.dimensions);
+    form.append('notes_details', data.notes_details);
+    form.append('status_id', data.status_id);
+    form.append('photo', data.photo);
+
     const postItemUrl = `${this.url}items`;
-    return this.http.post(postItemUrl, data).toPromise();
+    return this.http.post(postItemUrl, form).toPromise();
   }
 
   postPhoto(data) {
@@ -86,6 +101,7 @@ export class BackendService {
   }
 
   uploadPhotos(data) {
-    console.log(data);
+    const uploadPhotoUrl = this.url + 'items/photos'
+    return this.http.post(uploadPhotoUrl, data).toPromise();
   }
 }

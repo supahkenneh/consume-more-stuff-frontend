@@ -41,6 +41,7 @@ export class AddItemComponent {
     notes_details: string;
     status_id: number;
     photo_id: number;
+    photo: File;
   } = {
       description: '',
       price: '',
@@ -53,7 +54,8 @@ export class AddItemComponent {
       dimensions: '',
       notes_details: '',
       status_id: 2,
-      photo_id: -1
+      photo_id: -1,
+      photo: null
     };
 
   descriptionErrors: string[] = [];
@@ -83,18 +85,11 @@ export class AddItemComponent {
 
   addItem() {
     this.newItemFormData.created_by = this.user.user_id;
-    console.log(this.newItemFormData);
-    console.log(this.photosToUpload)
+    
+    console.log('this.newItemFormData :', this.newItemFormData);
     return this.backend.postItem(this.newItemFormData)
-      .then(newItem => {
-        console.log('newItem', newItem);
-        if (newItem) {
-          return newItem
-        }
-      })
-      .then(newItem => {
-        console.log(newItem);
-        // this.router.navigate([`items/${newItem['id']}`]);
+      .then(itemId => {
+        return this.router.navigate([`items/${itemId}`]);
       })
       .catch(err => {
         console.log(err);
@@ -154,7 +149,8 @@ export class AddItemComponent {
     let extension = file.name.slice(dot, file.name.length);
     if (this.acceptableExtensions.includes(extension.toLowerCase())) {
       if (fileSize < this.acceptableSize) {
-        return this.photosToUpload.push(file);
+        return this.newItemFormData.photo = file
+        // return this.photosToUpload.push(file);
       } else {
         return this.photoErrors.push(this.unacceptableSize);
       }

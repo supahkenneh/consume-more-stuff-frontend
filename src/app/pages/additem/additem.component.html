@@ -1,5 +1,5 @@
 <div class="content-container">
-  <form>
+  <form enctype="multipart/form-data">
     <div class="item-header">
       <div>Add an item</div>
     </div>
@@ -21,8 +21,8 @@
     <label for="condition_id">Condition</label>
     <span>{{ getConditionErrors() }}</span>
     <select name="condition_id" [(ngModel)]="newItemFormData.condition_id" (change)="validateCondition()">
-    <option value="-1" class="option">Select Condition</option>
-    <option *ngFor="let condition of conditions" value="{{condition.rank}}">{{condition.name}}</option>
+      <option value="-1" class="option">Select Condition</option>
+      <option *ngFor="let condition of conditions" value="{{condition.rank}}">{{condition.name}}</option>
     </select>
     <label for="manufacturer_make">Manufacturer/Make</label>
     <div class="input-wrapper">
@@ -40,10 +40,10 @@
     <div class="input-wrapper">
       <input type="text" name="notes_details" placeholder="Details" [(ngModel)]="newItemFormData.notes_details">
     </div>
-    <label for="photo_link">Upload Images </label>
     <div class="photo-error">{{getPhotoErrors()}}</div>
+    <label for="photos">Upload Images </label>
     <div class="image-upload">
-      <input type="file" name="photo_link" (change)="updatePhotoList($event)">
+      <input type="file" name="file" accept=".jpg, .jpeg, .png" multiple (change)="updatePhotoList($event)">
     </div>
     <div id="photo-list-container" *ngFor="let photo of photosToUpload">
       <div class="photo-name">{{photo.name}}</div>
