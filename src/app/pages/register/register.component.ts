@@ -137,7 +137,7 @@ export class RegisterComponent {
       this.usernameUsed().then(response => {
         this.usernameValid = !response;
         if (!this.usernameValid) {
-          this.usernameError = 'This email has already been registered.';
+          this.usernameError = 'This username has already been registered.';
         }
       });
     }

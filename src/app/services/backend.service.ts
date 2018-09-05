@@ -99,4 +99,11 @@ export class BackendService {
     const checkEmailUrl = `${this.url}user?email=${email}`;
     return this.http.get(checkEmailUrl).toPromise();
   }
+
+  incrementViews(itemID) {
+    console.log(itemID)
+    const checkViewsUrl = `${this.url}items/${itemID}/views`;
+    console.log(checkViewsUrl);
+    return this.http.put(checkViewsUrl,itemID).toPromise();
+  }
 }

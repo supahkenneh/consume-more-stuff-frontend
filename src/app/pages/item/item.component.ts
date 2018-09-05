@@ -57,6 +57,7 @@ export class ItemComponent implements OnInit {
 
   ngOnInit() {
     let itemId = this.activatedRouter.snapshot.paramMap.get('id');
+    this.backend.incrementViews(itemId);
     return this.backend.getItemById(itemId).then(result => {
       this.editFormData = result[0];
       this.item = { ...result[0] };
