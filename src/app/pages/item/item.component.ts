@@ -67,6 +67,7 @@ export class ItemComponent implements OnInit {
         return (this.editFormData = result[0]);
       });
     })
+
   }
 
   toggleEdit() {
@@ -80,7 +81,6 @@ export class ItemComponent implements OnInit {
   }
 
   submitEdit() {
-    console.log('click');
     this.editFormData.condition_id = parseInt(this.editFormData.condition_id);
     this.editFormData.status_id = parseInt(this.editFormData.status_id);
     return this.backend.editItem(this.editFormData, this.item.id).then(editedItem => {
