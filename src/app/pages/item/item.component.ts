@@ -17,6 +17,14 @@ export class ItemComponent implements OnInit {
   currentPhoto: string;
   hasPhoto: boolean = false;
 
+  acceptableExtensions: string[] = ['.jpg', '.png', '.jpeg']
+  acceptableSize: number = 1000000000;
+  showPhotoError: boolean = false;
+  unacceptablePhoto: string = 'File format not accepted, please upload .jpg, .jpeg, or .png';
+  unacceptableSize: string = 'File size exceeded, max 1GB'
+  photoErrors: string[] = [];
+  photosToUpload: File[] = [];
+
   editFormData: {
     description: string;
     status_id: any;
@@ -99,10 +107,13 @@ export class ItemComponent implements OnInit {
   submitEdit() {
     this.editFormData.condition_id = parseInt(this.editFormData.condition_id);
     this.editFormData.status_id = parseInt(this.editFormData.status_id);
-    return this.backend.editItem(this.editFormData, this.item.id).then(editedItem => {
-      this.item = editedItem[0];
-      this.toggleEdit();
-    });
+    this.editFormData['photo'] = this.photosToUpload;
+    return this.backend.editItem(this.editFormData, this.item.id)
+      .then(editedItem => {
+        console.log(editedItem);
+        this.item = editedItem[0];
+        this.toggleEdit();
+      });
   }
 
   validateDescription() {
@@ -180,4 +191,23 @@ export class ItemComponent implements OnInit {
     return `${index + 1} of ${this.photos.length} images`
   }
 
+  updatePhotoList(event) {
+    let file = event.target.files[0];
+    let fileSize = file.size
+    let dot = file.name.indexOf('.');
+    let extension = file.name.slice(dot, file.name.length);
+    if (this.acceptableExtensions.includes(extension.toLowerCase())) {
+      if (fileSize < this.acceptableSize) {
+        return this.photosToUpload.push(file)
+      } else {
+        return this.photoErrors.push(this.unacceptableSize);
+      }
+    } else {
+      return this.photoErrors.push(this.unacceptablePhoto)
+    }
+  }
+
+  getPhotoErrors() {
+    return this.photoErrors.join(', ');
+  }
 }

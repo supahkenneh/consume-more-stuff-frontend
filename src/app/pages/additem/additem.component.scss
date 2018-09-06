@@ -63,6 +63,11 @@ $mainFont: 'Poppins', sans-serif;
         font-size: 15px;
       }
     }
+    #photo-list-container {
+      .photo-name {
+        font-size: 12px;
+      }
+    }
    button {
      background: -webkit-linear-gradient(right, #b721ff, #21d4fd);
      font-family: $mainFont;

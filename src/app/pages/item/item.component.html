@@ -5,7 +5,7 @@
   <div class="image-container" *ngIf="hasPhoto">
     <img src="{{currentPhoto}}" alt="" class="item-image">
   </div>
-  <div class="image-scroller">
+  <div class="image-scroller" *ngIf="hasPhoto">
     <span (click)="previousPhoto()"> < </span>{{imagesRemaining()}}<span (click)="nextPhoto()"> > </span>
   </div>
   <div class="item-content">
@@ -27,7 +27,7 @@
   <form>
     <div class="edit-header">Edit Your Item</div>
     <div class="image-container" *ngIf="hasPhoto">
-      <img src="{{editFormData.photos[0].link}}" alt="" class="item-image">
+      <img src="{{currentPhoto}}" class="item-image">
     </div>
     <label for="description">Description:</label>
     <span>{{ getDescriptionErrors() }}</span>
@@ -71,6 +71,15 @@
 
     <label for="notes_details">Details:</label>
     <textarea type="text" name="notes_details" [(ngModel)]="editFormData.notes_details"></textarea>
+
+    <div class="photo-error">{{getPhotoErrors()}}</div>
+    <label for="photos">Upload Images</label>
+    <div class="image-upload">
+      <input type="file" name="file" accept=".jpg, .jpeg, .png" multiple (change)="updatePhotoList($event)">
+    </div>
+    <div id="photo-list-container" *ngFor="let photo of photosToUpload">
+      <div class="photo-name">{{photo.name}}</div>
+    </div>
     <div class="buttons">
       <button (click)="submitEdit()" [disabled]="disableButton()">Submit</button>
       <button (click)="toggleEdit()" class="cancel-button">Cancel</button>

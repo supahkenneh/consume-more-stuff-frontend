@@ -77,8 +77,25 @@ export class BackendService {
   }
 
   editItem(data, id) {
+    console.log(data);
+    const form = new FormData()
+    form.append('description', data.description);
+    form.append('price', data.price);
+    form.append('manufacturer_make', data.manufacturer_make);
+    form.append('created_by', data.created_by);
+    form.append('model_name_number', data.model_name_number)
+    form.append('condition_id', data.condition_id);
+    form.append('category_id', data.category_id);
+    form.append('views', data.views);
+    form.append('dimensions', data.dimensions);
+    form.append('notes_details', data.notes_details);
+    form.append('status_id', data.status_id);
+    data.photo.map(item => {
+      form.append('photo', item)
+    })
+
     const putUrl = this.url + `items/${id}`;
-    return this.http.put(putUrl, data).toPromise();
+    return this.http.put(putUrl, form).toPromise();
   }
 
   register(data) {

@@ -149,7 +149,6 @@ export class AddItemComponent {
     let extension = file.name.slice(dot, file.name.length);
     if (this.acceptableExtensions.includes(extension.toLowerCase())) {
       if (fileSize < this.acceptableSize) {
-        // return this.photosToUpload.push(file);
         return this.newItemFormData.photo.push(file)
       } else {
         return this.photoErrors.push(this.unacceptableSize);
