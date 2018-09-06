@@ -12,6 +12,8 @@ export class ItemComponent implements OnInit {
   item: any;
   editing: boolean = false;
   correctUser: boolean = false;
+  photo: string;
+  hasPhoto: boolean = false;
 
   editFormData: {
     description: string;
@@ -25,17 +27,17 @@ export class ItemComponent implements OnInit {
     itemStatus: object;
     condition: object;
   } = {
-    description: '',
-    photo_id: '',
-    status_id: '',
-    condition_id: '',
-    dimensions: '',
-    manufacturer_make: '',
-    model_name_number: '',
-    notes_details: '',
-    itemStatus: {},
-    condition: {}
-  };
+      description: '',
+      photo_id: '',
+      status_id: '',
+      condition_id: '',
+      dimensions: '',
+      manufacturer_make: '',
+      model_name_number: '',
+      notes_details: '',
+      itemStatus: {},
+      condition: {}
+    };
 
   descriptionErrors: string[] = [];
   descriptionValid: boolean = false;
@@ -56,17 +58,26 @@ export class ItemComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.hasPhoto = false;
     let itemId = this.activatedRouter.snapshot.paramMap.get('id');
-    return this.backend.incrementViews(itemId).then(() => {
-      return this.backend.getItemById(itemId).then(result => {
-        this.editFormData = result[0];
-        this.item = { ...result[0] };
-        if (result[0].created_by === this.user['user_id']) {
-          this.correctUser = true;
-        }
-        return (this.editFormData = result[0]);
-      });
-    })
+    return this.backend.incrementViews(itemId)
+      .then(() => {
+        return this.backend.getItemById(itemId)
+          .then(result => {
+            this.editFormData = result[0];
+            this.item = { ...result[0] };
+            if (this.item.photos.length > 0) {
+              this.photo = this.item.photos[0].link
+              this.hasPhoto = true;
+            } else {
+              this.hasPhoto = false;
+            }
+            if (result[0].created_by === this.user['user_id']) {
+              this.correctUser = true;
+            }
+            return (this.editFormData = result[0]);
+          });
+      })
 
   }
 

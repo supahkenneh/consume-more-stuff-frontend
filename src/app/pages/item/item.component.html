@@ -2,8 +2,8 @@
   <div class="item-header">
     <h1>{{editFormData.description}}</h1>
   </div>
-  <div class="image-container">
-    <div>Photo: {{editFormData.photo_id}}</div>
+  <div class="image-container" *ngIf="hasPhoto">
+    <img src="{{photo}}" alt="" class="item-image">
   </div>
   <div class="item-content">
     <div>Views: {{editFormData.views}}</div>

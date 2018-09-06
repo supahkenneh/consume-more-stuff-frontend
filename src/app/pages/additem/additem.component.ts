@@ -88,8 +88,9 @@ export class AddItemComponent {
     
     console.log('this.newItemFormData :', this.newItemFormData);
     return this.backend.postItem(this.newItemFormData)
-      .then(itemId => {
-        return this.router.navigate([`items/${itemId}`]);
+      .then(item => {
+        const id = item['id']
+        return this.router.navigate([`items/${id}`]);
       })
       .catch(err => {
         console.log(err);
