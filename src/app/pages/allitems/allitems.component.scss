@@ -7,7 +7,7 @@
   .card {
     border-radius: 5px;
     margin: 10px;
-    height: 300px;
+    height: 250px;
     width: 100%;
     background: white;
     font-size: 14px;
@@ -16,11 +16,19 @@
     justify-content: flex-end;
     padding: 5px;
     box-shadow: 1px 1px 1px 1px gray;
-    a:nth-child(1) {
-      text-decoration: none;
-      color: black;
+    .image-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 350px;
+      height: 200px;
+      .item-image {
+        max-height: 100%;
+        max-width: 100%;
+      }
     }
-    a:nth-child(2) {
+    a {
       color: black;
     }
     .card-desc {

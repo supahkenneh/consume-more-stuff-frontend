@@ -9,6 +9,7 @@ import { BackendService } from '../../services/backend.service';
 
 export class AllItemsComponent implements OnInit {
   itemList: any;
+  placeholderImage: string = "https://cdn.samsung.com/etc/designs/smg/global/imgs/support/cont/NO_IMG_600x600.png"
 
   constructor(
     private router: Router,
@@ -17,8 +18,16 @@ export class AllItemsComponent implements OnInit {
 
   ngOnInit() {
     return this.backend.getAllItems()
-    .then(result => {
-      this.itemList = result;
-    })
+      .then(result => {
+        let resultArr = Object.values(result);
+        resultArr.map(item => {
+          if (item.photos.length > 0) {
+            item.photo = item.photos[0].link;
+          } else {
+            item.photo = this.placeholderImage;
+          }
+        })
+        this.itemList = resultArr;
+      })
   }
 }

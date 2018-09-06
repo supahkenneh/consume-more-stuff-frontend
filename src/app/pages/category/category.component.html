@@ -1,6 +1,8 @@
 <div class="content-container">
   <div class="card" *ngFor="let item of itemsList">
-    <a routerLink="/items/{{item.id}}">{{item.photo_id}}</a>
+    <div class="image-container">
+      <img src="{{item.photo}}" class="item-image">
+    </div>
     <a routerLink="/items/{{item.id}}">{{item.description}}</a>
     <div class="card-desc">
       <div>{{item.created_at}}</div>
