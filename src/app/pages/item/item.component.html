@@ -6,7 +6,7 @@
     <img src="{{currentPhoto}}" alt="" class="item-image">
   </div>
   <div class="image-scroller">
-    <span (click)="previousPhoto()"> < </span>Images<span (click)="nextPhoto()"> > </span>
+    <span (click)="previousPhoto()"> < </span>{{imagesRemaining()}}<span (click)="nextPhoto()"> > </span>
   </div>
   <div class="item-content">
     <div>Views: {{editFormData.views}}</div>

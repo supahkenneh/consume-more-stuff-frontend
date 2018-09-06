@@ -161,11 +161,23 @@ export class ItemComponent implements OnInit {
 
   previousPhoto() {
     let index = this.photos.indexOf(this.currentPhoto);
-    this.currentPhoto = this.photos[index - 1]
+    if ((index - 1) < 0) {
+      return this.currentPhoto = this.photos[this.photos.length - 1]
+    }
+    return this.currentPhoto = this.photos[index - 1]
   }
 
   nextPhoto() {
     let index = this.photos.indexOf(this.currentPhoto);
-    this.currentPhoto = this.photos[index + 1]
+    if ((index + 1) === this.photos.length) {
+      return this.currentPhoto = this.photos[0]
+    }
+    return this.currentPhoto = this.photos[index + 1]
   }
+
+  imagesRemaining() {
+    let index = this.photos.indexOf(this.currentPhoto);
+    return `${index + 1} of ${this.photos.length} images`
+  }
+
 }
