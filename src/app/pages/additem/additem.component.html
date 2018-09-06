@@ -45,7 +45,7 @@
     <div class="image-upload">
       <input type="file" name="file" accept=".jpg, .jpeg, .png" multiple (change)="updatePhotoList($event)">
     </div>
-    <div id="photo-list-container" *ngFor="let photo of photosToUpload">
+    <div id="photo-list-container" *ngFor="let photo of newItemFormData.photo">
       <div class="photo-name">{{photo.name}}</div>
     </div>
     <button class="btn" [disabled]="disableButton()" (click)="addItem()">Submit</button>

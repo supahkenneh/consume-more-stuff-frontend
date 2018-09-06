@@ -5,6 +5,9 @@
   <div class="image-container" *ngIf="hasPhoto">
     <img src="{{photo}}" alt="" class="item-image">
   </div>
+  <div class="image-scroller">
+    scroller
+  </div>
   <div class="item-content">
     <div>Views: {{editFormData.views}}</div>
     <div>Status: {{editFormData.itemStatus.name}}</div>
@@ -30,11 +33,6 @@
     <span>{{ getDescriptionErrors() }}</span>
     <div class="input-wrapper">
       <input type="text" name="description" [(ngModel)]="editFormData.description" (keyup)="validateDescription()">
-    </div>
-
-    <label for="photo">Photo:</label>
-    <div class="input-wrapper">
-      <input type="text" name="photo" [(ngModel)]="editFormData.photo_id">
     </div>
     <label for="item-status">Item Status</label>
     <span>{{ getStatusErrors() }}</span>

@@ -41,7 +41,7 @@ export class AddItemComponent {
     notes_details: string;
     status_id: number;
     photo_id: number;
-    photo: File;
+    photo: File[];
   } = {
       description: '',
       price: '',
@@ -55,7 +55,7 @@ export class AddItemComponent {
       notes_details: '',
       status_id: 2,
       photo_id: -1,
-      photo: null
+      photo: []
     };
 
   descriptionErrors: string[] = [];
@@ -85,7 +85,7 @@ export class AddItemComponent {
 
   addItem() {
     this.newItemFormData.created_by = this.user.user_id;
-    
+    console.log('this.newItemFormData :', this.newItemFormData);
     return this.backend.postItem(this.newItemFormData)
       .then(item => {
         const id = item['id']
@@ -149,8 +149,8 @@ export class AddItemComponent {
     let extension = file.name.slice(dot, file.name.length);
     if (this.acceptableExtensions.includes(extension.toLowerCase())) {
       if (fileSize < this.acceptableSize) {
-        return this.newItemFormData.photo = file
         // return this.photosToUpload.push(file);
+        return this.newItemFormData.photo.push(file)
       } else {
         return this.photoErrors.push(this.unacceptableSize);
       }

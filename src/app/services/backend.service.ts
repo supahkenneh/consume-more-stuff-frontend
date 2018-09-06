@@ -7,11 +7,11 @@ import { HttpClient } from '@angular/common/http';
 export class BackendService {
   url: string = 'http://localhost:4200/api/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   postItem(data) {
+    console.log(data);
     const form = new FormData()
-
     form.append('description', data.description);
     form.append('price', data.price);
     form.append('manufacturer_make', data.manufacturer_make);
@@ -23,7 +23,9 @@ export class BackendService {
     form.append('dimensions', data.dimensions);
     form.append('notes_details', data.notes_details);
     form.append('status_id', data.status_id);
-    form.append('photo', data.photo);
+    data.photo.map(item => {
+      form.append('photo', item)
+    })
 
     const postItemUrl = `${this.url}items`;
     return this.http.post(postItemUrl, form).toPromise();
@@ -118,6 +120,6 @@ export class BackendService {
 
   incrementViews(itemID) {
     const checkViewsUrl = `${this.url}items/${itemID}/views`;
-    return this.http.put(checkViewsUrl,itemID).toPromise();
+    return this.http.put(checkViewsUrl, itemID).toPromise();
   }
 }

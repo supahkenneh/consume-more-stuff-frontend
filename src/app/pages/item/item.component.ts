@@ -25,7 +25,6 @@ export class ItemComponent implements OnInit {
     notes_details: string;
     itemStatus: object;
     condition: object;
-    photos: any;
   } = {
       description: '',
       status_id: '',
@@ -36,7 +35,6 @@ export class ItemComponent implements OnInit {
       notes_details: '',
       itemStatus: {},
       condition: {},
-      photos: null
     };
 
   descriptionErrors: string[] = [];
@@ -64,6 +62,7 @@ export class ItemComponent implements OnInit {
       .then(() => {
         return this.backend.getItemById(itemId)
           .then(result => {
+            console.log(result);
             this.editFormData = result[0];
             this.item = { ...result[0] };
             if (this.item.photos.length > 0) {
