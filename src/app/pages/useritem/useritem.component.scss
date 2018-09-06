@@ -18,7 +18,8 @@
       .card {
         width: 100%;
         background: white;
-        height: 150px;
+        height: 260px;
+        padding: 5px;
         border-radius: 5px;
         box-shadow: 1px 1px 1px 1px gray;
         display: flex;
@@ -26,6 +27,17 @@
         justify-content: flex-end;
         font-size: 14px;
         margin-bottom: 10px;
+        .image-container {
+          width: 100%;
+          height: 180px;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          .item-image {
+            max-height: 100%;
+            max-width: 100%;
+          }
+        }
         a {
           color: black;
         }

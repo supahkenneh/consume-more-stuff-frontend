@@ -2,8 +2,11 @@
   <div class="item-header">
     <h1>{{editFormData.description}}</h1>
   </div>
-  <div class="image-container">
-    <div>Photo: {{editFormData.photo_id}}</div>
+  <div class="image-container" *ngIf="hasPhoto">
+    <img src="{{currentPhoto}}" alt="" class="item-image">
+  </div>
+  <div class="image-scroller" *ngIf="hasPhoto">
+    <span (click)="previousPhoto()"> < </span>{{imagesRemaining()}}<span (click)="nextPhoto()"> > </span>
   </div>
   <div class="item-content">
     <div>Views: {{editFormData.views}}</div>
@@ -17,21 +20,27 @@
   </div>
   <div class="item-buttons">
     <button (click)="toggleEdit()" *ngIf="correctUser">Edit</button>
+    <button (click)="removeItem()" *ngIf="correctUser">Remove</button>
   </div>
 </div>
 
 <div class="edit-container" *ngIf="this.editing">
   <form>
     <div class="edit-header">Edit Your Item</div>
+    <div class="image-container" *ngIf="hasPhoto">
+      <img src="{{currentPhoto}}" class="item-image">
+    </div>
+    <div class="image-scroller" *ngIf="hasPhoto">
+      <span (click)="previousPhoto()"> < </span>{{imagesRemaining()}}<span (click)="nextPhoto()"> > </span>
+    </div>
+    <div class="remove-container" *ngIf="hasPhoto">
+      <div class="remove-button" (click)="tagForRemoval()">Remove Image</div>
+    </div>
+    <div id="photos-marked" *ngIf="hasPhoto">{{getPhotosToDelete()}}</div>
     <label for="description">Description:</label>
     <span>{{ getDescriptionErrors() }}</span>
     <div class="input-wrapper">
       <input type="text" name="description" [(ngModel)]="editFormData.description" (keyup)="validateDescription()">
-    </div>
-
-    <label for="photo">Photo:</label>
-    <div class="input-wrapper">
-      <input type="text" name="photo" [(ngModel)]="editFormData.photo_id">
     </div>
     <label for="item-status">Item Status</label>
     <span>{{ getStatusErrors() }}</span>
@@ -53,12 +62,10 @@
       <option value="5">Used</option>
     </select>
 
-
     <label for="dimensions">Dimensions:</label>
     <div class="input-wrapper">
       <input type="text" name="dimensions" [(ngModel)]="editFormData.dimensions">
     </div>
-
 
     <label for="manufacturer_make">Manucturer/make:</label>
     <div class="input-wrapper">
@@ -72,6 +79,16 @@
 
     <label for="notes_details">Details:</label>
     <textarea type="text" name="notes_details" [(ngModel)]="editFormData.notes_details"></textarea>
+
+    <div class="photo-error">{{getPhotoErrors()}}</div>
+    <label for="photos">Upload Images</label>
+    <div class="image-upload">
+      <input type="file" name="file" accept=".jpg, .jpeg, .png" multiple (change)="updatePhotoList($event)">
+    </div>
+    <div id="photo-list-container" *ngFor="let photo of photosToUpload">
+      <div class="photo-name">{{photo.name}}</div>
+    </div>
+
     <div class="buttons">
       <button (click)="submitEdit()" [disabled]="disableButton()">Submit</button>
       <button (click)="toggleEdit()" class="cancel-button">Cancel</button>

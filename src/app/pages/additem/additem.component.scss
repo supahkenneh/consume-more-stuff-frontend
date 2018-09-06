@@ -50,6 +50,15 @@ $mainFont: 'Poppins', sans-serif;
        height: 45px;
      }
     }
+    textarea {
+      height: 200px;
+      width: 100%;
+      padding: 5px;
+      font-size: 14px;
+      border-radius: 5px;
+      resize: none;
+      overflow: scroll;
+    }
     .photo-error {
       color: red;
       font-size: 12px;
@@ -61,6 +70,11 @@ $mainFont: 'Poppins', sans-serif;
       justify-content: space-around;
       input {
         font-size: 15px;
+      }
+    }
+    #photo-list-container {
+      .photo-name {
+        font-size: 12px;
       }
     }
    button {

@@ -13,6 +13,8 @@ export class HomeComponent implements OnInit {
   categoryItems: any;
   showItems: boolean = false;
   user: object;
+  placeholderImage: string = "https://cdn.samsung.com/etc/designs/smg/global/imgs/support/cont/NO_IMG_600x600.png"
+
   private _isLoggedInAsObservable;
   private _isLoggedIn: boolean;
 
@@ -35,7 +37,18 @@ export class HomeComponent implements OnInit {
   loadItems(category) {
     return this.backend.getCategoryItems(category.id)
       .then(result => {
-        return this.categoryItems = result;
+        let resultArr = Object.values(result);
+        resultArr.map(item => {
+          if (item.photos.length > 0) {
+            item.photo = item.photos[0].link;
+          } else {
+            item.photo = this.placeholderImage;
+          }
+        })
+        if (resultArr.length > 5) {
+          resultArr.length = 5;
+        }
+        return this.categoryItems = resultArr;
       })
       .then(() => {
         let categoryDiv = document.getElementById(category.id)

@@ -11,6 +11,7 @@ import { filter } from 'rxjs/operators';
 export class CategoryComponent implements OnInit, OnDestroy {
   categoryId: string;
   itemsList: any = [];
+  placeholderImage: string = "https://cdn.samsung.com/etc/designs/smg/global/imgs/support/cont/NO_IMG_600x600.png"
   subscription: Subscription;
 
   navStart: Observable<NavigationStart>;
@@ -33,13 +34,22 @@ export class CategoryComponent implements OnInit, OnDestroy {
   }
 
   loadItemsInCategory(categoryId) {
-    return this.backend.getCategoryItems(this.categoryId).then(result => {
-      this.itemsList = result;
-      this.itemsList.sort((a, b) => {
-        return b.views - a.views;
+    return this.backend.getCategoryItems(this.categoryId)
+      .then(result => {
+        let resultArr = Object.values(result);
+        resultArr.map(item => {
+          if (item.photos.length > 0) {
+            item.photo = item.photos[0].link;
+          } else {
+            item.photo = this.placeholderImage;
+          }
+        })
+        this.itemsList = resultArr;
+        this.itemsList.sort((a, b) => {
+          return b.views - a.views;
+        });
+        return this.itemsList;
       });
-      return this.itemsList;
-    });
   }
 
   ngOnDestroy() {

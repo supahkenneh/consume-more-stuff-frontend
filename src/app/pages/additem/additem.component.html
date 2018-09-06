@@ -1,55 +1,61 @@
 <div class="content-container">
   <form enctype="multipart/form-data">
     <div class="item-header">
-      <div>Add an item</div>
+      <div>Add an Item</div>
     </div>
+
+    <label for="description">Description</label>
+    <span>{{ getDescriptionErrors() }}</span>
+    <div class="input-wrapper">
+      <input type="text" name="description" [(ngModel)]="newItemFormData.description" (keyup)="validateDescription()">
+    </div>
+
     <label for="category_id">Category</label>
     <span>{{ getCategoryErrors() }}</span>
     <select name="category_id" [(ngModel)]="newItemFormData.category_id" (change)="validateCategory()">
       <option value="-1" class="option">Select Category</option>
       <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
     </select>
-    <label for="description">Description</label>
-    <span>{{ getDescriptionErrors() }}</span>
-    <div class="input-wrapper">
-      <input type="text" name="description" [(ngModel)]="newItemFormData.description" (keyup)="validateDescription()">
-    </div>
-    <label for="price">Price</label>
-    <div class="input-wrapper">
-      <input type="text" name="price" placeholder="Price" [(ngModel)]="newItemFormData.price">
-    </div>
+
     <label for="condition_id">Condition</label>
     <span>{{ getConditionErrors() }}</span>
     <select name="condition_id" [(ngModel)]="newItemFormData.condition_id" (change)="validateCondition()">
       <option value="-1" class="option">Select Condition</option>
       <option *ngFor="let condition of conditions" value="{{condition.rank}}">{{condition.name}}</option>
     </select>
+
+    <label for="price">Price</label>
+    <div class="input-wrapper">
+      <input type="text" name="price" placeholder="Price" [(ngModel)]="newItemFormData.price">
+    </div>
+
     <label for="manufacturer_make">Manufacturer/Make</label>
     <div class="input-wrapper">
       <input type="text" name="manufacturer_make" placeholder="Manufacturer/Make" [(ngModel)]="newItemFormData.manufacturer_make">
     </div>
+
     <label for="model_name_number">Model Name/Number</label>
     <div class="input-wrapper">
       <input type="text" name="model_name_number" placeholder="Model" [(ngModel)]="newItemFormData.model_name_number">
     </div>
+
     <label for="dimensions">Dimensions</label>
     <div class="input-wrapper">
       <input type="text" name="dimensions" placeholder="Dimensions" [(ngModel)]="newItemFormData.dimensions">
     </div>
+
     <label for="notes_details">Notes/Details</label>
-    <div class="input-wrapper">
-      <input type="text" name="notes_details" placeholder="Details" [(ngModel)]="newItemFormData.notes_details">
-    </div>
+    <textarea type="text" name="notes_details" placeholder="Details" [(ngModel)]="newItemFormData.notes_details"></textarea>
+
     <div class="photo-error">{{getPhotoErrors()}}</div>
     <label for="photos">Upload Images </label>
     <div class="image-upload">
       <input type="file" name="file" accept=".jpg, .jpeg, .png" multiple (change)="updatePhotoList($event)">
     </div>
-    <div id="photo-list-container" *ngFor="let photo of photosToUpload">
+    <div id="photo-list-container" *ngFor="let photo of newItemFormData.photo">
       <div class="photo-name">{{photo.name}}</div>
     </div>
+
     <button class="btn" [disabled]="disableButton()" (click)="addItem()">Submit</button>
   </form>
-</div>
-<div class="image-container">
 </div>
