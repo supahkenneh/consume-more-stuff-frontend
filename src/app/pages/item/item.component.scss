@@ -26,6 +26,14 @@ $mainFont: 'Poppins', sans-serif;
   }
   .image-scroller {
     text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 14px;
+    span {
+      font-size: 24px;
+    }
   }
   .item-content {
     padding-left: 5px;

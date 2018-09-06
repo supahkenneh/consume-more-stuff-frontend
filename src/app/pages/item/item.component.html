@@ -3,10 +3,10 @@
     <h1>{{editFormData.description}}</h1>
   </div>
   <div class="image-container" *ngIf="hasPhoto">
-    <img src="{{photo}}" alt="" class="item-image">
+    <img src="{{currentPhoto}}" alt="" class="item-image">
   </div>
   <div class="image-scroller">
-    scroller
+    <span (click)="previousPhoto()"> < </span>Images<span (click)="nextPhoto()"> > </span>
   </div>
   <div class="item-content">
     <div>Views: {{editFormData.views}}</div>
@@ -54,12 +54,10 @@
       <option value="5">Used</option>
     </select>
 
-
     <label for="dimensions">Dimensions:</label>
     <div class="input-wrapper">
       <input type="text" name="dimensions" [(ngModel)]="editFormData.dimensions">
     </div>
-
 
     <label for="manufacturer_make">Manucturer/make:</label>
     <div class="input-wrapper">

@@ -12,7 +12,9 @@ export class ItemComponent implements OnInit {
   item: any;
   editing: boolean = false;
   correctUser: boolean = false;
-  photo: string;
+
+  photos: string[] = [];
+  currentPhoto: string;
   hasPhoto: boolean = false;
 
   editFormData: {
@@ -53,6 +55,7 @@ export class ItemComponent implements OnInit {
     private activatedRouter: ActivatedRoute
   ) {
     this.user = this.session.getSession();
+    this.currentPhoto = this.photos[0];
   }
 
   ngOnInit() {
@@ -66,7 +69,10 @@ export class ItemComponent implements OnInit {
             this.editFormData = result[0];
             this.item = { ...result[0] };
             if (this.item.photos.length > 0) {
-              this.photo = this.item.photos[0].link
+              this.item.photos.map(photo => {
+                this.photos.push(photo.link);
+              })
+              this.currentPhoto = this.photos[0];
               this.hasPhoto = true;
             } else {
               this.hasPhoto = false;
@@ -151,5 +157,15 @@ export class ItemComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  previousPhoto() {
+    let index = this.photos.indexOf(this.currentPhoto);
+    this.currentPhoto = this.photos[index - 1]
+  }
+
+  nextPhoto() {
+    let index = this.photos.indexOf(this.currentPhoto);
+    this.currentPhoto = this.photos[index + 1]
   }
 }
