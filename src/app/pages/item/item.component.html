@@ -20,6 +20,7 @@
   </div>
   <div class="item-buttons">
     <button (click)="toggleEdit()" *ngIf="correctUser">Edit</button>
+    <button (click)="removeItem()" *ngIf="correctUser">Remove</button>
   </div>
 </div>
 
@@ -87,7 +88,7 @@
     <div id="photo-list-container" *ngFor="let photo of photosToUpload">
       <div class="photo-name">{{photo.name}}</div>
     </div>
-    
+
     <div class="buttons">
       <button (click)="submitEdit()" [disabled]="disableButton()">Submit</button>
       <button (click)="toggleEdit()" class="cancel-button">Cancel</button>

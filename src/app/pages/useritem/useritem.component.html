@@ -36,4 +36,15 @@
       </div>
     </div>
   </div>
+  <div class="item-statuses" (click)="toggleRemoved()"> Removed Items
+    <div class="item-list" *ngIf="showRemoved">
+      <div class="card" *ngFor="let item of removedItems">
+        <div class="image-container">
+          <img src="{{item.photo}}" alt="" class="item-image">
+        </div>
+        <div>{{item.description}}</div>
+        <div>Removed on: {{item.updated_at}}</div>
+      </div>
+    </div>
+  </div>
 </div>

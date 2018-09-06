@@ -137,7 +137,16 @@ export class ItemComponent implements OnInit {
       });
   }
 
-  /******** FUNCTIONS REGARDING FORMS ********/
+  removeItem() {
+    return this.backend.removeItem(this.itemId)
+      .then(result => {
+        return this.router.navigate(['/user/items'])
+      })
+  }
+
+
+
+  /******** FUNCTIONS REGARDING FORM VALIDATIONS ********/
 
   validateDescription() {
     this.descriptionErrors.length = 0;

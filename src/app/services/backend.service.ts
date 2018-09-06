@@ -135,4 +135,9 @@ export class BackendService {
     const deleteUrl = this.url + 'items/photos';
     return this.http.post(deleteUrl, data).toPromise();
   }
+
+  removeItem(id) {
+    const deleteUrl = this.url + `items/${id}`
+    return this.http.delete(deleteUrl).toPromise();
+  }
 }

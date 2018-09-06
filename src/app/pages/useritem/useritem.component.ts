@@ -13,6 +13,7 @@ export class UserItemComponent implements OnInit {
   pendingItems: any = [];
   publishedItems: any = [];
   soldItems: any = [];
+  removedItems: any = [];
   placeholderImage: string = "https://cdn.samsung.com/etc/designs/smg/global/imgs/support/cont/NO_IMG_600x600.png"
 
   private _isLoggedInAsObservable;
@@ -21,6 +22,7 @@ export class UserItemComponent implements OnInit {
   showPending: boolean = false;
   showPublished: boolean = false;
   showSold: boolean = false;
+  showRemoved: boolean = false;
 
   constructor(
     private router: Router,
@@ -54,6 +56,10 @@ export class UserItemComponent implements OnInit {
               break;
             case 'Sold':
               this.soldItems.push(item);
+              break;
+            case 'Removed':
+              this.removedItems.push(item);
+              break;
             default:
               break;
           }
@@ -90,6 +96,14 @@ export class UserItemComponent implements OnInit {
       return this.showSold = false;
     } else {
       return this.showSold = true;
+    }
+  }
+
+  toggleRemoved() {
+    if (this.showRemoved) {
+      return this.showRemoved = false;
+    } else {
+      return this.showRemoved = true;
     }
   }
 
