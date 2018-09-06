@@ -23,6 +23,9 @@
 <div class="edit-container" *ngIf="this.editing">
   <form>
     <div class="edit-header">Edit Your Item</div>
+    <div class="image-container" *ngIf="hasPhoto">
+      <img src="{{editFormData.photos[0].link}}" alt="" class="item-image">
+    </div>
     <label for="description">Description:</label>
     <span>{{ getDescriptionErrors() }}</span>
     <div class="input-wrapper">

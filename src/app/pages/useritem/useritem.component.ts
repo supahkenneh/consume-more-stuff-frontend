@@ -13,6 +13,8 @@ export class UserItemComponent implements OnInit {
   pendingItems: any = [];
   publishedItems: any = [];
   soldItems: any = [];
+  placeholderImage: string = "https://cdn.samsung.com/etc/designs/smg/global/imgs/support/cont/NO_IMG_600x600.png"
+
   private _isLoggedInAsObservable;
   private _isLoggedIn: boolean;
 
@@ -54,6 +56,13 @@ export class UserItemComponent implements OnInit {
               this.soldItems.push(item);
             default:
               break;
+          }
+        })
+        responseArr.map(item => {
+          if (item.photos.length > 0) {
+            item.photo = item.photos[0].link
+          } else {
+            item.photo = this.placeholderImage
           }
         })
       })

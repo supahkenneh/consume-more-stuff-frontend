@@ -17,7 +17,6 @@ export class ItemComponent implements OnInit {
 
   editFormData: {
     description: string;
-    photo_id: string;
     status_id: any;
     condition_id: any;
     dimensions: string;
@@ -26,9 +25,9 @@ export class ItemComponent implements OnInit {
     notes_details: string;
     itemStatus: object;
     condition: object;
+    photos: any;
   } = {
       description: '',
-      photo_id: '',
       status_id: '',
       condition_id: '',
       dimensions: '',
@@ -36,7 +35,8 @@ export class ItemComponent implements OnInit {
       model_name_number: '',
       notes_details: '',
       itemStatus: {},
-      condition: {}
+      condition: {},
+      photos: null
     };
 
   descriptionErrors: string[] = [];
@@ -83,7 +83,7 @@ export class ItemComponent implements OnInit {
 
   toggleEdit() {
     if (this.editing) {
-      console.log(this.item);
+      console.log('toggle: ', this.item);
       this.editFormData = this.item;
       return (this.editing = false);
     } else {

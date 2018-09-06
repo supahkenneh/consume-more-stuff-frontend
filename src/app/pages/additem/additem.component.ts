@@ -86,7 +86,6 @@ export class AddItemComponent {
   addItem() {
     this.newItemFormData.created_by = this.user.user_id;
     
-    console.log('this.newItemFormData :', this.newItemFormData);
     return this.backend.postItem(this.newItemFormData)
       .then(item => {
         const id = item['id']
