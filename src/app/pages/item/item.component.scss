@@ -117,6 +117,10 @@ $mainFont: 'Poppins', sans-serif;
         color: black;
       }
     }
+    #photos-marked {
+      font-size: 14px;
+      text-align: center;
+    }
     select {
       width: 50%;
       background: white;
@@ -152,6 +156,24 @@ $mainFont: 'Poppins', sans-serif;
       border-radius: 5px;
       resize: none;
       overflow: scroll;
+    }
+    .photo-error {
+      color: red;
+      font-size: 12px;
+    }
+    .image-upload {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      input {
+        font-size: 15px;
+      }
+    }
+    #photo-list-container {
+      .photo-name {
+        font-size: 12px;
+      }
     }
     .buttons {
       display: flex;

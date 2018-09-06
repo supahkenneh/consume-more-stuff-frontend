@@ -13,6 +13,8 @@ export class ItemComponent implements OnInit {
   editing: boolean = false;
   correctUser: boolean = false;
 
+  itemId: string;
+
   photos: string[] = [];
   currentPhoto: string;
   hasPhoto: boolean = false;
@@ -70,10 +72,10 @@ export class ItemComponent implements OnInit {
 
   ngOnInit() {
     this.hasPhoto = false;
-    let itemId = this.activatedRouter.snapshot.paramMap.get('id');
-    return this.backend.incrementViews(itemId)
+    this.itemId = this.activatedRouter.snapshot.paramMap.get('id');
+    return this.backend.incrementViews(this.itemId)
       .then(() => {
-        return this.backend.getItemById(itemId)
+        return this.backend.getItemById(this.itemId)
           .then(result => {
             console.log(result);
             this.editFormData = result[0];
@@ -106,18 +108,31 @@ export class ItemComponent implements OnInit {
   }
 
   submitEdit() {
-    console.log(this.photosToDelete);
     this.editFormData.condition_id = parseInt(this.editFormData.condition_id);
     this.editFormData.status_id = parseInt(this.editFormData.status_id);
     this.editFormData['photo'] = this.photosToUpload;
-    // this.editFormData['photosToDelete'] = this.photosToDelete;
+    if (this.photosToDelete.length !== 0) {
+      this.photosToDelete.push(this.itemId);
+      this.backend.deletePhotos(this.photosToDelete)
+    }
     return this.backend.editItem(this.editFormData, this.item.id)
       .then(editedItem => {
+        //reset array of photos
         this.photos.length = 0;
-        editedItem[0].photos.map(photo => {
-          this.photos.push(photo.link);
-        })
+        // //if editedItem has photos, then populate this.photo array with photos, otherwise, hide the container
+        if (editedItem[0].photos.length > 0) {
+          editedItem[0].photos.map(photo => {
+            this.photos.push(photo.link);
+          })
+          this.hasPhoto = true;
+        } else {
+          this.hasPhoto = false;
+        }
+        //resetting to defaults
+        this.photosToUpload.length = 0;
+        this.currentPhoto = this.photos[0];
         this.item = editedItem[0];
+        this.editFormData = editedItem[0];
         this.toggleEdit();
       });
   }
@@ -217,7 +232,20 @@ export class ItemComponent implements OnInit {
     return this.photoErrors.join(', ');
   }
 
+  getPhotosToDelete() {
+    if (this.photosToDelete.length !== 0 && this.photosToDelete.length < this.photos.length) {
+      return `${this.photosToDelete.length} images selected`;
+    } else if (this.photosToDelete.length >= this.photos.length) {
+      this.photosToDelete = this.photos
+      return `${this.photosToDelete.length} images selected`
+    } else {
+      document.getElementById('photos-marked').style.display === 'none';
+    }
+  }
+
   tagForRemoval() {
-    return this.photosToDelete.push(this.currentPhoto);
+    if (this.photosToDelete.length < this.photos.length) {
+      return this.photosToDelete.push(this.currentPhoto);
+    }
   }
 }

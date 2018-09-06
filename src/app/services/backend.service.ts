@@ -10,7 +10,6 @@ export class BackendService {
   constructor(private http: HttpClient) { }
 
   postItem(data) {
-    console.log(data);
     const form = new FormData()
     form.append('description', data.description);
     form.append('price', data.price);
@@ -90,9 +89,6 @@ export class BackendService {
     form.append('dimensions', data.dimensions);
     form.append('notes_details', data.notes_details);
     form.append('status_id', data.status_id);
-    // data.photosToDelete.map(photo => {
-    //   form.append('photosToDelete', photo);
-    // })
     data.photo.map(item => {
       form.append('photo', item)
     })
@@ -127,13 +123,11 @@ export class BackendService {
   }
 
   checkUsername(username) {
-    console.log('checkuser');
     const checkUserUrl = `${this.url}user?username=${username}`;
     return this.http.get(checkUserUrl).toPromise();
   }
 
   checkEmail(email) {
-    console.log('checkemail');
     const checkEmailUrl = `${this.url}user?email=${email}`;
     return this.http.get(checkEmailUrl).toPromise();
   }
@@ -141,5 +135,11 @@ export class BackendService {
   incrementViews(itemID) {
     const checkViewsUrl = `${this.url}items/${itemID}/views`;
     return this.http.put(checkViewsUrl, itemID).toPromise();
+  }
+
+  deletePhotos(data) {
+    console.log('data :', data);
+    const deleteUrl = this.url + 'items/photos';
+    return this.http.post(deleteUrl, data).toPromise();
   }
 }
