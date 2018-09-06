@@ -119,7 +119,7 @@ export class ItemComponent implements OnInit {
       .then(editedItem => {
         //reset array of photos
         this.photos.length = 0;
-        // //if editedItem has photos, then populate this.photo array with photos, otherwise, hide the container
+        // //if editedItem has photos, then populate this.photo array with photos
         if (editedItem[0].photos.length > 0) {
           editedItem[0].photos.map(photo => {
             this.photos.push(photo.link);
@@ -136,6 +136,8 @@ export class ItemComponent implements OnInit {
         this.toggleEdit();
       });
   }
+
+  /******** FUNCTIONS REGARDING FORMS ********/
 
   validateDescription() {
     this.descriptionErrors.length = 0;
@@ -190,6 +192,8 @@ export class ItemComponent implements OnInit {
       return false;
     }
   }
+
+  /******** FUNCTIONS REGARDING PHOTOS ********/
 
   previousPhoto() {
     let index = this.photos.indexOf(this.currentPhoto);

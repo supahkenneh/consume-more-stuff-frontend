@@ -40,11 +40,6 @@ export class BackendService {
     return this.http.get(getUrl).toPromise();
   }
 
-  // getTopItemsInCategory(categoryId) {
-  //   const getUrl = this.url + 'categories/items'
-  //   return this.http.get(getUrl, categoryId).toPromise();
-  // }
-
   getCategories() {
     const getCatUrl = this.url + `categories/`;
     return this.http.get(getCatUrl).toPromise();
@@ -76,7 +71,6 @@ export class BackendService {
   }
 
   editItem(data, id) {
-    console.log(data);
     const form = new FormData()
     form.append('description', data.description);
     form.append('price', data.price);
@@ -138,7 +132,6 @@ export class BackendService {
   }
 
   deletePhotos(data) {
-    console.log('data :', data);
     const deleteUrl = this.url + 'items/photos';
     return this.http.post(deleteUrl, data).toPromise();
   }
