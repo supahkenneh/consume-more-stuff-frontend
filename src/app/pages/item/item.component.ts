@@ -23,7 +23,9 @@ export class ItemComponent implements OnInit {
   unacceptablePhoto: string = 'File format not accepted, please upload .jpg, .jpeg, or .png';
   unacceptableSize: string = 'File size exceeded, max 1GB'
   photoErrors: string[] = [];
+
   photosToUpload: File[] = [];
+  photosToDelete: string[] = [];
 
   editFormData: {
     description: string;
@@ -96,7 +98,6 @@ export class ItemComponent implements OnInit {
 
   toggleEdit() {
     if (this.editing) {
-      console.log('toggle: ', this.item);
       this.editFormData = this.item;
       return (this.editing = false);
     } else {
@@ -105,12 +106,17 @@ export class ItemComponent implements OnInit {
   }
 
   submitEdit() {
+    console.log(this.photosToDelete);
     this.editFormData.condition_id = parseInt(this.editFormData.condition_id);
     this.editFormData.status_id = parseInt(this.editFormData.status_id);
     this.editFormData['photo'] = this.photosToUpload;
+    // this.editFormData['photosToDelete'] = this.photosToDelete;
     return this.backend.editItem(this.editFormData, this.item.id)
       .then(editedItem => {
-        console.log(editedItem);
+        this.photos.length = 0;
+        editedItem[0].photos.map(photo => {
+          this.photos.push(photo.link);
+        })
         this.item = editedItem[0];
         this.toggleEdit();
       });
@@ -209,5 +215,9 @@ export class ItemComponent implements OnInit {
 
   getPhotoErrors() {
     return this.photoErrors.join(', ');
+  }
+
+  tagForRemoval() {
+    return this.photosToDelete.push(this.currentPhoto);
   }
 }

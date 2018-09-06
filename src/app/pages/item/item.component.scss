@@ -95,6 +95,28 @@ $mainFont: 'Poppins', sans-serif;
         max-width: 100%;
       }
     }
+    .image-scroller {
+      text-align: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+      font-size: 14px;
+      span {
+        color: black;
+        font-size: 24px;
+      }
+    }
+    .remove-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-bottom: 5px;
+      .remove-button {
+        font-size: 14px;
+        color: black;
+      }
+    }
     select {
       width: 50%;
       background: white;

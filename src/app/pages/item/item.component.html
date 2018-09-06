@@ -29,6 +29,12 @@
     <div class="image-container" *ngIf="hasPhoto">
       <img src="{{currentPhoto}}" class="item-image">
     </div>
+    <div class="image-scroller" *ngIf="hasPhoto">
+      <span (click)="previousPhoto()"> < </span>{{imagesRemaining()}}<span (click)="nextPhoto()"> > </span>
+    </div>
+    <div class="remove-container">
+      <div class="remove-button" (click)="tagForRemoval()">Remove Image</div>
+    </div>
     <label for="description">Description:</label>
     <span>{{ getDescriptionErrors() }}</span>
     <div class="input-wrapper">

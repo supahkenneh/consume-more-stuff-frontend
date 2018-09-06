@@ -90,6 +90,9 @@ export class BackendService {
     form.append('dimensions', data.dimensions);
     form.append('notes_details', data.notes_details);
     form.append('status_id', data.status_id);
+    // data.photosToDelete.map(photo => {
+    //   form.append('photosToDelete', photo);
+    // })
     data.photo.map(item => {
       form.append('photo', item)
     })
