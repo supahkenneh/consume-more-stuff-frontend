@@ -1,7 +1,7 @@
 <div class="content-container">
   <div class="card" *ngFor="let item of itemsList">
     <div class="image-container">
-      <img src="{{item.photo}}" class="item-image">
+      <img routerLink="/items/{{item.id}}" src="{{item.photo}}" class="item-image">
     </div>
     <a routerLink="/items/{{item.id}}">{{item.description}}</a>
     <div class="card-desc">

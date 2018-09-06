@@ -45,7 +45,9 @@ export class HomeComponent implements OnInit {
             item.photo = this.placeholderImage;
           }
         })
-        console.log(resultArr);
+        if (resultArr.length > 5) {
+          resultArr.length = 5;
+        }
         return this.categoryItems = resultArr;
       })
       .then(() => {
