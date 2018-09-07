@@ -9,7 +9,7 @@
     </div>
   </div>
 
-  <form enctype="multipart/form-data" *ngIf="!showLoading">
+  <form enctype="multipart/form-data" #myForm="ngForm" *ngIf="!showLoading">
     <div class="item-header">
       <div>Add an Item</div>
     </div>
@@ -66,7 +66,7 @@
       <div class="photo-name">{{photo.name}}</div>
     </div>
 
-    <button class="btn" [disabled]="disableButton()" (click)="addItem()">Submit</button>
-    <button class="cancel-button" routerLink="/items">Cancel</button>
+    <button type="submit" class="btn" [disabled]="disableButton()" (click)="addItem()">Submit</button>
+    <button type="button" class="cancel-button" routerLink="/items">Cancel</button>
   </form>
 </div>
