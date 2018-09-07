@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { BackendService } from '../../services/backend.service';
 import { SessionService } from '../../services/session.service';
@@ -8,8 +8,7 @@ import { SessionService } from '../../services/session.service';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnDestroy {
   categories: any;
   user: object;
   private _isLoggedInAsObservable;
@@ -18,7 +17,7 @@ export class SidebarComponent implements OnInit {
   constructor(
     private router: Router,
     private backend: BackendService,
-    private session: SessionService,
+    private session: SessionService
   ) {
     this.user = this.session.getSession();
     this._isLoggedInAsObservable = this.session.isLoggedInAsAnObservable();
@@ -33,10 +32,13 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
-    return this.backend.getColumns()
-      .then(result => {
-        return this.categories = result;
-      })
+    return this.backend.getColumns().then(result => {
+      return (this.categories = result);
+    });
+  }
+
+  ngOnDestroy() {
+    return this._isLoggedInAsObservable.unsubscribe();
   }
 
   isLoggedIn() {

@@ -22,6 +22,7 @@ export class SessionService {
     try {
       if (userString) {
         this.user = JSON.parse(userString);
+        this._isLoggedInSubject.next(true);
       } else {
         this._isLoggedInSubject.next(!!userString);
       }

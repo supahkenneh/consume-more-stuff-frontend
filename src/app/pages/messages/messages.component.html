@@ -1,1 +1,36 @@
-<p>messages</p>
+<p>MAILBOX</p>
+
+<ul class="messageCards" *ngFor="let message of messages">
+  <li class="messageCard" data-id={{message.id}}>
+    <div class="fields">
+      <div class="title">Message Sent</div>
+      <div id="created_at">{{message.created_at}}</div>
+    </div>
+    <div class="fields">
+      <div class="title">To</div>
+      <div id="to">{{message.to.username}}</div>
+    </div>
+    <div class="fields">
+      <div class="title">From</div>
+      <div id="from">{{message.from.username}}</div>
+    </div>
+    <div class="fields">
+      <div class="title">Regarding</div>
+      <div id="description">{{message.item.description}}</div>
+    </div>
+    <div class="fields">
+      <div class="title">Message</div>
+      <div id="message">{{message.message}}</div>
+    </div>
+    <div class="fields">
+      <div class="title" (click)="reply.bind(this,message.id)()">Reply</div>
+      <div class='title' (click)="delete()">Delete</div>
+    </div>
+    <div class="fields" *ngIf="this.editID===this.message.id">
+      <input type="text" [(ngModel)]="this.replyMessage.message">
+      <div (click)="submit()">submit</div>
+    </div>
+  </li>
+</ul>
+
+<!-- <form><button (click)="getMessages()">Submit</button></form> -->
