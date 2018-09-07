@@ -33,7 +33,7 @@
         <div class="center"> </div>
       </div>
   </div>
-  <form *ngIf="!showLoading">
+  <form #myForm="ngForm" *ngIf="!showLoading">
     <div class="edit-header">Edit Your Item</div>
     <div class="image-container" *ngIf="hasPhoto">
       <img src="{{currentPhoto}}" class="item-image">
@@ -98,8 +98,8 @@
     </div>
 
     <div class="buttons">
-      <button (click)="submitEdit()" [disabled]="disableButton()">Submit</button>
-      <button (click)="toggleEdit()" class="cancel-button">Cancel</button>
+      <button type="submit" (click)="submitEdit()" [disabled]="disableButton()">Submit</button>
+      <button type="button" (click)="toggleEdit()" class="cancel-button">Cancel</button>
     </div>
   </form>
 </div>
