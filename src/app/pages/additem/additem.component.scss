@@ -100,3 +100,9 @@ $mainFont: 'Poppins', sans-serif;
     padding-top: 130px;
   }
 }
+
+@media (min-width: 1365px) {
+  .content-container {
+    padding-left: 700px;
+  }
+}

@@ -47,7 +47,7 @@
 
 @media (min-width: 1023px) {
   .content-container {
-    margin-left: 140px;
+    padding-left: 130px;
     padding-top: 130px;
     .card {
       display: flex;
@@ -76,5 +76,11 @@
         }
       }
     }
+  }
+}
+
+@media (min-width: 1365px) {
+  .content-container {
+    padding-left: 250px;
   }
 }
