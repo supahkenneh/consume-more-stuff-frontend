@@ -10,6 +10,8 @@ import { BackendService } from '../../services/backend.service';
 
 export class SettingsComponent implements OnInit {
   user: object;
+  showPasswordForm: boolean = false;
+  showThemeSwitch: boolean = false;
   private _isLoggedInAsObservable;
   private _isLoggedIn: boolean;
   passwordFormData: {
@@ -70,4 +72,23 @@ export class SettingsComponent implements OnInit {
       })
   }
 
+  showPassForm() {
+    if (this.showPasswordForm) {
+      return this.showPasswordForm = false;
+    } else {
+      return this.showPasswordForm = true;
+    }
+  }
+
+  showThemeSwitcher() {
+    if (this.showThemeSwitch) {
+      return this.showThemeSwitch = false;
+    } else {
+      return this.showThemeSwitch = true;
+    }
+  }
+
+  asdf() {
+    console.log('hi');
+  }
 }

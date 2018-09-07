@@ -32,6 +32,7 @@ $subFont: 'Roboto Condensed', sans-serif;
     text-decoration: underline;
     position: fixed;
     top: 97px;
+    font-size: 20px;
   }
   .user-options {
     position: fixed;
@@ -40,6 +41,7 @@ $subFont: 'Roboto Condensed', sans-serif;
     height: 100%;
     width: 12%;
     background: -webkit-linear-gradient(right, #36c0fd, #21d4fd);
+    font-size: 20px;
     .option-container {
       text-align: center;
       display: flex;

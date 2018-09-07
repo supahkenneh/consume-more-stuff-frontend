@@ -49,5 +49,11 @@
   .header-container {
     position: fixed;
     top: 0;
+    font-size: 20px;
+    .options-container {
+      p {
+        font-size: 20px;
+      }
+    }
   }
 }
