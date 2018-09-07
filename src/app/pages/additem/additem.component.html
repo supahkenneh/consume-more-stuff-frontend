@@ -1,5 +1,15 @@
 <div class="content-container">
-  <form enctype="multipart/form-data">
+
+  <div class="loading-container" *ngIf="showLoading">
+    Posting Your Item . . .
+    <div class="con">
+      <div class="test2"> </div>
+      <div class="test3"> </div>
+      <div class="center"> </div>
+    </div>
+  </div>
+
+  <form enctype="multipart/form-data" *ngIf="!showLoading">
     <div class="item-header">
       <div>Add an Item</div>
     </div>
