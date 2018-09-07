@@ -11,7 +11,6 @@ import { BackendService } from '../../services/backend.service';
 export class SettingsComponent implements OnInit {
   user: object;
   showPasswordForm: boolean = false;
-  showThemeSwitch: boolean = false;
   private _isLoggedInAsObservable;
   private _isLoggedIn: boolean;
   passwordFormData: {
@@ -25,6 +24,8 @@ export class SettingsComponent implements OnInit {
     }
 
   passwordErrors: string[] = [];
+
+  messages: string[] = [];
 
   constructor(
     private router: Router,
@@ -67,8 +68,8 @@ export class SettingsComponent implements OnInit {
         }
       })
       .then(() => {
-        //will need another way to let user know password is changed
-        return this.router.navigate(['/user/items'])
+        this.messages.push('Password change successful!')
+        this.showPassForm();
       })
   }
 
@@ -76,19 +77,17 @@ export class SettingsComponent implements OnInit {
     if (this.showPasswordForm) {
       return this.showPasswordForm = false;
     } else {
+      this.passwordFormData = {
+        oldPass: '',
+        newPass: '',
+        verifyPass: ''
+      };
+      this.messages.length = 0;
       return this.showPasswordForm = true;
     }
   }
 
-  showThemeSwitcher() {
-    if (this.showThemeSwitch) {
-      return this.showThemeSwitch = false;
-    } else {
-      return this.showThemeSwitch = true;
-    }
-  }
-
-  asdf() {
-    console.log('hi');
+  getMessages() {
+    return this.messages.join(', ');
   }
 }
