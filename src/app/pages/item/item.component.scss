@@ -200,3 +200,29 @@ $mainFont: 'Poppins', sans-serif;
     }
   }
 }
+
+@media (min-width: 1023px) {
+  .content-container {
+    padding-left: 140px;
+    padding-top: 130px;
+    .image-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      width: 850px;
+      height: auto;
+      .item-image {
+        max-height: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+
+  .edit-container {
+    padding-left: 150px;
+    padding-top: 130px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+}

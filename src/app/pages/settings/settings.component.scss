@@ -57,3 +57,10 @@ $mainFont: 'Poppins', sans-serif;
     font-size: 14px;
   }
 }
+
+@media (min-width: 1023px) {
+  .content-container {
+    padding-left: 140px;
+    padding-top: 130px;
+  }
+}

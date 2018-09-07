@@ -16,8 +16,38 @@ $subFont: 'Roboto Condensed', sans-serif;
     color: white;
     text-decoration: none;
   }
-  .user-options {
+  .option-container {
     display: flex;
+    flex-direction: row;
     justify-content: space-evenly;
+    .user-options {
+      display: flex;
+      justify-content: space-evenly;
+    }
+  }
+}
+
+@media (min-width: 1023px) {
+  .sidebar-container {
+    text-decoration: underline;
+    position: fixed;
+    top: 97px;
+  }
+  .user-options {
+    position: fixed;
+    top: 124px;
+    left: 0;
+    height: 100%;
+    width: 12%;
+    background: -webkit-linear-gradient(right, #36c0fd, #21d4fd);
+    .option-container {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      .options {
+        text-decoration: underline;
+        margin: 20px auto;
+      }
+    }
   }
 }

@@ -45,3 +45,9 @@
   }
 }
 
+@media (min-width: 1023px) {
+  .header-container {
+    position: fixed;
+    top: 0;
+  }
+}
