@@ -53,7 +53,9 @@ export class HomeComponent implements OnInit {
       .then(() => {
         let categoryDiv = document.getElementById(category.id)
         let itemContainer = document.getElementsByClassName('item-list-container')[0];
+        let itemContainerDesktop = document.getElementsByClassName('item-list-container-desktop')[0]
         categoryDiv.appendChild(itemContainer);
+        categoryDiv.appendChild(itemContainerDesktop);
       })
   }
 

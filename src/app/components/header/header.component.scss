@@ -45,3 +45,15 @@
   }
 }
 
+@media (min-width: 1023px) {
+  .header-container {
+    position: fixed;
+    top: 0;
+    font-size: 20px;
+    .options-container {
+      p {
+        font-size: 20px;
+      }
+    }
+  }
+}

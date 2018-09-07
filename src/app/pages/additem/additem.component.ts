@@ -67,6 +67,7 @@ export class AddItemComponent {
   conditionErrors: string[] = [];
   conditionValid: boolean = false;
 
+  showLoading: boolean = false;
 
   constructor(
     private router: Router,
@@ -84,14 +85,16 @@ export class AddItemComponent {
   }
 
   addItem() {
+    this.showLoading = true;
     this.newItemFormData.created_by = this.user.user_id;
-    console.log('this.newItemFormData :', this.newItemFormData);
     return this.backend.postItem(this.newItemFormData)
       .then(item => {
+        this.showLoading = false;
         const id = item['id']
         return this.router.navigate([`items/${id}`]);
       })
       .catch(err => {
+        this.showLoading = false;
         console.log(err);
       });
   }
