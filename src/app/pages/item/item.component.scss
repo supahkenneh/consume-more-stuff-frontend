@@ -303,8 +303,8 @@ $mainFont: 'Poppins', sans-serif;
 
 @media (min-width: 1023px) {
   .content-container {
-    padding-left: 140px;
-    padding-top: 130px;
+    padding-left: 160px;
+    padding-top: 150px;
     .image-container {
       display: flex;
       flex-direction: row;
@@ -320,7 +320,7 @@ $mainFont: 'Poppins', sans-serif;
 
   .edit-container {
     padding-left: 150px;
-    padding-top: 130px;
+    padding-top: 150px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -330,5 +330,6 @@ $mainFont: 'Poppins', sans-serif;
 @media (min-width: 1365px) {
   .content-container {
     padding-left: 250px;
+    padding-top: 150px;
   }
 }
