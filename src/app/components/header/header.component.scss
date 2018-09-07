@@ -12,6 +12,9 @@
     text-decoration: none;
     color: white;
   }
+  .shimmer {
+    display: none;
+  }
   #logo {
     font-size: 28px;
   }
@@ -50,9 +53,129 @@
     position: fixed;
     top: 0;
     font-size: 20px;
+    //shimmer effect https://codepen.io/redouglas/pen/gobsm
+    .shimmer {
+      display: block;
+      font-weight: 400;
+      font-size: 36px;
+      margin: 0 auto;
+      padding: 0 140px 0 0;
+      text-align: center;
+      color: rgba(255,255,255,0.1);
+      background: -webkit-gradient(linear, left top, right top, from(#21d4fd), to(#b721ff), color-stop(0.5, white));
+      background: -moz-gradient(linear, left top, right top, from(#21d4fd), to(#b721ff), color-stop(0.5, white));
+      background: gradient(linear, left top, right top, from(#21d4fd), to(#b721ff), color-stop(0.5, white));
+      -webkit-background-size: 125px 100%;
+      -moz-background-size: 125px 100%;
+      background-size: 165px 400px;
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      background-clip: text;
+      -webkit-animation-name: shimmer;
+      -moz-animation-name: shimmer;
+      animation-name: shimmer;
+      -webkit-animation-duration: 2s;
+      -moz-animation-duration: 2s;
+      animation-duration: 2s;
+      -webkit-animation-iteration-count: infinite;
+      -moz-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
+      background-position: 0 0;
+      background-color: white;
+    }
+    @-moz-keyframes shimmer {
+      0% {
+        background-position: top left;
+      }
+      100% {
+        background-position: top right;
+      }
+    }
+    @-webkit-keyframes shimmer {
+      0% {
+        background-position: top left;
+      }
+      100% {
+        background-position: top right;
+      }
+    }
+    @-o-keyframes shimmer {
+      0% {
+        background-position: top left;
+      }
+      100% {
+        background-position: top right;
+      }
+    }
+    @keyframes shimmer {
+      0% {
+        background-position: top left;
+      }
+      100% {
+        background-position: top right;
+      }
+    }
+    //shimmer end
+    #logo {
+      display: none;
+    }
     .options-container {
+      margin-top: 5px;
       p {
         font-size: 20px;
+        &:hover {
+          color: rgba(255,255,255,0.1);
+          background: -webkit-gradient(linear, left top, right top, from(#21d4fd), to(#b721ff), color-stop(0.5, white));
+          -webkit-background-size: 125px 100%;
+          -moz-background-size: 125px 100%;
+          background-size: 50px auto;
+          -webkit-background-clip: text;
+          -moz-background-clip: text;
+          background-clip: text;
+          -webkit-animation-name: shimmer;
+          -moz-animation-name: shimmer;
+          animation-name: shimmer;
+          -webkit-animation-duration: 2s;
+          -moz-animation-duration: 2s;
+          animation-duration: 2s;
+          -webkit-animation-iteration-count: infinite;
+          -moz-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+          background-position: 0 0;
+          background-color: white;
+          @-moz-keyframes shimmer {
+            0% {
+              background-position: top left;
+            }
+            100% {
+              background-position: top right;
+            }
+          }
+          @-webkit-keyframes shimmer {
+            0% {
+              background-position: top left;
+            }
+            100% {
+              background-position: top right;
+            }
+          }
+          @-o-keyframes shimmer {
+            0% {
+              background-position: top left;
+            }
+            100% {
+              background-position: top right;
+            }
+          }
+          @keyframes shimmer {
+            0% {
+              background-position: top left;
+            }
+            100% {
+              background-position: top right;
+            }
+          }
+        }
       }
     }
   }

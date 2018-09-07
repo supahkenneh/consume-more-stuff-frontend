@@ -1,5 +1,6 @@
 <div class="header-container">
   <a routerLink="" id="logo">Elite 4 CMS</a>
+  <a routerLink="" class="shimmer">Elite 4 CMS</a>
   <div class="options-container">
     <p *ngIf="isLoggedIn()" class="welcome-message" routerLink="user/items">Welcome {{this.user.username}}</p>
     <button *ngIf="isLoggedIn()" (click)="logout()" class="auth-buttons">Logout</button>
