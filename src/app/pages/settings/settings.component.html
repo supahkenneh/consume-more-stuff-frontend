@@ -29,8 +29,8 @@
       <div class="input-wrapper">
         <input type="password" name="new-pass" [(ngModel)]="this.passwordFormData.verifyPass">
       </div>
-      <button (click)="submitPasswordChange()">Submit</button>
-      <button (click)="showPassForm()" class="cancel-button">Cancel</button>
+      <button type="button" (click)="submitPasswordChange()">Submit</button>
+      <button type="button" (click)="showPassForm()" class="cancel-button">Cancel</button>
     </div>
   </form>
 </div>
