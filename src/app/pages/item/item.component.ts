@@ -79,7 +79,6 @@ export class ItemComponent implements OnInit {
       .then(() => {
         return this.backend.getItemById(this.itemId)
           .then(result => {
-            console.log(result);
             this.editFormData = result[0];
             this.item = { ...result[0] };
             if (this.item.photos.length > 0) {
