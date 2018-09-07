@@ -27,6 +27,8 @@ export class SettingsComponent implements OnInit {
 
   messages: string[] = [];
 
+  showLoading: boolean = false;
+
   constructor(
     private router: Router,
     private backend: BackendService,
@@ -58,6 +60,7 @@ export class SettingsComponent implements OnInit {
   }
 
   submitPasswordChange() {
+    this.showLoading = true;
     if (this.passwordFormData.newPass !== this.passwordFormData.verifyPass) {
       return this.passwordErrors.push(`New password doesn't match`)
     }
@@ -68,6 +71,7 @@ export class SettingsComponent implements OnInit {
         }
       })
       .then(() => {
+        this.showLoading = false;
         this.messages.push('Password change successful!')
         this.showPassForm();
       })

@@ -1,5 +1,13 @@
 <div class="content-container">
-  <form>
+  <div class="loading-container" *ngIf="showLoading">
+    Processing . . .
+    <div class="con">
+      <div class="test2"> </div>
+      <div class="test3"> </div>
+      <div class="center"> </div>
+    </div>
+  </div>
+  <form *ngIf="!showLoading">
     <div class="message">{{getMessages()}}</div>
     <div class="user-options" *ngIf="!showPasswordForm">
       <button (click)="showPassForm()">Change Password</button>

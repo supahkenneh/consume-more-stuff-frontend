@@ -60,6 +60,8 @@ export class ItemComponent implements OnInit {
   statusErrors: string[] = [];
   statusValid: boolean = false;
 
+  showLoading: boolean = false;
+
   constructor(
     private router: Router,
     private backend: BackendService,
@@ -108,6 +110,7 @@ export class ItemComponent implements OnInit {
   }
 
   submitEdit() {
+    this.showLoading = true;
     this.editFormData.condition_id = parseInt(this.editFormData.condition_id);
     this.editFormData.status_id = parseInt(this.editFormData.status_id);
     this.editFormData['photo'] = this.photosToUpload;
@@ -129,6 +132,7 @@ export class ItemComponent implements OnInit {
           this.hasPhoto = false;
         }
         //resetting to defaults
+        this.showLoading = false;
         this.photosToUpload.length = 0;
         this.currentPhoto = this.photos[0];
         this.item = editedItem[0];
