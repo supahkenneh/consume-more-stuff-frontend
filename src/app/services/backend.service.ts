@@ -10,12 +10,14 @@ export class BackendService {
   constructor(private http: HttpClient) { }
 
   postItem(data) {
-    const form = new FormData()
+
+    const form = new FormData();
+
     form.append('description', data.description);
     form.append('price', data.price);
     form.append('manufacturer_make', data.manufacturer_make);
     form.append('created_by', data.created_by);
-    form.append('model_name_number', data.model_name_number)
+    form.append('model_name_number', data.model_name_number);
     form.append('condition_id', data.condition_id);
     form.append('category_id', data.category_id);
     form.append('views', data.views);
@@ -112,7 +114,7 @@ export class BackendService {
   }
 
   uploadPhotos(data) {
-    const uploadPhotoUrl = this.url + 'items/photos'
+    const uploadPhotoUrl = this.url + 'items/photos';
     return this.http.post(uploadPhotoUrl, data).toPromise();
   }
 
@@ -131,6 +133,7 @@ export class BackendService {
     return this.http.put(checkViewsUrl, itemID).toPromise();
   }
 
+
   deletePhotos(data) {
     const deleteUrl = this.url + 'items/photos';
     return this.http.post(deleteUrl, data).toPromise();
@@ -139,5 +142,17 @@ export class BackendService {
   removeItem(id) {
     const deleteUrl = this.url + `items/${id}`
     return this.http.delete(deleteUrl).toPromise();
+
+  getAllMessages() {
+    const checkAllMessages = `${this.url}user/messages`;
+    return this.http.get(checkAllMessages).toPromise();
+  }
+
+  postReply(data) {
+    console.log('data', data);
+    console.log('data', data.to, data.item_id);
+    const postReplyURL = `${this.url}user/${data.to}/messages/${data.item_id}`;
+    return this.http.post(postReplyURL, data).toPromise();
+
   }
 }

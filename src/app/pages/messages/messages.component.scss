@@ -1,0 +1,40 @@
+p {
+  display: flex;
+  justify-content: center;
+}
+
+ul {
+  list-style-type: none;
+}
+.messageCards {
+  width: 100%;
+  margin: 1rem 1rem 2rem -1rem;
+
+  .messageCard {
+    display: flex;
+    flex-direction: row;
+    // flex-flow: nowrap;
+    justify-content: space-evenly;
+    background-color: white;
+    width: 100%;
+
+    .fields {
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      width: 100%;
+      // align-content: center;
+      // justify-content: left;
+    }
+  }
+
+  //   .messageCard-1 {
+  //     display: flex;
+  //     flex-direction: row;
+  //     flex-flow: nowrap;
+  //     justify-content: space-around;
+  //     width: 100%;
+  //     background-color: white;
+  //   }
+  // }
+}
