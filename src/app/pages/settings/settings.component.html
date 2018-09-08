@@ -1,21 +1,36 @@
 <div class="content-container">
-  <form>
-    <div class="settings-header">Settings</div>
-    <div class="errors">
-      <div>{{getErrors()}}</div>
+  <div class="loading-container" *ngIf="showLoading">
+    Processing . . .
+    <div class="con">
+      <div class="test2"> </div>
+      <div class="test3"> </div>
+      <div class="center"> </div>
     </div>
-    <label for="password">Old Password:</label>
-    <div class="input-wrapper">
-      <input type="password" name="password" [(ngModel)]="this.passwordFormData.oldPass">
+  </div>
+  <form *ngIf="!showLoading">
+    <div class="message">{{getMessages()}}</div>
+    <div class="user-options" *ngIf="!showPasswordForm">
+      <button (click)="showPassForm()">Change Password</button>
     </div>
-    <label for="new-password">New Password:</label>
-    <div class="input-wrapper">
-      <input type="password" name="new-pass" [(ngModel)]="this.passwordFormData.newPass">
+    <div class="password-change" *ngIf="showPasswordForm">
+      <div class="settings-header">Settings</div>
+      <div class="errors">
+        <div>{{getErrors()}}</div>
+      </div>
+      <label for="password">Old Password:</label>
+      <div class="input-wrapper">
+        <input type="password" name="password" [(ngModel)]="this.passwordFormData.oldPass">
+      </div>
+      <label for="new-password">New Password:</label>
+      <div class="input-wrapper">
+        <input type="password" name="new-pass" [(ngModel)]="this.passwordFormData.newPass">
+      </div>
+      <label for="new-password">Verify New Password:</label>
+      <div class="input-wrapper">
+        <input type="password" name="new-pass" [(ngModel)]="this.passwordFormData.verifyPass">
+      </div>
+      <button type="button" (click)="submitPasswordChange()">Submit</button>
+      <button type="button" (click)="showPassForm()" class="cancel-button">Cancel</button>
     </div>
-    <label for="new-password">Verify New Password:</label>
-    <div class="input-wrapper">
-      <input type="password" name="new-pass" [(ngModel)]="this.passwordFormData.verifyPass">
-    </div>
-    <button (click)="submitPasswordChange()">Submit</button>
   </form>
 </div>

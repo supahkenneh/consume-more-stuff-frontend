@@ -5,11 +5,12 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class BackendService {
-  url: string = 'http://localhost:4200/api/';
+  url: string = '/api/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   postItem(data) {
+
     const form = new FormData();
 
     form.append('description', data.description);
@@ -23,7 +24,9 @@ export class BackendService {
     form.append('dimensions', data.dimensions);
     form.append('notes_details', data.notes_details);
     form.append('status_id', data.status_id);
-    form.append('photo', data.photo);
+    data.photo.map(item => {
+      form.append('photo', item)
+    })
 
     const postItemUrl = `${this.url}items`;
     return this.http.post(postItemUrl, form).toPromise();
@@ -38,11 +41,6 @@ export class BackendService {
     const getUrl = this.url + 'categories';
     return this.http.get(getUrl).toPromise();
   }
-
-  // getTopItemsInCategory(categoryId) {
-  //   const getUrl = this.url + 'categories/items'
-  //   return this.http.get(getUrl, categoryId).toPromise();
-  // }
 
   getCategories() {
     const getCatUrl = this.url + `categories/`;
@@ -75,8 +73,24 @@ export class BackendService {
   }
 
   editItem(data, id) {
+    const form = new FormData()
+    form.append('description', data.description);
+    form.append('price', data.price);
+    form.append('manufacturer_make', data.manufacturer_make);
+    form.append('created_by', data.created_by);
+    form.append('model_name_number', data.model_name_number)
+    form.append('condition_id', data.condition_id);
+    form.append('category_id', data.category_id);
+    form.append('views', data.views);
+    form.append('dimensions', data.dimensions);
+    form.append('notes_details', data.notes_details);
+    form.append('status_id', data.status_id);
+    data.photo.map(item => {
+      form.append('photo', item)
+    })
+
     const putUrl = this.url + `items/${id}`;
-    return this.http.put(putUrl, data).toPromise();
+    return this.http.put(putUrl, form).toPromise();
   }
 
   register(data) {
@@ -105,13 +119,11 @@ export class BackendService {
   }
 
   checkUsername(username) {
-    console.log('checkuser');
     const checkUserUrl = `${this.url}user?username=${username}`;
     return this.http.get(checkUserUrl).toPromise();
   }
 
   checkEmail(email) {
-    console.log('checkemail');
     const checkEmailUrl = `${this.url}user?email=${email}`;
     return this.http.get(checkEmailUrl).toPromise();
   }
@@ -120,6 +132,16 @@ export class BackendService {
     const checkViewsUrl = `${this.url}items/${itemID}/views`;
     return this.http.put(checkViewsUrl, itemID).toPromise();
   }
+
+
+  deletePhotos(data) {
+    const deleteUrl = this.url + 'items/photos';
+    return this.http.post(deleteUrl, data).toPromise();
+  }
+
+  removeItem(id) {
+    const deleteUrl = this.url + `items/${id}`
+    return this.http.delete(deleteUrl).toPromise();
 
   getAllMessages() {
     const checkAllMessages = `${this.url}user/messages`;
@@ -131,5 +153,6 @@ export class BackendService {
     console.log('data', data.to, data.item_id);
     const postReplyURL = `${this.url}user/${data.to}/messages/${data.item_id}`;
     return this.http.post(postReplyURL, data).toPromise();
+
   }
 }

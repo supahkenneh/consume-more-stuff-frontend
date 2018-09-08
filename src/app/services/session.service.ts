@@ -10,10 +10,10 @@ export class SessionService {
     user_id: number;
     email: string;
   } = {
-    username: '',
-    user_id: -1,
-    email: ''
-  };
+      username: '',
+      user_id: -1,
+      email: ''
+    };
 
   private _isLoggedInSubject = new BehaviorSubject<boolean>(false);
 

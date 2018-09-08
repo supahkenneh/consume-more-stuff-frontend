@@ -613,3 +613,9 @@ span.focus-input100-errorMessaage {
     opacity: 1;
   }
 }
+
+@media (min-width: 1023px) {
+  .container-login100 {
+    padding-top: 140px;
+  }
+}

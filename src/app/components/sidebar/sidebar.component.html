@@ -10,9 +10,15 @@
   </div>
   <!-- auth user view -->
   <div class="user-options" *ngIf="isLoggedIn()">
-    <div class="options" routerLink="user/items">Items</div>
-    <div class="options" routerLink="user/messages">Messages</div>
-    <div class="options" routerLink="user/settings">Settings</div>
-    <div class="options" routerLink="additem">+ New</div>
+
+    <div class="option-container">
+      <div class="options" routerLink="user/items">Items</div>
+      <div class="options" routerLink="user/messages">Messages</div>
+      <div class="options" routerLink="user/settings">Settings</div>
+      <div class="options" routerLink="additem">Add</div>
+    </div>
+
+   
+
   </div>
 </div>

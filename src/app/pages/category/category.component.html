@@ -1,10 +1,15 @@
 <div class="content-container">
   <div class="card" *ngFor="let item of itemsList">
-    <a routerLink="/items/{{item.id}}">{{item.photo_id}}</a>
-    <a routerLink="/items/{{item.id}}">{{item.description}}</a>
-    <div class="card-desc">
-      <div>{{item.created_at}}</div>
-      <div>Views: {{item.views}}</div>
+    <div class="image-container">
+      <img routerLink="/items/{{item.id}}" src="{{item.photo}}" class="item-image">
+    </div>
+    <div class="details">
+      <a routerLink="/items/{{item.id}}">{{item.description}}</a>
+      <div class="card-desc">
+        <div>{{item.created_at}}</div>
+        <div>Views: {{item.views}}</div>
+        <div class="item-details">{{item.notes_details}}</div>
+      </div>
     </div>
   </div>
 </div>

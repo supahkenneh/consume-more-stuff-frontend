@@ -5,7 +5,9 @@
   <div class="item-list-container" *ngIf="showItems">
     <div class="card-container " *ngFor="let item of categoryItems ">
       <div class="card ">
-        <a routerLink="items/{{item.id}} ">Photo: {{item.photo_id}}</a>
+        <div class="image-container">
+          <img routerLink="items/{{item.id}}" src="{{item.photo}}" class="item-image">
+        </div>
         <a routerLink="items/{{item.id}} ">{{item.description}}</a>
         <div class="card-desc ">
           <div>{{item.created_at}}</div>
@@ -14,4 +16,17 @@
       </div>
     </div>
   </div>
-</div>
+  <div class="item-list-container-desktop" *ngIf="showItems">
+    <div class="card-container " *ngFor="let item of categoryItems ">
+      <div class="card ">
+        <div class="image-container">
+          <img routerLink="items/{{item.id}}" src="{{item.photo}}" class="item-image">
+        </div>
+        <a routerLink="items/{{item.id}} ">{{item.description}}</a>
+        <div class="card-desc ">
+          <div>{{item.created_at}}</div>
+          <div>Views: {{item.views}}</div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -10,6 +10,7 @@ import { BackendService } from '../../services/backend.service';
 
 export class SettingsComponent implements OnInit {
   user: object;
+  showPasswordForm: boolean = false;
   private _isLoggedInAsObservable;
   private _isLoggedIn: boolean;
   passwordFormData: {
@@ -23,6 +24,10 @@ export class SettingsComponent implements OnInit {
     }
 
   passwordErrors: string[] = [];
+
+  messages: string[] = [];
+
+  showLoading: boolean = false;
 
   constructor(
     private router: Router,
@@ -55,6 +60,7 @@ export class SettingsComponent implements OnInit {
   }
 
   submitPasswordChange() {
+    this.showLoading = true;
     if (this.passwordFormData.newPass !== this.passwordFormData.verifyPass) {
       return this.passwordErrors.push(`New password doesn't match`)
     }
@@ -65,9 +71,27 @@ export class SettingsComponent implements OnInit {
         }
       })
       .then(() => {
-        //will need another way to let user know password is changed
-        return this.router.navigate(['/user/items'])
+        this.showLoading = false;
+        this.messages.push('Password change successful!')
+        this.showPassForm();
       })
   }
 
+  showPassForm() {
+    if (this.showPasswordForm) {
+      return this.showPasswordForm = false;
+    } else {
+      this.passwordFormData = {
+        oldPass: '',
+        newPass: '',
+        verifyPass: ''
+      };
+      this.messages.length = 0;
+      return this.showPasswordForm = true;
+    }
+  }
+
+  getMessages() {
+    return this.messages.join(', ');
+  }
 }
